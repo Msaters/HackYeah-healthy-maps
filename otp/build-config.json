@@ -1,0 +1,40 @@
+{
+  "staticBikeParkAndRide": true,
+  "osmDefaults": {
+    "timeZone": "Europe/Warsaw"
+  },
+  "transitServiceStart": "-P7D",
+  "transitServiceEnd": "P30D",
+  "osm": [
+    {
+      "source": "file:///var/opentripplanner/krakow.osm.pbf",
+      "osmTagMapping": "default"
+    }
+  ],
+  "transitFeeds": [
+    {
+      "type": "gtfs",
+      "feedId": "krk-a",
+      "source": "file:///var/opentripplanner/krk-a.gtfs.zip"
+    },
+    {
+      "type": "gtfs",
+      "feedId": "krk-t",
+      "source": "file:///var/opentripplanner/krk-t.gtfs.zip"
+    }
+  ],
+  "dem": [
+    {
+      "source": "file:///var/opentripplanner/dem_N49_00_E019.tif"
+    },
+    {
+      "source": "file:///var/opentripplanner/dem_N49_00_E020.tif"
+    },
+    {
+      "source": "file:///var/opentripplanner/dem_N50_00_E019.tif"
+    },
+    {
+      "source": "file:///var/opentripplanner/dem_N50_00_E020.tif"
+    }
+  ]
+}

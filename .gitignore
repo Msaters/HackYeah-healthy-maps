@@ -1,0 +1,11 @@
+# OTP inputs and built graph (large, re-download with otp/download.sh)
+otp/*.pbf
+otp/*.zip
+otp/*.tif
+otp/*.obj
+
+# Python / Node
+__pycache__/
+.venv/
+node_modules/
+.env

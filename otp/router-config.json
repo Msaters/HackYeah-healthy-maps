@@ -1,0 +1,25 @@
+{
+  "routingDefaults": {
+    "numItineraries": 5,
+    "walk": { "speed": 1.33 },
+    "bicycle": {
+      "speed": 4.5,
+      "rental": { "allowKeepingAtDestination": false }
+    }
+  },
+  "updaters": [
+    { "type": "stop-time-updater",  "feedId": "krk-a", "frequency": "30s", "url": "https://gtfs.ztp.krakow.pl/TripUpdates_A.pb" },
+    { "type": "stop-time-updater",  "feedId": "krk-t", "frequency": "30s", "url": "https://gtfs.ztp.krakow.pl/TripUpdates_T.pb" },
+    { "type": "vehicle-positions",  "feedId": "krk-a", "frequency": "30s", "url": "https://gtfs.ztp.krakow.pl/VehiclePositions_A.pb" },
+    { "type": "vehicle-positions",  "feedId": "krk-t", "frequency": "30s", "url": "https://gtfs.ztp.krakow.pl/VehiclePositions_T.pb" },
+    { "type": "real-time-alerts",   "feedId": "krk-a", "frequency": "5m",  "url": "https://gtfs.ztp.krakow.pl/ServiceAlerts_A.pb" },
+    { "type": "real-time-alerts",   "feedId": "krk-t", "frequency": "5m",  "url": "https://gtfs.ztp.krakow.pl/ServiceAlerts_T.pb" },
+    {
+      "type": "vehicle-rental",
+      "sourceType": "gbfs",
+      "network": "park-e-bike",
+      "frequency": "1m",
+      "url": "http://host.docker.internal:8000/gbfs/gbfs.json"
+    }
+  ]
+}
