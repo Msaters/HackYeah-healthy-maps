@@ -9,3 +9,6 @@ __pycache__/
 .venv/
 node_modules/
 .env
+
+# hy-loop agent state (local only)
+.hy-loop/
