@@ -4,7 +4,7 @@ import unittest
 
 import numpy as np
 
-from optimizer import genome
+from optimizer import genome, slider
 from optimizer.profiles import METRIC_KEYS, build_profiles, dedupe_front, non_dominated
 from optimizer.run_ga import front_points, safe_decode
 
@@ -64,6 +64,41 @@ class TestBuildProfiles(unittest.TestCase):
 
     def test_json_serialisable(self):
         json.dumps(build_profiles(KNEE_FRONT))
+
+
+class TestProfilesFromSlider(unittest.TestCase):
+    """With a slider, fast/active are its extreme ticks (tick.index -> sorted_front(front))."""
+
+    def _check(self, front, n=7):
+        sl = slider.build_slider({"meta": {}, "front": front}, n=n, variant="walk")
+        p = build_profiles(front, sl)
+        for key, tick in (("fast", sl["ticks"][0]), ("active", sl["ticks"][-1])):
+            self.assertEqual(p[key]["modes"], tick["modes"], key)
+            self.assertEqual(p[key]["preferences"], tick["preferences"], key)
+            self.assertEqual(p[key]["metrics"]["active_kcal"], tick["metrics"]["active_kcal"], key)
+        knee = build_profiles(front)["balanced"]
+        self.assertEqual(p["balanced"], knee)
+        return p
+
+    def test_knee_front_unsorted(self):
+        p = self._check(list(reversed(KNEE_FRONT)))
+        self.assertEqual(p["fast"]["metrics"]["f_time_ratio"], 1.0)
+        self.assertEqual(p["active"]["metrics"]["active_kcal"], 110)
+
+    def test_random_fronts_agree_with_pick_profiles(self):
+        rng = np.random.default_rng(5)
+        for _ in range(100):
+            n = int(rng.integers(1, 12))
+            front = [point(float(1 + rng.random()), float(rng.random() * 200)) for _ in range(n)]
+            front = non_dominated(dedupe_front(front))
+            p = self._check(front, n=int(rng.integers(2, 9)))
+            self.assertEqual(p["fast"], build_profiles(front)["fast"])
+            self.assertEqual(p["active"], build_profiles(front)["active"])
+
+    def test_bad_index_raises(self):
+        sl = {"ticks": [{"index": 9}]}
+        with self.assertRaises(ValueError):
+            build_profiles(KNEE_FRONT, sl)
 
 
 class TestDedupe(unittest.TestCase):
@@ -145,6 +180,18 @@ class TestSafeDecode(unittest.TestCase):
         q = safe_decode(x)
         self.assertIn("modes", q)
         json.dumps(q, allow_nan=False)
+
+    def test_variant_canonical(self):
+        rng = np.random.default_rng(2)
+        for _ in range(50):
+            x = rng.random(genome.DIM)
+            y = x.copy()
+            y[~genome.active_mask("walk")] = rng.random(int((~genome.active_mask("walk")).sum()))
+            qx = safe_decode(x, "walk")
+            self.assertEqual(qx, safe_decode(y, "walk"))
+            self.assertEqual(qx, genome.decode(genome.canonical(x, "walk"), "walk"))
+            self.assertNotIn("BICYCLE", json.dumps(qx))
+        self.assertEqual(safe_decode(x), genome.decode(x, "bike"))
 
 
 if __name__ == "__main__":

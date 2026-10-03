@@ -1,3 +1,4 @@
+import hashlib
 import time
 import unittest
 
@@ -12,7 +13,9 @@ from optimizer.nsga2 import (
     nsga2,
     poly_mutation,
     sbx,
+    survival_select,
 )
+from optimizer.tests._nsga2_legacy import nsga2 as legacy_nsga2
 
 
 def zdt1_batch(X):
@@ -31,6 +34,21 @@ def constrained_batch(X):
     cv = np.maximum(0.0, 0.3 - X[:, 0]) + np.maximum(0.0, X[:, 1:].mean(axis=1) - 0.2)
     details = [{"i": i} for i in range(len(X))]
     return F, cv, details
+
+
+def quantized_batch(X):
+    # ZDT1 snapped to a 0.25 grid: many genomes share identical objectives,
+    # like GA weight vectors that decode to the same OTP itinerary.
+    F, cv, details = zdt1_batch(X)
+    return np.round(F * 4) / 4, cv, details
+
+
+def run_hash(res):
+    h = hashlib.sha256()
+    h.update(np.ascontiguousarray(res["X"]).tobytes())
+    h.update(np.ascontiguousarray(res["F"]).tobytes())
+    h.update(repr(res["front0"]).encode())
+    return h.hexdigest()
 
 
 class TestDominates(unittest.TestCase):
@@ -182,6 +200,122 @@ class TestNSGA2(unittest.TestCase):
         self.assertTrue(np.all(res["F"][f0, 0] >= 0.3))
         # details travel with their individuals
         self.assertEqual(len(res["details"]), 30)
+
+
+class TestSurvivalSelect(unittest.TestCase):
+    # 6 unique points: front0 = A,B,C,D; E rank 1; G rank 2; plus 4 copies of
+    # front0 members (indices 6..9) -> 10 points in total.
+    F = np.array([[0, 5], [1, 3], [3, 1], [5, 0], [4, 4], [6, 6],
+                  [1, 3], [1, 3], [3, 1], [0, 5]], dtype=float)
+    cv = np.zeros(10)
+
+    def test_unique_preferred(self):
+        sel = survival_select(self.F, self.cv, 6, 6)
+        self.assertEqual(len(sel), 6)
+        self.assertEqual(sorted(sel), [0, 1, 2, 3, 4, 5])
+        self.assertEqual(len({tuple(r) for r in self.F[sel]}), 6)
+        # plain NSGA-II keeps copies from the 8-member first front instead
+        plain = survival_select(self.F, self.cv, 6, None)
+        self.assertEqual(len(plain), 6)
+        self.assertLess(len({tuple(r) for r in self.F[plain]}), 6)
+
+    def test_duplicates_fill_up(self):
+        sel = survival_select(self.F, self.cv, 8, 6)
+        self.assertEqual(sorted(sel[:6]), [0, 1, 2, 3, 4, 5])
+        self.assertEqual(sel[6:], [6, 7])  # copies by (rank, index)
+        self.assertEqual(sorted(survival_select(self.F, self.cv, 10, 6)), list(range(10)))
+
+    def test_duplicates_ordered_by_rank(self):
+        # copies of a rank-1 point and of a rank-0 point: rank-0 copy first
+        F = np.array([[0, 1], [1, 0], [2, 2], [2, 2], [1, 0]], dtype=float)
+        sel = survival_select(F, np.zeros(5), 5, 6)
+        self.assertEqual(sorted(sel[:3]), [0, 1, 2])
+        self.assertEqual(sel[3:], [4, 3])
+
+    def test_representative_lowest_rank(self):
+        # index 1 equals index 0 after rounding but strictly dominates it
+        F = np.array([[1.0, 1.0], [1.0, 1.0 - 1e-9], [0.0, 2.0], [2.0, 0.0]])
+        sel = survival_select(F, np.zeros(4), 3, 6)
+        self.assertEqual(sorted(sel), [1, 2, 3])
+        # equal rank -> lower index wins
+        F2 = np.array([[1.0, 1.0], [1.0 + 1e-9, 1.0 - 1e-9], [0.0, 2.0]])
+        self.assertEqual(sorted(survival_select(F2, np.zeros(3), 2, 6)), [0, 2])
+
+    def test_cv_distinguishes(self):
+        F = np.array([[1.0, 1.0], [1.0, 1.0], [0.0, 2.0]])
+        cv = np.array([0.0, 0.5, 0.0])
+        sel = survival_select(F, cv, 2, 6)
+        self.assertEqual(sorted(sel), [0, 2])
+        sel = survival_select(F, cv, 3, 6)
+        self.assertEqual(sorted(sel), [0, 1, 2])
+
+
+class TestNSGA2Dedupe(unittest.TestCase):
+    # dedupe_decimals=None must reproduce the frozen GA v1 implementation
+    # run-for-run (compared within one process, so no float-bit constants).
+    LEGACY_CASES = {
+        "zdt1": (zdt1_batch, 6, 12, 5, 7),
+        "quant": (quantized_batch, 6, 16, 8, 3),
+        "constr": (constrained_batch, 6, 20, 10, 2),
+    }
+
+    def test_none_matches_legacy(self):
+        for name, (fn, dim, pop, gens, seed) in self.LEGACY_CASES.items():
+            with self.subTest(name):
+                old = legacy_nsga2(fn, dim, pop, gens, np.random.default_rng(seed))
+                new = nsga2(fn, dim, pop, gens, np.random.default_rng(seed),
+                            dedupe_decimals=None)
+                for key in ("X", "F", "cv", "rank"):
+                    np.testing.assert_array_equal(new[key], old[key])
+                self.assertEqual(new["front0"], old["front0"])
+                self.assertEqual(new["details"], old["details"])
+
+    def test_front0_unique_and_more_diverse(self):
+        def uniq(res):
+            return len({tuple(r) for r in res["F"][res["front0"]]})
+
+        plain = nsga2(quantized_batch, 6, 20, 15, np.random.default_rng(3),
+                      dedupe_decimals=None)
+        dd = nsga2(quantized_batch, 6, 20, 15, np.random.default_rng(3))
+        print(f"\nquantized ZDT1 unique front0: plain={uniq(plain)} dedupe={uniq(dd)}")
+        self.assertEqual(uniq(dd), len(dd["front0"]))  # no duplicate F in front0
+        self.assertGreater(uniq(dd), uniq(plain))
+        self.assertEqual(dd["X"].shape, (20, 6))
+
+    def test_x0_anchor_seeded(self):
+        x_anchor = np.linspace(0.0, 1.0, 6)
+        states = {}
+
+        def cb(g, s):
+            states[g] = s["X"].copy()
+
+        nsga2(zdt1_batch, 6, 10, 2, np.random.default_rng(4), callback=cb,
+              X0=x_anchor)
+        np.testing.assert_array_equal(states[0][0], x_anchor)
+        # rows after the seeded ones keep the original random stream
+        ref = np.random.default_rng(4).random((10, 6))
+        np.testing.assert_array_equal(states[0][1:], ref[1:])
+
+    def test_x0_matrix_clip_and_errors(self):
+        X0 = np.array([[-0.5] * 4, [0.3] * 4, [1.7] * 4])
+        states = {}
+        nsga2(zdt1_batch, 4, 5, 0, np.random.default_rng(0),
+              callback=lambda g, s: states.setdefault(g, s["X"].copy()), X0=X0)
+        np.testing.assert_array_equal(states[0][:3], np.clip(X0, 0, 1))
+        with self.assertRaises(ValueError):
+            nsga2(zdt1_batch, 4, 2, 1, np.random.default_rng(0), X0=X0)  # k > pop
+        with self.assertRaises(ValueError):
+            nsga2(zdt1_batch, 4, 5, 1, np.random.default_rng(0), X0=np.zeros((1, 3)))
+        with self.assertRaises(ValueError):
+            nsga2(zdt1_batch, 4, 5, 1, np.random.default_rng(0),
+                  X0=np.array([0.1, np.nan, 0.2, 0.3]))
+
+    def test_determinism_with_x0(self):
+        x_anchor = np.full(6, 0.25)
+        r1 = nsga2(quantized_batch, 6, 14, 6, np.random.default_rng(11), X0=x_anchor)
+        r2 = nsga2(quantized_batch, 6, 14, 6, np.random.default_rng(11), X0=x_anchor)
+        self.assertEqual(run_hash(r1), run_hash(r2))
+        self.assertEqual(r1["details"], r2["details"])
 
 
 if __name__ == "__main__":

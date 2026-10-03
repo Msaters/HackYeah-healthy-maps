@@ -1,12 +1,15 @@
 """Front post-processing: deduplication, sorting and fast/balanced/active profiles.
 
 The knee-point selection itself lives in optimizer.report.pick_profiles, so the
-report and profiles.json always agree on which points are the profiles.
+report and profiles.json always agree on which points are the profiles. When a
+slider (optimizer.slider) is given, "fast" and "active" are its first and last
+ticks, so profiles.json and slider.json name the same extreme routes.
 Standard library only.
 """
 import json
 
 from optimizer.report import pick_profiles
+from optimizer.slider import sorted_front
 
 PROFILE_KEYS = ("fast", "balanced", "active")
 METRIC_KEYS = ("f_time_ratio", "active_kcal", "steps", "duration_min")
@@ -60,18 +63,31 @@ def _metrics(point):
     return {k: point.get(k) for k in METRIC_KEYS}
 
 
-def build_profiles(front):
+def build_profiles(front, slider=None):
     """front (list of front.json points) -> {"fast"|"balanced"|"active": {modes, preferences, metrics}}.
 
-    Uses the knee-point logic of optimizer.report.pick_profiles. With fewer than
-    three distinct points, profiles may repeat; an empty front raises ValueError.
+    Uses the knee-point logic of optimizer.report.pick_profiles. With a slider
+    document (slider.json built from this same front), "fast" is tick 0 and
+    "active" is tick n-1 (tick.index points into slider.sorted_front(front));
+    "balanced" stays the knee point. With fewer than three distinct points,
+    profiles may repeat; an empty front raises ValueError.
     """
     if not front:
         raise ValueError("empty front: no profiles to build")
     idx = pick_profiles(front)
+    chosen = {key: front[idx[key]] for key in PROFILE_KEYS}
+    if slider is not None:
+        ticks = slider.get("ticks") or []
+        if not ticks:
+            raise ValueError("slider has no ticks")
+        ordered = sorted_front(front)
+        for key, tick in (("fast", ticks[0]), ("active", ticks[-1])):
+            if not 0 <= tick["index"] < len(ordered):
+                raise ValueError(f"slider tick index {tick['index']} outside the front")
+            chosen[key] = ordered[tick["index"]]
     out = {}
     for key in PROFILE_KEYS:
-        p = front[idx[key]]
+        p = chosen[key]
         q = p.get("query") or {}
         out[key] = {"modes": q.get("modes"), "preferences": q.get("preferences"),
                     "metrics": _metrics(p)}

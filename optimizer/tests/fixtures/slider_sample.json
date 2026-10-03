@@ -1,0 +1,460 @@
+{
+ "meta": {
+  "variant": "bike",
+  "n": 7,
+  "f1": "f_time_ratio",
+  "f2": "active_kcal",
+  "distinct": 7,
+  "source": "front.json",
+  "generated": "2026-10-03T21:16:00+02:00"
+ },
+ "ticks": [
+  {
+   "s": 0.0,
+   "u": 0.0,
+   "index": 10,
+   "modes": {
+    "transit": {
+     "access": [
+      "WALK"
+     ],
+     "egress": [
+      "WALK"
+     ],
+     "transfer": [
+      "WALK"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 1.75
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "transitOnly": true
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 4.175,
+      "speed": 1.18
+     },
+     "bicycle": {
+      "reluctance": 4.5,
+      "speed": 3.72,
+      "optimization": {
+       "triangle": {
+        "safety": 0.118,
+        "flatness": 0.026,
+        "time": 0.856
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.26
+     },
+     "transfer": {
+      "cost": 22
+     }
+    }
+   },
+   "metrics": {
+    "f_time_ratio": 1.0,
+    "active_kcal": 22.0,
+    "steps": 584,
+    "duration_min": 31.9
+   }
+  },
+  {
+   "s": 0.166667,
+   "u": 0.20119,
+   "index": 0,
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE_PARKING"
+     ],
+     "egress": [
+      "WALK"
+     ],
+     "transfer": [
+      "WALK"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 2.72
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "transitOnly": true
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 2.373,
+      "speed": 1.33
+     },
+     "bicycle": {
+      "reluctance": 3.464,
+      "speed": 3.85,
+      "optimization": {
+       "triangle": {
+        "safety": 0.485,
+        "flatness": 0.104,
+        "time": 0.411
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 0.87
+     },
+     "transfer": {
+      "cost": 234
+     }
+    }
+   },
+   "metrics": {
+    "f_time_ratio": 1.09,
+    "active_kcal": 78.0,
+    "steps": 710,
+    "duration_min": 35.7
+   }
+  },
+  {
+   "s": 0.333333,
+   "u": 0.368993,
+   "index": 8,
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 1.07
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "transitOnly": true
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 1.628,
+      "speed": 1.28
+     },
+     "bicycle": {
+      "reluctance": 2.773,
+      "speed": 6.12,
+      "optimization": {
+       "triangle": {
+        "safety": 0.027,
+        "flatness": 0.501,
+        "time": 0.472
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.02
+     },
+     "transfer": {
+      "cost": 218
+     }
+    }
+   },
+   "metrics": {
+    "f_time_ratio": 1.15,
+    "active_kcal": 128.0,
+    "steps": 693,
+    "duration_min": 37.0
+   }
+  },
+  {
+   "s": 0.5,
+   "u": 0.537698,
+   "index": 11,
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 2.78
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "transitOnly": true
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 1.117,
+      "speed": 1.59
+     },
+     "bicycle": {
+      "reluctance": 2.082,
+      "speed": 4.59,
+      "optimization": {
+       "triangle": {
+        "safety": 0.396,
+        "flatness": 0.006,
+        "time": 0.598
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 0.81
+     },
+     "transfer": {
+      "cost": 374
+     }
+    }
+   },
+   "metrics": {
+    "f_time_ratio": 1.24,
+    "active_kcal": 171.0,
+    "steps": 731,
+    "duration_min": 40.8
+   }
+  },
+  {
+   "s": 0.666667,
+   "u": 0.641922,
+   "index": 4,
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 2.96
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "direct": [
+     "BICYCLE"
+    ]
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 0.925,
+      "speed": 1.46
+     },
+     "bicycle": {
+      "reluctance": 1.736,
+      "speed": 3.88,
+      "optimization": {
+       "triangle": {
+        "safety": 0.241,
+        "flatness": 0.346,
+        "time": 0.413
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 0.72
+     },
+     "transfer": {
+      "cost": 495
+     }
+    }
+   },
+   "metrics": {
+    "f_time_ratio": 1.31,
+    "active_kcal": 192.0,
+    "steps": 710,
+    "duration_min": 41.8
+   }
+  },
+  {
+   "s": 0.833333,
+   "u": 0.871528,
+   "index": 5,
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 2.15
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "direct": [
+     "BICYCLE"
+    ]
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 0.635,
+      "speed": 1.22
+     },
+     "bicycle": {
+      "reluctance": 1.045,
+      "speed": 5.82,
+      "optimization": {
+       "triangle": {
+        "safety": 0.122,
+        "flatness": 0.32,
+        "time": 0.558
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.87
+     },
+     "transfer": {
+      "cost": 265
+     }
+    }
+   },
+   "metrics": {
+    "f_time_ratio": 1.48,
+    "active_kcal": 229.0,
+    "steps": 739,
+    "duration_min": 49.5
+   }
+  },
+  {
+   "s": 1.0,
+   "u": 1.0,
+   "index": 6,
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 1.11
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "direct": [
+     "BICYCLE"
+    ]
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 0.526,
+      "speed": 1.22
+     },
+     "bicycle": {
+      "reluctance": 0.7,
+      "speed": 5.51,
+      "optimization": {
+       "triangle": {
+        "safety": 0.019,
+        "flatness": 0.535,
+        "time": 0.446
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.57
+     },
+     "transfer": {
+      "cost": 396
+     }
+    }
+   },
+   "metrics": {
+    "f_time_ratio": 1.58,
+    "active_kcal": 246.0,
+    "steps": 644,
+    "duration_min": 52.0
+   }
+  }
+ ]
+}

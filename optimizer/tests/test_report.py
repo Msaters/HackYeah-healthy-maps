@@ -1,4 +1,7 @@
+import contextlib
+import io
 import json
+import math
 import os
 import tempfile
 import unittest
@@ -7,6 +10,7 @@ import xml.etree.ElementTree as ET
 from optimizer import report
 
 FIXTURE = os.path.join(os.path.dirname(__file__), "fixtures", "front_sample.json")
+SLIDER_FIXTURE = os.path.join(os.path.dirname(__file__), "fixtures", "slider_sample.json")
 SVG_NS = "{http://www.w3.org/2000/svg}"
 
 
@@ -252,6 +256,261 @@ class ReportOutputTest(unittest.TestCase):
                 md = f.read()
             self.assertIn("profiles.json", md)
             ET.parse(os.path.join(d, "front.svg"))
+
+
+def load_slider():
+    with open(SLIDER_FIXTURE, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _tick_elements(svg_text):
+    root = ET.fromstring(svg_text)
+    return root, [e for e in root.iter() if e.get("class") == "tick"]
+
+
+def _suwak_rows(md):
+    lines = md.splitlines()
+    start = lines.index("## Suwak")
+    rows = []
+    for l in lines[start + 1:]:
+        if l.startswith("## "):
+            break
+        if l.startswith("| ") and not l.startswith("| Ząbek"):
+            rows.append(l)
+    return rows
+
+
+class SliderFixtureTest(unittest.TestCase):
+    def test_fixture_consistent_with_front(self):
+        front = load_front()["front"]
+        sl = load_slider()
+        meta = sl["meta"]
+        self.assertEqual(set(meta), {"variant", "n", "f1", "f2", "distinct", "source", "generated"})
+        self.assertEqual((meta["n"], len(sl["ticks"])), (7, 7))
+        self.assertEqual(meta["distinct"], len({t["index"] for t in sl["ticks"]}))
+        for i, t in enumerate(sl["ticks"]):
+            self.assertEqual(set(t), {"s", "u", "index", "modes", "preferences", "metrics"})
+            self.assertAlmostEqual(t["s"], i / 6, places=5)
+            p = front[t["index"]]
+            self.assertEqual(t["modes"], p["query"]["modes"])
+            self.assertEqual(t["preferences"], p["query"]["preferences"])
+            for f in ("f_time_ratio", "active_kcal", "steps", "duration_min"):
+                self.assertEqual(t["metrics"][f], p[f])
+        # Tick 0 = fastest, last tick = most kcal; both non-decreasing.
+        times = [t["metrics"]["f_time_ratio"] for t in sl["ticks"]]
+        kcal = [t["metrics"]["active_kcal"] for t in sl["ticks"]]
+        self.assertEqual(times, sorted(times))
+        self.assertEqual(kcal, sorted(kcal))
+        self.assertEqual(times[0], min(p["f_time_ratio"] for p in front))
+        self.assertEqual(kcal[-1], max(p["active_kcal"] for p in front))
+
+
+class SliderReportTest(unittest.TestCase):
+    def setUp(self):
+        self.front = load_front()["front"]
+        self.slider = load_slider()
+        self.prof = report.resolve_profiles(self.front)
+
+    def test_ticks_on_svg(self):
+        svg = report.render_svg(self.front, self.prof, {}, self.slider)
+        root, ticks = _tick_elements(svg)
+        n = len(self.slider["ticks"])
+        self.assertEqual(len(ticks), n)
+        labels = sorted(int("".join(t.find(f"{SVG_NS}text").itertext())) for t in ticks)
+        self.assertEqual(labels, list(range(n)))
+        texts = " ".join("".join(t.itertext()) for t in root.iter(f"{SVG_NS}text"))
+        for label in ("ząbek suwaka", "wariant: rower", "Suwak: czas ↔ ruch",
+                      "Szybki", "Zbalansowany", "Aktywny", "= czas KMK"):
+            self.assertIn(label, texts)
+
+    def test_no_ticks_without_slider(self):
+        svg = report.render_svg(self.front, self.prof, {})
+        _, ticks = _tick_elements(svg)
+        self.assertEqual(ticks, [])
+        self.assertNotIn("ząbek suwaka", svg)
+        self.assertNotIn("Suwak", svg)
+        md = report.render_md(self.front, self.prof, {})
+        self.assertNotIn("## Suwak", md)
+        # Malformed slider docs are ignored, not fatal.
+        for bad in ({}, {"ticks": None}, {"ticks": ["x", {"s": 0.5}]}):
+            _, ticks = _tick_elements(report.render_svg(self.front, self.prof, {}, bad))
+            self.assertEqual(ticks, [])
+
+    def test_markdown_suwak_table(self):
+        md = report.render_md(self.front, self.prof, {}, None, self.slider)
+        rows = _suwak_rows(md)
+        self.assertEqual(len(rows), len(self.slider["ticks"]))
+        # Tick 3 = 1.24x knee point, Polish decimal comma.
+        self.assertTrue(rows[3].startswith("| 3 | 0,50 | 1,24 | 40,8 | 171 | 731 |"), rows[3])
+        self.assertIn("wariant: rower", md)
+
+    def test_labels_avoid_tick_labels_and_profiles(self):
+        svg = report.render_svg(self.front, self.prof, {}, self.slider)
+        root, boxes = _label_boxes(svg)
+        self.assertEqual(len(boxes), 3)
+        g = [e for e in root.iter(f"{SVG_NS}g") if e.get("class") == "tick-labels"][0]
+        for t in g.findall(f"{SVG_NS}text"):
+            x, y = float(t.get("x")), float(t.get("y"))
+            tb = (x, y - 11, x + report._text_w(t.text, 12, True), y)
+            for b in boxes:
+                self.assertFalse(report._overlap(tb, b), f"tick label {t.text} overlaps profile label {b}")
+        # Slider widget does not cover profile labels nor the 1.0x reference label.
+        sg = [e for e in root.iter(f"{SVG_NS}g") if e.get("class") == "slider"][0]
+        r = sg.find(f"{SVG_NS}rect")
+        wb = (float(r.get("x")), float(r.get("y")),
+              float(r.get("x")) + float(r.get("width")), float(r.get("y")) + float(r.get("height")))
+        for b in boxes:
+            self.assertFalse(report._overlap(wb, b))
+        dashed = [l for l in root.iter(f"{SVG_NS}line") if l.get("stroke-dasharray")][0]
+        self.assertFalse(wb[0] <= float(dashed.get("x1")) <= wb[2])
+
+    def test_distinct_less_than_n(self):
+        # Three-point front, 7 ticks: 0 -> fast, 1-3 -> middle, 4-6 -> active.
+        front = [_pt(1.0, 20), _pt(1.2, 120), _pt(1.6, 220)]
+        idx = [0, 1, 1, 1, 2, 2, 2]
+        slider = {"meta": {"variant": "walk", "n": 7, "f1": "f_time_ratio", "f2": "active_kcal",
+                           "distinct": 3, "source": "front.json", "generated": "2026-10-03T21:00"},
+                  "ticks": [{"s": i / 6, "u": i / 6, "index": j, "modes": {}, "preferences": {},
+                             "metrics": {k: front[j][k] for k in ("f_time_ratio", "active_kcal",
+                                                                   "steps", "duration_min")}}
+                            for i, j in enumerate(idx)]}
+        prof = report.resolve_profiles(front)
+        svg = report.render_svg(front, prof, {}, slider)
+        root, ticks = _tick_elements(svg)
+        self.assertEqual(len(ticks), 7)
+        g = [e for e in root.iter(f"{SVG_NS}g") if e.get("class") == "tick-labels"][0]
+        self.assertEqual(sorted(t.text for t in g.findall(f"{SVG_NS}text")), ["0", "1–3", "4–6"])
+        self.assertIn("wariant: bez roweru", svg)
+        md = report.render_md(front, prof, {}, None, slider)
+        self.assertEqual(len(_suwak_rows(md)), 7)
+        self.assertIn("3 różne punkty", md)
+
+    def test_tick_range_label(self):
+        self.assertEqual(report._tick_range_label([2, 3, 4]), "2–4")
+        self.assertEqual(report._tick_range_label([1, 3]), "1, 3")
+        self.assertEqual(report._tick_range_label([0, 1]), "0, 1")
+        self.assertEqual(report._tick_range_label([5]), "5")
+
+
+class SliderBuildReportTest(unittest.TestCase):
+    def _run(self, with_slider, cli_flag=False):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        d = tmp.name
+        fp = os.path.join(d, "front.json")
+        with open(fp, "w", encoding="utf-8") as f:
+            json.dump(load_front(), f)
+        argv = [fp]
+        if with_slider and not cli_flag:
+            with open(os.path.join(d, "slider.json"), "w", encoding="utf-8") as f:
+                json.dump(load_slider(), f)
+        if cli_flag:
+            argv += ["--slider", SLIDER_FIXTURE, "--out", os.path.join(d, "out")]
+            d = os.path.join(d, "out")
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(report.main(argv), 0)
+        with open(os.path.join(d, "front.svg"), encoding="utf-8") as f:
+            svg = f.read()
+        with open(os.path.join(d, "front.md"), encoding="utf-8") as f:
+            md = f.read()
+        return svg, md
+
+    def test_auto_loads_slider_next_to_front(self):
+        svg, md = self._run(True)
+        self.assertEqual(len(_tick_elements(svg)[1]), 7)
+        self.assertEqual(len(_suwak_rows(md)), 7)
+
+    def test_cli_slider_flag(self):
+        svg, md = self._run(True, cli_flag=True)
+        self.assertEqual(len(_tick_elements(svg)[1]), 7)
+        self.assertEqual(len(_suwak_rows(md)), 7)
+
+    def test_no_slider_output_unchanged(self):
+        svg, md = self._run(False)
+        prof = report.resolve_profiles(load_front()["front"])
+        self.assertEqual(svg, report.render_svg(load_front()["front"], prof, load_front()["meta"]))
+        self.assertEqual(_tick_elements(svg)[1], [])
+        self.assertNotIn("Suwak", md)
+
+
+def _tick_diamonds(root):
+    """(cx, cy, h) of the front diamond in each class="tick" group."""
+    out = []
+    for g in root.iter():
+        if g.get("class") != "tick":
+            continue
+        d = g.find(f"{SVG_NS}path").get("d").replace("M", "").replace("L", "").replace("Z", "").split()
+        (x0, y0), (x1, y1) = (map(float, d[0].split(",")), map(float, d[1].split(",")))
+        out.append((x0, y1, x1 - x0))
+    return out
+
+
+def _assert_labels_near_or_led(test, svg):
+    """Every tick label is within ~1.5 text heights of a diamond, or has a leader line ending at it."""
+    root = ET.fromstring(svg)
+    diamonds = _tick_diamonds(root)
+    g = [e for e in root.iter(f"{SVG_NS}g") if e.get("class") == "tick-labels"][0]
+    leader_ends = [(float(l.get("x2")), float(l.get("y2"))) for l in g.findall(f"{SVG_NS}line")]
+    for t in g.findall(f"{SVG_NS}text"):
+        x, y = float(t.get("x")) - 1, float(t.get("y")) + 2
+        box = (x, y - 13, x + report._text_w(t.text, 12, True) + 2, y)
+        gap = min(math.hypot(min(max(cx, box[0]), box[2]) - cx, min(max(cy, box[1]), box[3]) - cy) - h / math.sqrt(2)
+                  for cx, cy, h in diamonds)
+        led = any(box[0] - 1 <= lx <= box[2] + 1 and box[1] - 1 <= ly <= box[3] + 1 for lx, ly in leader_ends)
+        test.assertTrue(gap <= 1.5 * 13 + 0.5 or led, f"label {t.text!r} is {gap:.1f}px away without a leader")
+
+
+class SlidePolishTest(unittest.TestCase):
+    def test_hint_clear_of_reference_line(self):
+        for front in (load_front()["front"], [_pt(1.2, 20), _pt(1.3, 120), _pt(1.5, 220)],
+                      [_pt(0.7, 180), _pt(1.0, 20), _pt(1.5, 220)]):
+            svg = report.render_svg(front, report.resolve_profiles(front), {})
+            root = ET.fromstring(svg)
+            hint = [t for t in root.iter(f"{SVG_NS}text") if t.text == report.HINT][0]
+            hx = float(hint.get("x"))
+            hw = report._text_w(report.HINT, 12)
+            rx = float([l for l in root.iter(f"{SVG_NS}line") if l.get("stroke-dasharray")][0].get("x1"))
+            crosses = hx - 2 <= rx <= hx + hw + 2
+            self.assertTrue(not crosses or hint.get("paint-order") == "stroke",
+                            f"reference line x={rx} cuts the hint at x={hx}")
+
+    def test_dense_cluster_merged_with_leader(self):
+        # 1.00x .. 1.06x squeezed next to a far 1.6x point: middle ticks are a few px apart.
+        front = [_pt(1.0 + 0.01 * i, 20 + 8 * i) for i in range(7)] + [_pt(1.6, 260)]
+        slider = {"meta": {"variant": "bike", "n": 7}, "ticks": [
+            {"s": i / 6, "u": i / 6, "index": i, "modes": {}, "preferences": {}, "metrics": {}}
+            for i in range(7)]}
+        prof = report.resolve_profiles(front)
+        svg = report.render_svg(front, prof, {}, slider)
+        root, ticks = _tick_elements(svg)
+        self.assertEqual(len(ticks), 7)
+        g = [e for e in root.iter(f"{SVG_NS}g") if e.get("class") == "tick-labels"][0]
+        labels = [t.text for t in g.findall(f"{SVG_NS}text")]
+        # Every tick number is shown exactly once, and a range label merges the cluster.
+        shown = []
+        for lab in labels:
+            for part in lab.split(", "):
+                a_, _, b_ = part.partition("–")
+                shown += list(range(int(a_), int(b_ or a_) + 1))
+        self.assertEqual(sorted(shown), list(range(7)))
+        self.assertLess(len(labels), 7)
+        self.assertTrue(any("–" in lab for lab in labels), labels)
+        _assert_labels_near_or_led(self, svg)
+
+    def test_tick_labels_near_or_with_leader(self):
+        svg = report.render_svg(load_front()["front"], report.resolve_profiles(load_front()["front"]),
+                                {}, load_slider())
+        root = ET.fromstring(svg)
+        g = [e for e in root.iter(f"{SVG_NS}g") if e.get("class") == "tick-labels"][0]
+        leaders = g.findall(f"{SVG_NS}line")
+        for ln in leaders:
+            self.assertEqual(ln.get("class"), "tick-leader")
+            self.assertGreater(math.hypot(float(ln.get("x2")) - float(ln.get("x1")),
+                                          float(ln.get("y2")) - float(ln.get("y1"))), 5)
+        _assert_labels_near_or_led(self, svg)
+        front = [_pt(1.0, 20), _pt(1.2, 120), _pt(1.6, 220)]
+        three = {"ticks": [{"s": i / 6, "index": j, "metrics": {}} for i, j in enumerate([0, 1, 1, 1, 2, 2, 2])]}
+        _assert_labels_near_or_led(self, report.render_svg(front, report.resolve_profiles(front), {}, three))
 
 
 if __name__ == "__main__":

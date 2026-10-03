@@ -20,6 +20,7 @@ import urllib.request
 
 from optimizer import run_ga
 from optimizer.evaluate import DEFAULT_URL, build_payload, load_od_pairs
+from optimizer.slider import sorted_front
 
 OTP_URL = os.environ.get("OTP_URL", DEFAULT_URL)
 PING_TIMEOUT = 3  # seconds
@@ -106,10 +107,53 @@ class QuickPipelineTest(unittest.TestCase):
         self.assertLessEqual(m[1]["active_kcal"], m[2]["active_kcal"])
 
     def test_report_files(self):
-        for name in ("front.svg", "front.md", "checkpoint.json"):
+        for name in ("front.svg", "front.md", "checkpoint.json", "slider.json"):
             path = os.path.join(self.out, name)
             self.assertTrue(os.path.isfile(path), name)
             self.assertGreater(os.path.getsize(path), 0, name)
+
+    def test_slider(self):
+        doc = self._load("slider.json")
+        self.assertEqual(set(doc), {"meta", "ticks"})
+        m = doc["meta"]
+        for k in ("variant", "n", "f1", "f2", "distinct", "source", "generated", "feasible_front"):
+            self.assertIn(k, m)
+        self.assertEqual(m["variant"], "bike")
+        self.assertEqual((m["f1"], m["f2"]), ("f_time_ratio", "active_kcal"))
+        self.assertTrue(m["feasible_front"])
+        self.assertEqual(m["n"], 7)
+        self.assertEqual(len(doc["ticks"]), 7)
+        ordered = sorted_front(self._load("front.json")["front"])
+        prev = None
+        for i, t in enumerate(doc["ticks"]):
+            for k in ("s", "u", "index", "modes", "preferences", "metrics"):
+                self.assertIn(k, t)
+            self.assertAlmostEqual(t["s"], i / 6)
+            p = ordered[t["index"]]
+            self.assertEqual(t["modes"], p["query"]["modes"])
+            self.assertEqual(t["preferences"], p["query"]["preferences"])
+            if prev is not None:
+                self.assertGreaterEqual(t["metrics"]["f_time_ratio"], prev["f_time_ratio"])
+                self.assertGreaterEqual(t["metrics"]["active_kcal"], prev["active_kcal"])
+            prev = t["metrics"]
+        self.assertEqual(m["distinct"], len({t["index"] for t in doc["ticks"]}))
+        prof = self._load("profiles.json")
+        self.assertEqual(prof["fast"]["preferences"], doc["ticks"][0]["preferences"])
+        self.assertEqual(prof["active"]["preferences"], doc["ticks"][-1]["preferences"])
+        with open(os.path.join(self.out, "front.svg"), encoding="utf-8") as f:
+            self.assertEqual(f.read().count('class="tick"'), 7)
+
+    def test_meta_anchor(self):
+        meta = self._load("front.json")["meta"]
+        self.assertEqual(meta["variant"], "bike")
+        self.assertEqual(meta["dedupe_decimals"], 6)
+        anchor = meta["anchor"]
+        self.assertIsNotNone(anchor)
+        self.assertIsInstance(anchor["in_front"], bool)
+        # the short pair (rynek_agh) loses to walking: the anchor must use the fallback, not cv=60
+        for pp in anchor["per_pair"]:
+            self.assertTrue(pp["found"], pp)
+        self.assertLess(anchor["cv"], 1.0)
 
     def test_active_profile_in_live_query(self):
         prof = self._load("profiles.json")["active"]

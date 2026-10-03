@@ -1,0 +1,3981 @@
+{
+ "_comment": "Real OTP 2.10 planConnection answers (query = slider_select.ROUTE_QUERY) for tick_requests(slider, nowa_huta_agh) (slider built by hand from 7 points of front_sample.json), latestArrival = deadline - 3 min; plus synthetic cases under 'synthetic'.",
+ "pair": "nowa_huta_agh",
+ "deadline": "2026-10-05T08:30:00+02:00",
+ "arrive_by": "2026-10-05T08:27:00+02:00",
+ "slider": {
+  "meta": {
+   "variant": "bike",
+   "n": 7,
+   "f1": "f_time_ratio",
+   "f2": "active_kcal",
+   "distinct": 7,
+   "source": "optimizer/tests/fixtures/front_sample.json (hand-made for T4)",
+   "generated": "2026-10-03T20:30:00+02:00"
+  },
+  "ticks": [
+   {
+    "s": 0.0,
+    "u": 0.0,
+    "index": 0,
+    "modes": {
+     "transit": {
+      "access": [
+       "WALK"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.75
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 4.175,
+       "speed": 1.18
+      },
+      "bicycle": {
+       "reluctance": 4.5,
+       "speed": 3.72,
+       "optimization": {
+        "triangle": {
+         "safety": 0.118,
+         "flatness": 0.026,
+         "time": 0.856
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.26
+      },
+      "transfer": {
+       "cost": 22
+      }
+     }
+    },
+    "metrics": {
+     "f_time_ratio": 1.0,
+     "active_kcal": 22.0,
+     "steps": 584,
+     "duration_min": 31.9
+    }
+   },
+   {
+    "s": 0.16666666666666666,
+    "u": 0.1818,
+    "index": 2,
+    "modes": {
+     "transit": {
+      "access": [
+       "WALK"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.49
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "WALK"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 2.864,
+       "speed": 1.48
+      },
+      "bicycle": {
+       "reluctance": 3.809,
+       "speed": 4.97,
+       "optimization": {
+        "triangle": {
+         "safety": 0.386,
+         "flatness": 0.283,
+         "time": 0.331
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.36
+      },
+      "transfer": {
+       "cost": 525
+      }
+     }
+    },
+    "metrics": {
+     "f_time_ratio": 1.06,
+     "active_kcal": 55.0,
+     "steps": 1459,
+     "duration_min": 34.9
+    }
+   },
+   {
+    "s": 0.3333333333333333,
+    "u": 0.3636,
+    "index": 4,
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE_PARKING"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.29
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 1.965,
+       "speed": 1.1
+      },
+      "bicycle": {
+       "reluctance": 3.118,
+       "speed": 4.61,
+       "optimization": {
+        "triangle": {
+         "safety": 0.0,
+         "flatness": 0.151,
+         "time": 0.849
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.27
+      },
+      "transfer": {
+       "cost": 370
+      }
+     }
+    },
+    "metrics": {
+     "f_time_ratio": 1.12,
+     "active_kcal": 104.0,
+     "steps": 756,
+     "duration_min": 36.0
+    }
+   },
+   {
+    "s": 0.5,
+    "u": 0.5455,
+    "index": 6,
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.53
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 1.348,
+       "speed": 1.53
+      },
+      "bicycle": {
+       "reluctance": 2.427,
+       "speed": 4.28,
+       "optimization": {
+        "triangle": {
+         "safety": 0.447,
+         "flatness": 0.509,
+         "time": 0.044
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.3
+      },
+      "transfer": {
+       "cost": 467
+      }
+     }
+    },
+    "metrics": {
+     "f_time_ratio": 1.19,
+     "active_kcal": 150.0,
+     "steps": 797,
+     "duration_min": 38.9
+    }
+   },
+   {
+    "s": 0.6666666666666666,
+    "u": 0.7273,
+    "index": 8,
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.96
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "BICYCLE"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 0.925,
+       "speed": 1.46
+      },
+      "bicycle": {
+       "reluctance": 1.736,
+       "speed": 3.88,
+       "optimization": {
+        "triangle": {
+         "safety": 0.241,
+         "flatness": 0.346,
+         "time": 0.413
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 0.72
+      },
+      "transfer": {
+       "cost": 495
+      }
+     }
+    },
+    "metrics": {
+     "f_time_ratio": 1.31,
+     "active_kcal": 192.0,
+     "steps": 710,
+     "duration_min": 41.8
+    }
+   },
+   {
+    "s": 0.8333333333333334,
+    "u": 0.9091,
+    "index": 10,
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.15
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "BICYCLE"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 0.635,
+       "speed": 1.22
+      },
+      "bicycle": {
+       "reluctance": 1.045,
+       "speed": 5.82,
+       "optimization": {
+        "triangle": {
+         "safety": 0.122,
+         "flatness": 0.32,
+         "time": 0.558
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.87
+      },
+      "transfer": {
+       "cost": 265
+      }
+     }
+    },
+    "metrics": {
+     "f_time_ratio": 1.48,
+     "active_kcal": 229.0,
+     "steps": 739,
+     "duration_min": 49.5
+    }
+   },
+   {
+    "s": 1.0,
+    "u": 1.0,
+    "index": 11,
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.11
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "BICYCLE"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 0.526,
+       "speed": 1.22
+      },
+      "bicycle": {
+       "reluctance": 0.7,
+       "speed": 5.51,
+       "optimization": {
+        "triangle": {
+         "safety": 0.019,
+         "flatness": 0.535,
+         "time": 0.446
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.57
+      },
+      "transfer": {
+       "cost": 396
+      }
+     }
+    },
+    "metrics": {
+     "f_time_ratio": 1.58,
+     "active_kcal": 246.0,
+     "steps": 644,
+     "duration_min": 52.0
+    }
+   }
+  ]
+ },
+ "requests": [
+  {
+   "tag": "tick:0",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transit": {
+     "access": [
+      "WALK"
+     ],
+     "egress": [
+      "WALK"
+     ],
+     "transfer": [
+      "WALK"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 1.75
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "transitOnly": true
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 4.175,
+      "speed": 1.18
+     },
+     "bicycle": {
+      "reluctance": 4.5,
+      "speed": 3.72,
+      "optimization": {
+       "triangle": {
+        "safety": 0.118,
+        "flatness": 0.026,
+        "time": 0.856
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.26
+     },
+     "transfer": {
+      "cost": 22
+     }
+    }
+   }
+  },
+  {
+   "tag": "tick:1",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transit": {
+     "access": [
+      "WALK"
+     ],
+     "egress": [
+      "WALK"
+     ],
+     "transfer": [
+      "WALK"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 1.49
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "direct": [
+     "WALK"
+    ]
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 2.864,
+      "speed": 1.48
+     },
+     "bicycle": {
+      "reluctance": 3.809,
+      "speed": 4.97,
+      "optimization": {
+       "triangle": {
+        "safety": 0.386,
+        "flatness": 0.283,
+        "time": 0.331
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.36
+     },
+     "transfer": {
+      "cost": 525
+     }
+    }
+   }
+  },
+  {
+   "tag": "tick:2",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE_PARKING"
+     ],
+     "egress": [
+      "WALK"
+     ],
+     "transfer": [
+      "WALK"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 2.29
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "transitOnly": true
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 1.965,
+      "speed": 1.1
+     },
+     "bicycle": {
+      "reluctance": 3.118,
+      "speed": 4.61,
+      "optimization": {
+       "triangle": {
+        "safety": 0.0,
+        "flatness": 0.151,
+        "time": 0.849
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.27
+     },
+     "transfer": {
+      "cost": 370
+     }
+    }
+   }
+  },
+  {
+   "tag": "tick:3",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 1.53
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "transitOnly": true
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 1.348,
+      "speed": 1.53
+     },
+     "bicycle": {
+      "reluctance": 2.427,
+      "speed": 4.28,
+      "optimization": {
+       "triangle": {
+        "safety": 0.447,
+        "flatness": 0.509,
+        "time": 0.044
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.3
+     },
+     "transfer": {
+      "cost": 467
+     }
+    }
+   }
+  },
+  {
+   "tag": "tick:4",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 2.96
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "direct": [
+     "BICYCLE"
+    ]
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 0.925,
+      "speed": 1.46
+     },
+     "bicycle": {
+      "reluctance": 1.736,
+      "speed": 3.88,
+      "optimization": {
+       "triangle": {
+        "safety": 0.241,
+        "flatness": 0.346,
+        "time": 0.413
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 0.72
+     },
+     "transfer": {
+      "cost": 495
+     }
+    }
+   }
+  },
+  {
+   "tag": "tick:5",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 2.15
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "direct": [
+     "BICYCLE"
+    ]
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 0.635,
+      "speed": 1.22
+     },
+     "bicycle": {
+      "reluctance": 1.045,
+      "speed": 5.82,
+      "optimization": {
+       "triangle": {
+        "safety": 0.122,
+        "flatness": 0.32,
+        "time": 0.558
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.87
+     },
+     "transfer": {
+      "cost": 265
+     }
+    }
+   }
+  },
+  {
+   "tag": "tick:6",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transit": {
+     "access": [
+      "BICYCLE"
+     ],
+     "egress": [
+      "BICYCLE"
+     ],
+     "transfer": [
+      "BICYCLE"
+     ],
+     "transit": [
+      {
+       "mode": "BUS",
+       "cost": {
+        "reluctance": 1.11
+       }
+      },
+      {
+       "mode": "TRAM"
+      }
+     ]
+    },
+    "direct": [
+     "BICYCLE"
+    ]
+   },
+   "preferences": {
+    "street": {
+     "walk": {
+      "reluctance": 0.526,
+      "speed": 1.22
+     },
+     "bicycle": {
+      "reluctance": 0.7,
+      "speed": 5.51,
+      "optimization": {
+       "triangle": {
+        "safety": 0.019,
+        "flatness": 0.535,
+        "time": 0.446
+       }
+      }
+     }
+    },
+    "transit": {
+     "board": {
+      "waitReluctance": 1.57
+     },
+     "transfer": {
+      "cost": 396
+     }
+    }
+   }
+  },
+  {
+   "tag": "anchor",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "transitOnly": true,
+    "transit": {
+     "access": [
+      "WALK"
+     ],
+     "egress": [
+      "WALK"
+     ],
+     "transfer": [
+      "WALK"
+     ]
+    }
+   },
+   "preferences": null
+  },
+  {
+   "tag": "walk",
+   "origin": {
+    "lat": 50.0717,
+    "lon": 20.0373,
+    "label": "Nowa Huta, Plac Centralny"
+   },
+   "destination": {
+    "lat": 50.0663,
+    "lon": 19.9232,
+    "label": "AGH"
+   },
+   "modes": {
+    "direct": [
+     "WALK"
+    ],
+    "directOnly": true
+   },
+   "preferences": null
+  }
+ ],
+ "results": [
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:42:13+02:00",
+      "end": "2026-10-05T08:25:35+02:00",
+      "duration": 2602,
+      "generalizedCost": 6647,
+      "walkDistance": 565.39,
+      "elevationGained": 2.99,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 167.0,
+        "distance": 135.94,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:13+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?ND?D?D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 600.0,
+        "distance": 3896.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:55:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "TAURON Arena Kraków Wieczysta",
+         "lat": 50.071103,
+         "lon": 19.982871
+        },
+        "route": {
+         "shortName": "74"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 600.0,
+        "distance": 3280.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:57:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00"
+        },
+        "from": {
+         "name": "TAURON Arena Kraków Wieczysta",
+         "lat": 50.071103,
+         "lon": 19.982871
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "16"
+        },
+        "legGeometry": {
+         "points": "korpH}{}xB??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTPbALl@Jr@BL?@@@?@?@?B?B?@?@?B?B?@?@?B?@?B?@AB?@?B?@A@?B?@A@?@A@?@?@A@?@A@?@A@?@A@A@?@A@A@??A@EBEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 56.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:56+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 420.0,
+        "distance": 1897.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:13:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "124"
+        },
+        "legGeometry": {
+         "points": "iorpHsovxBs@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^@@HVPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 335.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:25:35+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:39:13+02:00",
+      "end": "2026-10-05T08:20:35+02:00",
+      "duration": 2482,
+      "generalizedCost": 6428,
+      "walkDistance": 565.39,
+      "elevationGained": 2.99,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 167.0,
+        "distance": 135.94,
+        "start": {
+         "scheduledTime": "2026-10-05T07:39:13+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?ND?D?D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1020.0,
+        "distance": 6114.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:59:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Rondo Grzegórzeckie",
+         "lat": 50.058426,
+         "lon": 19.959244
+        },
+        "route": {
+         "shortName": "22"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFA`@Eh@MtCAL?H?F?D?B?H?X@P@D@J@H@HBHBFBFFNFHBDBDDFBBDDBBBBFDDDDBHDTJD@??j@VTJh@T^PjAf@VL??l@VFDHBLHPLRNNNLLJJPRNTJPJNJTJPHRHTHTHRDNDRfBdH\\rA@BRz@Nv@R|@P`APdAp@xD@BDZH^Nt@fDdPJj@FZBRDTBTBZBZPpB??H`A@R?@BPDR@BBNHVFPHNP\\FNDNFPDTDTv@rGHl@LbA`Db\\Db@BVFf@Hz@??@DtDt_@VrCBTDZDd@LjABRHz@b@pEBV\\lDTjCB\\Jz@LdANx@Jl@Nn@Lf@J\\Pd@@FJXXt@`@dAlAbDv@rBpBlFr@fBFPh@tA^dAFNZx@HP???@vBzFRd@DNBDDNFP@BFVDVDVDPBP@PLhADd@BV@P@P@T?L@R?@?V@\\AR?TAR?PC`@CZ?HALCXCXCZEV?BQtAk@bEQrACT[~B???@Mv@OfACXCPEVANAPCTATAP?BAV?T?X?X?R@P?RBT@T@PBP@PDT@Nl@|D????N`AjAtHbArGRnABVDRFVFXDTFTPp@FTHXL`@??HTTl@|@bCb@lABHFNDNBJH^h@xB@BBP@B?B@D?B?D?D?D?D?F?DAD?BAB?DABADABAB?BCBABABABA@A@ABC@A@A@A?C@A@C@A?C@A?A?C?C?E?IAo@KAA"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 300.0,
+        "distance": 2197.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:01:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:06:00+02:00"
+        },
+        "from": {
+         "name": "Rondo Grzegórzeckie",
+         "lat": 50.058426,
+         "lon": 19.959244
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "7"
+        },
+        "legGeometry": {
+         "points": "c`ppHchyxB??C?a@Ia@GOEcASsLwC]EQCSAMAS?W?S@SB[D[FkAVC?kATkFfAA?A?A@A?o@XsAp@OFg@VKDGDC@EBEBE@_@PEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 56.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:06:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:06:56+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 360.0,
+        "distance": 1898.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:09:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "304"
+        },
+        "legGeometry": {
+         "points": "gorpHsovxBA?s@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^JXPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 335.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:20:35+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:38:27+02:00",
+      "end": "2026-10-05T08:26:59+02:00",
+      "duration": 2912,
+      "generalizedCost": 6646,
+      "walkDistance": 323.03,
+      "elevationGained": 3.36,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 213.0,
+        "distance": 212.35,
+        "start": {
+         "scheduledTime": "2026-10-05T07:38:27+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.072961,
+         "lon": 20.036331
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPA?q@Qa@Kq@OA?Ej@EAEAA?GAGCGAEACj@AFADADAFADADOZ@BBFBD@DCD@@a@l@@B"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 480.0,
+        "distance": 2884.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.072961,
+         "lon": 20.036331
+        },
+        "to": {
+         "name": "Dunikowskiego",
+         "lat": 50.092201,
+         "lon": 20.016038
+        },
+        "route": {
+         "shortName": "21"
+        },
+        "legGeometry": {
+         "points": "_{rpHajhyByBhDqArBsAtBsDxFiAfBW^mAfBu@dAIJ]d@OTQVmFtHMNMRm@|@k@t@}BdDU\\KLEFU\\ORCDSVSZGHIJY`@e@r@A@ABaArAa@l@qDfF}ClEIL}@nAi@v@[b@KLcBbC[d@U^MTMXMXINGPIRKVIXITELCHIXI`@GR]zAA@ADADCDAFCBCDCBEDCBE@C@CBE?E@C?E?C?EAEAKEc@MQGiCw@sHaCuFeBaA[GCyBq@??KEa@M??GACAC?C?E?A?A@A?C@CBC@CBA@ABABCBABABABADKb@ETOn@CNCRCPc@jFSdCGn@Gp@APCNAPCPCNEPERENCLENEJENCHIPGNKPQXKPWb@{@rA??"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 35.0,
+        "distance": 41.76,
+        "start": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:50:35+02:00"
+        },
+        "from": {
+         "name": "Dunikowskiego",
+         "lat": 50.092201,
+         "lon": 20.016038
+        },
+        "to": {
+         "name": "Dunikowskiego",
+         "lat": 50.09254,
+         "lon": 20.01575
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "gsvpHekdyBEMYb@U^GJEI"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 1980.0,
+        "distance": 9175.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:53:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:26:00+02:00"
+        },
+        "from": {
+         "name": "Dunikowskiego",
+         "lat": 50.09254,
+         "lon": 20.01575
+        },
+        "to": {
+         "name": "Czarnowiejska",
+         "lat": 50.06654,
+         "lon": 19.92233
+        },
+        "route": {
+         "shortName": "139"
+        },
+        "legGeometry": {
+         "points": "euvpHeidyBA@o@bAcA~Aq@dAa@n@IPw@lAa@l@GJILGDKLKFGBc@XmAj@GJGFCDCDAHCH?H?F@J?FBNBFn@nALVFLFNDNBLBNBPJlA@@?BRdCVtC^`ELfBJvADz@HvA?H@b@@nBC`@Af@Cv@Cn@CZEx@?@A|@C\\C^IzAANA\\CZANSzDEz@Cb@KzAE^KfAKt@Ih@Kr@ABM~@EVe@nCMd@CJEXGZKv@a@dCGXKv@Kh@If@Gp@?BEb@?BEbAARAb@?n@Cx@BbB?J?b@@`@@j@?DBnBJxBDxCB|@PlDBt@Bt@JrB@`@Bd@Dj@?@@B?J@JBRD^LVDPDLFPDHBHDHFLFDFJHDHFFDHDFBLFJ?L?J@J?TAh@?Z?\\@B?`@AH?X?B?\\?XE\\ADAF?H??A@?ZALCVIHGF?HAL?TEPAtBG^A^?^It@IXGTGj@OXI^KVDRAL@J?B@D@D@DBFDHFNLHHGTEPAHMf@?HA@UfAU~@[hACNMh@C^Qv@QdAKz@Gp@E\\C\\Cf@Cd@Cf@Ct@Af@?H?H?P?bA?N@l@@d@?@?@?DDbA@NBf@HhA?BPpCDl@B`@BV@HF~@@ZDn@BR?NFz@Dn@`@jGLdB@@@ZBn@F~@Dl@?B@tABh@Dz@@`@?t@?V@`A@V@LHf@DPDLLPBR@TBf@?@@HBR@J@^BT\\zG@V@X@RFlADxAPjEDrAF`AF|@Dd@Ff@B\\Fh@Ff@@HTdB?DBRJn@@H?FDZ@FBZFl@@V@J@N@b@@D?T@\\@N@x@?F?J?l@?H?N?l@?r@?r@?|A@XAbACj@Cv@KvAIx@Gl@Gb@CLEN?BMj@G\\ENSx@WhAWfAGR[z@CDCFIPGRMVQ^JLJLv@lAHJRVJNr@v@??RTlC|Cb@d@hDlDFFVVp@h@@BRNDD^X`An@h@\\FDRNNJ\\TDB@@VNf@^pAv@dDzBHFZPpAv@d@Vd@V\\R@?PJpAt@bC|A^T`BdA|@l@`@T`BhApBrAb@V`Aj@^VNJ@@pBnAb@Zd@ZRRXPn@d@ZTl@b@RNHFRR^VDDXPB@@@^Rd@TDBJDp@Vh@XTNLHVRNNTTRTPRJPLPJRHNHPN\\JVHTL`@HZDTDNBNDTBRDXFp@Db@Bl@@b@@n@ArAGlAGn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^@@HVPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@dBfAHDdB|@rBlAZNdA^F@bBf@JFRBG`@u@`E[|AG^A^G\\"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 59.0,
+        "distance": 68.92,
+        "start": {
+         "scheduledTime": "2026-10-05T08:26:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:26:59+02:00"
+        },
+        "from": {
+         "name": "Czarnowiejska",
+         "lat": 50.06654,
+         "lon": 19.92233
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "{rqpHoarxBCCBO@MF[BQ@C@K@E@A@A??@A@ABSJg@@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:42:40+02:00",
+      "end": "2026-10-05T08:26:22+02:00",
+      "duration": 2622,
+      "generalizedCost": 6459,
+      "walkDistance": 1939.17,
+      "elevationGained": 2.99,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 140.0,
+        "distance": 135.94,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:40+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?ND?D?D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1200.0,
+        "distance": 6767.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:05:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Teatr Słowackiego",
+         "lat": 50.064609,
+         "lon": 19.945628
+        },
+        "route": {
+         "shortName": "74"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTBZBTFVHj@@?Jp@@HFZ?@?@@@BNBN?@@B@F@HBR@@?@?B?B@B?JBn@?V@VAR?TAZK`B?PAT?N?N@R@P@XHxBBt@HvBFjABh@@`@XhHJfC@Z@F?J?@Bh@Bd@?HBf@?BBj@Bl@HrBB`@?B@`@B`@@R@X@l@?L@LF~AF~A@ZB^LzCHzBDfA@TFpA"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 1282.0,
+        "distance": 1803.23,
+        "start": {
+         "scheduledTime": "2026-10-05T08:05:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:26:22+02:00"
+        },
+        "from": {
+         "name": "Teatr Słowackiego",
+         "lat": 50.064609,
+         "lon": 19.945628
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "wfqpHcsvxBBA@^@L?N@D?N?P?HAJAL?@ALEXYlAa@~ASn@IDCBW~@B@BDB@ETAFHFCJADABm@jCEPVZ\\t@LVEVG\\ANCNc@fCUjABZEdBGhB@P?N?tABhCBhB?vA@v@BTCDEHAVC^CrA@JAHA@ABGTKAQ`@@b@Bv@BXIFIFXjAX|APx@`@nAJ\\Pj@Tv@Tr@DN@L?PALCJCHKJIL}@jABF@B@@DJKLQVY\\KNAFDH?LFt@@PDb@?HBV@J?@@H@J@L?J@H@J@J@T@B@J?J@H@J@L@H@P@J@JDl@@J@J@JDl@@J@LB\\@HE@C?GJEHEJ?LAP_AfHQrAIf@CJ?@C@MEA?ATCLGh@ANAFALCVAF@@?B?B?BAHq@rD"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:42:40+02:00",
+      "end": "2026-10-05T08:24:28+02:00",
+      "duration": 2508,
+      "generalizedCost": 6648,
+      "walkDistance": 565.39,
+      "elevationGained": 2.99,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 140.0,
+        "distance": 135.94,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:40+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?ND?D?D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 600.0,
+        "distance": 3896.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:55:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "TAURON Arena Kraków Wieczysta",
+         "lat": 50.071103,
+         "lon": 19.982871
+        },
+        "route": {
+         "shortName": "74"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 600.0,
+        "distance": 3280.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:57:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00"
+        },
+        "from": {
+         "name": "TAURON Arena Kraków Wieczysta",
+         "lat": 50.071103,
+         "lon": 19.982871
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "16"
+        },
+        "legGeometry": {
+         "points": "korpH}{}xB??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTPbALl@Jr@BL?@@@?@?@?B?B?@?@?B?B?@?@?B?@?B?@AB?@?B?@A@?B?@A@?@A@?@?@A@?@A@?@A@?@A@A@?@A@A@??A@EBEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 45.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:45+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 420.0,
+        "distance": 1897.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:13:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "124"
+        },
+        "legGeometry": {
+         "points": "iorpHsovxBs@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^@@HVPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 268.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:24:28+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:39:40+02:00",
+      "end": "2026-10-05T08:19:28+02:00",
+      "duration": 2388,
+      "generalizedCost": 6427,
+      "walkDistance": 565.39,
+      "elevationGained": 2.99,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 140.0,
+        "distance": 135.94,
+        "start": {
+         "scheduledTime": "2026-10-05T07:39:40+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?ND?D?D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1020.0,
+        "distance": 6114.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:59:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Rondo Grzegórzeckie",
+         "lat": 50.058426,
+         "lon": 19.959244
+        },
+        "route": {
+         "shortName": "22"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFA`@Eh@MtCAL?H?F?D?B?H?X@P@D@J@H@HBHBFBFFNFHBDBDDFBBDDBBBBFDDDDBHDTJD@??j@VTJh@T^PjAf@VL??l@VFDHBLHPLRNNNLLJJPRNTJPJNJTJPHRHTHTHRDNDRfBdH\\rA@BRz@Nv@R|@P`APdAp@xD@BDZH^Nt@fDdPJj@FZBRDTBTBZBZPpB??H`A@R?@BPDR@BBNHVFPHNP\\FNDNFPDTDTv@rGHl@LbA`Db\\Db@BVFf@Hz@??@DtDt_@VrCBTDZDd@LjABRHz@b@pEBV\\lDTjCB\\Jz@LdANx@Jl@Nn@Lf@J\\Pd@@FJXXt@`@dAlAbDv@rBpBlFr@fBFPh@tA^dAFNZx@HP???@vBzFRd@DNBDDNFP@BFVDVDVDPBP@PLhADd@BV@P@P@T?L@R?@?V@\\AR?TAR?PC`@CZ?HALCXCXCZEV?BQtAk@bEQrACT[~B???@Mv@OfACXCPEVANAPCTATAP?BAV?T?X?X?R@P?RBT@T@PBP@PDT@Nl@|D????N`AjAtHbArGRnABVDRFVFXDTFTPp@FTHXL`@??HTTl@|@bCb@lABHFNDNBJH^h@xB@BBP@B?B@D?B?D?D?D?D?F?DAD?BAB?DABADABAB?BCBABABABA@A@ABC@A@A@A?C@A@C@A?C@A?A?C?C?E?IAo@KAA"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 300.0,
+        "distance": 2197.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:01:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:06:00+02:00"
+        },
+        "from": {
+         "name": "Rondo Grzegórzeckie",
+         "lat": 50.058426,
+         "lon": 19.959244
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "7"
+        },
+        "legGeometry": {
+         "points": "c`ppHchyxB??C?a@Ia@GOEcASsLwC]EQCSAMAS?W?S@SB[D[FkAVC?kATkFfAA?A?A@A?o@XsAp@OFg@VKDGDC@EBEBE@_@PEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 45.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:06:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:06:45+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 360.0,
+        "distance": 1898.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:09:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "304"
+        },
+        "legGeometry": {
+         "points": "gorpHsovxBA?s@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^JXPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 268.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:19:28+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:41:00+02:00",
+      "end": "2026-10-05T08:26:05+02:00",
+      "duration": 2705,
+      "generalizedCost": 6758,
+      "walkDistance": 493.46999999999997,
+      "elevationGained": 14.47,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 568.0,
+        "distance": 1848.47,
+        "start": {
+         "scheduledTime": "2026-10-05T07:41:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:50:28+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Bicycle parking",
+         "lat": 50.0741091,
+         "lon": 20.0119751
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@Cj@CrAAf@EbCC`@Cp@w@zP?LAJGv@IjAQbEALCv@Cn@AVAREr@E`AAn@C^SvE[pGqA~WI|AALGz@Ep@CNALSfBu@rFAHGl@E\\C\\AJ?@AH?@AJ?H?H?^?XBp@@v@@N@lADd@?n@@b@Ab@A^A`@QlEMxAI~AKz@ADCFCDABA@?JCp@AL?H?H?PATB?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 152.0,
+        "distance": 64.02,
+        "start": {
+         "scheduledTime": "2026-10-05T07:50:28+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:53:00+02:00"
+        },
+        "from": {
+         "name": "Bicycle parking",
+         "lat": 50.0741091,
+         "lon": 20.0119751
+        },
+        "to": {
+         "name": "Czyżyny",
+         "lat": 50.074038,
+         "lon": 20.011272
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "cbspHyqcyBC?C`@H@D@D@B??B@@G|A@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 900.0,
+        "distance": 5417.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:53:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:08:00+02:00"
+        },
+        "from": {
+         "name": "Czyżyny",
+         "lat": 50.074038,
+         "lon": 20.011272
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "15"
+        },
+        "legGeometry": {
+         "points": "uaspHmmcyBs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTPbALl@Jr@BL?@@@?@?@?B?B?@?@?B?B?@?@?B?@?B?@AB?@?B?@A@?B?@A@?@A@?@?@A@?@A@?@A@?@A@A@?@A@A@??A@EBEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 61.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:08:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:09:01+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 420.0,
+        "distance": 1897.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:13:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "124"
+        },
+        "legGeometry": {
+         "points": "iorpHsovxBs@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^@@HVPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 365.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:26:05+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:35:03+02:00",
+      "end": "2026-10-05T08:26:05+02:00",
+      "duration": 3062,
+      "generalizedCost": 8821,
+      "walkDistance": 458.98,
+      "elevationGained": 40.97,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 1816.0,
+        "distance": 6425.58,
+        "start": {
+         "scheduledTime": "2026-10-05T07:35:03+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:05:19+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Bicycle parking",
+         "lat": 50.0681436,
+         "lon": 19.9526219
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@Cj@CrAAf@EbCC`@Cp@w@zP?LAJGv@IjAQbEALCv@Cn@AVAREr@E`AAn@C^SvE[pGqA~WI|AALGz@Ep@CNALSfBu@rFAHGl@E\\C\\AJ?@AH?@AJ?H?H?^?XBp@@v@@N@lADd@?n@@b@Ab@A^A`@QlEMxAI~AExAKhCARAJIdBC~@I`Ca@fJIvBGtAA`@A^?\\?fA?l@?`@?\\BpC?n@@z@@`B?R@j@DxBBlA@Z@d@HvABdAJlB@Z@L@ZHvD@t@BvBDlB?R@L@\\FfA@T@n@HrD@`@@b@D|C@R@n@H`CBbAZdO?N?L?lB@VFvC?JBh@FfABh@@ZR~I@h@@V?P@N@PBRBT@PBRBL@JBNH`@DXFTFRFTLZHTLVLXNZLTDHBDLXRXNVLPx@vAr@bAHJVT@@HJ?@HJ@@@B`@h@FHDFh@n@@BTV\\f@nAfBt@dAl@v@LRnAbBZb@LRJPNTFHV\\NTLLFJJPLXTd@Rj@HRDNDLLf@Nn@DNGR@NPp@BNDL?@FRFR`@|ABL@J@@BJ@FFJBHJXb@zA@Jl@~BDNDTLt@BHFh@Fr@?J@VBl@Bn@@N@p@@p@BdCFbF@~@?h@@X@nB?v@?dC?B?J?J?B?R?N?V?b@?H?hBArBA|@Az@?r@?VC|B?`@@J?L?P?x@?D?L@P@Z?B@D@X@H?BBR?L@@?@?T?@?B@J@HD\\LzA?@?@?BAX?B?@?B@J?@?B@X?FBX?@?@?L?@?@?@???D@D?F@J@HBV@B?DD^?B@B@V?D?D@X?D?L?F?D?D?V?@?J?F?BAN?DADATAB?@?DAFADAD?@?@]vBABA@?@ABABA@A@?@AB?@AB?B?BAB@P?@?BA@ANMp@CXEh@EVe@pCIXAHAFIl@AN?VAF?FK`ACJAJK|@ADADABCJCHAB?D_@dDE\\E^MrAa@hDMdA?RWvAWxAERCLF??N"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 161.0,
+        "distance": 87.59,
+        "start": {
+         "scheduledTime": "2026-10-05T08:05:19+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:08:00+02:00"
+        },
+        "from": {
+         "name": "Bicycle parking",
+         "lat": 50.0681436,
+         "lon": 19.9526219
+        },
+        "to": {
+         "name": "Uniwersytet Ekonomiczny",
+         "lat": 50.06832,
+         "lon": 19.9517
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "{|qpH{~wxB?OG?EJAFAB?BA@?BAH@JHHBB@F?HGV[lAADDB"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 720.0,
+        "distance": 2895.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:08:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00"
+        },
+        "from": {
+         "name": "Uniwersytet Ekonomiczny",
+         "lat": 50.06832,
+         "lon": 19.9517
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "124"
+        },
+        "legGeometry": {
+         "points": "u}qpHyxwxB?@Y~@mAzDYv@GPCDCFEDC?E?EBEBCHC@CFAFAF?J?D@F?F@DBHBB?@DB@FF?B?D?B?D?DGBA@CBC@E@C@E@C?E?E?E@K@E@ABEFIBABGBEJCH@DBDDBJ@^?f@?@@z@ADCBG@S?M?EACGBy@AMKQEg@KUOGO@MNIRATBXJPHJ@r@?|@@hA@nA?dA@dCEj@I\\Wp@g@l@c@N[D}@?m@?[LMd@A~@@z@oBRAEs@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^@@HVPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 365.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:26:05+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:33:00+02:00",
+      "end": "2026-10-05T08:21:05+02:00",
+      "duration": 2885,
+      "generalizedCost": 6932,
+      "walkDistance": 493.46999999999997,
+      "elevationGained": 14.47,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 568.0,
+        "distance": 1848.47,
+        "start": {
+         "scheduledTime": "2026-10-05T07:33:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:42:28+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Bicycle parking",
+         "lat": 50.0741091,
+         "lon": 20.0119751
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@Cj@CrAAf@EbCC`@Cp@w@zP?LAJGv@IjAQbEALCv@Cn@AVAREr@E`AAn@C^SvE[pGqA~WI|AALGz@Ep@CNALSfBu@rFAHGl@E\\C\\AJ?@AH?@AJ?H?H?^?XBp@@v@@N@lADd@?n@@b@Ab@A^A`@QlEMxAI~AKz@ADCFCDABA@?JCp@AL?H?H?PATB?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 152.0,
+        "distance": 64.02,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:28+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Bicycle parking",
+         "lat": 50.0741091,
+         "lon": 20.0119751
+        },
+        "to": {
+         "name": "Czyżyny",
+         "lat": 50.074038,
+         "lon": 20.011272
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "cbspHyqcyBC?C`@H@D@D@B??B@@G|A@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 900.0,
+        "distance": 5417.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:00:00+02:00"
+        },
+        "from": {
+         "name": "Czyżyny",
+         "lat": 50.074038,
+         "lon": 20.011272
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "15"
+        },
+        "legGeometry": {
+         "points": "uaspHmmcyBs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTPbALl@Jr@BL?@@@?@?@?B?B?@?@?B?B?@?@?B?@?B?@AB?@?B?@A@?B?@A@?@A@?@?@A@?@A@?@A@?@A@A@?@A@A@??A@EBEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 61.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:00:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:01:01+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 360.0,
+        "distance": 1898.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:09:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "304"
+        },
+        "legGeometry": {
+         "points": "gorpHsovxBA?s@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^JXPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 365.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:21:05+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:47:07+02:00",
+      "end": "2026-10-05T08:22:24+02:00",
+      "duration": 2117,
+      "generalizedCost": 4218,
+      "walkDistance": 0.0,
+      "elevationGained": 2.8,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 173.0,
+        "distance": 137.74,
+        "start": {
+         "scheduledTime": "2026-10-05T07:47:07+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1320.0,
+        "distance": 7392.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:12:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "route": {
+         "shortName": "70"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTBZBTFVHj@@?Jp@@HFZ?@?@@@BNBN?@@B@F@HBR@@?@?B?B@B?JBn@?V@VAR?TAZK`B?PAT?N?N@R@P@XHxBBt@HvBFjABh@@`@XhHJfC@Z@F?J?@Bh@Bd@?HBf@?BBj@Bl@HrBB`@?B@`@B`@@R@X@l@?L@LF~AF~A@ZB^LzCHzBDfA@TFpA??Bp@@R@P?BBF?@@DBDBD@@@BB@BB@@B@B?B@@?B?D?~@Gt@EZCDATAJ?F?F?P@tANL@D@D@F@F@FBF@DBD@DBVL`@RLFdD`BHDJFBBNJPN\\^NR^l@tB`DVb@B@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BICYCLE",
+        "duration": 624.0,
+        "distance": 2043.95,
+        "start": {
+         "scheduledTime": "2026-10-05T08:12:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:22:24+02:00"
+        },
+        "from": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "eippHw~uxBIECBM?SrANd@JR[ZKJIFGDCBC?C@C?EACAKGQGKCy@QICGCGA]SEAIGGEAFMn@SdAAHOr@CHOv@CPCLEZs@hDAHAH?DAB?F@|@}@tDgAtEdCtBxBlBJt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:42:07+02:00",
+      "end": "2026-10-05T08:17:24+02:00",
+      "duration": 2117,
+      "generalizedCost": 4218,
+      "walkDistance": 0.0,
+      "elevationGained": 2.8,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 173.0,
+        "distance": 137.74,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:07+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1320.0,
+        "distance": 7392.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "route": {
+         "shortName": "74"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTBZBTFVHj@@?Jp@@HFZ?@?@@@BNBN?@@B@F@HBR@@?@?B?B@B?JBn@?V@VAR?TAZK`B?PAT?N?N@R@P@XHxBBt@HvBFjABh@@`@XhHJfC@Z@F?J?@Bh@Bd@?HBf@?BBj@Bl@HrBB`@?B@`@B`@@R@X@l@?L@LF~AF~A@ZB^LzCHzBDfA@TFpA??Bp@@R@P?BBF?@@DBDBD@@@BB@BB@@B@B?B@@?B?D?~@Gt@EZCDATAJ?F?F?P@tANL@D@D@F@F@FBF@DBD@DBVL`@RLFdD`BHDJFBBNJPN\\^NR^l@tB`DVb@B@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BICYCLE",
+        "duration": 624.0,
+        "distance": 2043.95,
+        "start": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:17:24+02:00"
+        },
+        "from": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "eippHw~uxBIECBM?SrANd@JR[ZKJIFGDCBC?C@C?EACAKGQGKCy@QICGCGA]SEAIGGEAFMn@SdAAHOr@CHOv@CPCLEZs@hDAHAH?DAB?F@|@}@tDgAtEdCtBxBlBJt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:33:56+02:00",
+      "end": "2026-10-05T08:13:57+02:00",
+      "duration": 2401,
+      "generalizedCost": 4978,
+      "walkDistance": 0.0,
+      "elevationGained": 12.54,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 664.0,
+        "distance": 1928.77,
+        "start": {
+         "scheduledTime": "2026-10-05T07:33:56+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Czyżyny",
+         "lat": 50.074038,
+         "lon": 20.011272
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@E?E?AVCb@GRC`@?@C`@?BAF?H?@GjA@t@ElA@b@OzC@@?PIvBKxBU|EAHGx@AVAJAVI~A?DE^CLEZEJALA`@ARALK`CATHj@?DGlA?LCN]fIE\\AR?@?HAF?@AR?Ri@rKi@zKGh@Gl@AJAHE^CJItAANCNEPGZCJAFM|@EVAFCFCD[h@Ld@CL?B?B?B?D?F?B?B?HAJAJ?FE`@?BAB?F?@AH?F?B?BAF?F?D?DABCRET?@?B?D@DHR@D?FBbADf@@V?JCP?Z?F?F?b@?B?F?F?^AH?HMnC?HAF?@?L?p@?B?L?P?R?RKnBGhACNAFAH?H?JCp@ALBFBF@D@F?D?D@F?F?FARAJD@B??B@@G|A@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1080.0,
+        "distance": 6147.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:03:00+02:00"
+        },
+        "from": {
+         "name": "Czyżyny",
+         "lat": 50.074038,
+         "lon": 20.011272
+        },
+        "to": {
+         "name": "Dworzec Towarowy",
+         "lat": 50.075988,
+         "lon": 19.940292
+        },
+        "route": {
+         "shortName": "15"
+        },
+        "legGeometry": {
+         "points": "uaspHmmcyBs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTPbALl@Jr@BL?@@@?@?@?B?B?@?@?B?B?@?@?B?@?B?@AB?@?B?@A@?B?@A@?@A@?@?@A@?@A@?@A@?@A@A@?@A@A@??A@EBEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@??G?e@Cw@McAQg@GaBUAAA?A?A?A?A?A?A?A?A?AAA?C?A?A?C?A?A?A?A?C@C?C?A?A?A?E?A@A?E?G@A?A?A@A?C?A@C?A?A@C@C?C@A?A@C@A?C@A?GBA?A@{@\\MFKDk@T??IDQHIFEBEB??MHIFIFGFGHIHGHEFIHEHGHEJKNITKRGREJELERIVWjAUbAADGZG^G\\CPO`AA@ObAW|ACREPObA"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BICYCLE",
+        "duration": 657.0,
+        "distance": 2201.95,
+        "start": {
+         "scheduledTime": "2026-10-05T08:03:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:13:57+02:00"
+        },
+        "from": {
+         "name": "Dworzec Towarowy",
+         "lat": 50.075988,
+         "lon": 19.940292
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "_nspHcruxBLw@@EEC@CDMFFDBd@b@DDFF^`@JLZ`@JNz@hALPV`@tApBZf@DJH^DLB^F^DXDXD^Gt@ALAR?T?T?T@ZALCFAFADA@CBABc@\\e@^EFCBAB?DAB?B?F?L?ZM?G?MAD`@@TFp@LnAPpBTrC@B@B@B@BDBPNKVADAFAFADAF?LABA@ABBL@FLxALxAHdAJfADj@Ft@NfB@HB`@?B@F@TBZ?DBLEFGDUTA@ODWRGDC@I?C?A?C?A@A@CBA@ADAB?B?D?D@F@DBB@@B@D@BABA@AFB@BBD\\n@DFBDNP\\b@TVBDVZJNT\\V^NPDFBBFDTNJHFDDBDDHFFBBBJDJDHDd@Nz@^VH`A^LFAb@K`ELBLBD?pAX|@PJBRDD@D@@@BBHFJLBD@B?H@R?B@BDBDBFBB@B?B?DBhBv@DBBB@B?@@@?BFBJBLFND?B@D@B@BB@DDD?B?BADAZOBCDAB?D?B?B@D@BRT?LAHAFAFAFCDAFEFEFEFGDGDF?@@@D@hAXJDFBHDDBFDFFHJDFLRJPFFDDFFFBLBd@Jx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:35:06+02:00",
+      "end": "2026-10-05T08:27:00+02:00",
+      "duration": 3114,
+      "generalizedCost": 5235,
+      "walkDistance": 0.0,
+      "elevationGained": 72.48,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 3114.0,
+        "distance": 9425.49,
+        "start": {
+         "scheduledTime": "2026-10-05T07:35:06+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:27:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?NAVCb@GRC`@?@C`@?BAF?H?@GjA@t@ElA@b@OzC@@?PIvBKxBU|EAHGx@AVAJAVI~A?DE^CLEZEJALA`@ARALK`CATHj@?DGlA?LCN]fIE\\AR?@?HAF?@AR?Ri@rKi@zKGh@Gl@AJAHE^CJItAANCNEPGZCJAFM|@EVAFCFCD[h@Ld@CL?B?B?B?D?F?B?B?HAJAJ?FE`@?BAB?F?@AH?F?B?BAF?F?D?DABCRET?@?B?D@DHR@D?FBbADf@@V?JCP?Z?F?F?b@?B?F?F?^AH?HMnC?HAF?@?L?p@?B?L?P?R?RKnBGhACNAFAH?H?JCp@AL?H?H?PATC`@IfBGzA?J?|@AJGbB[bHCBAPCx@@BCXCn@Cl@?TAV?XAX@h@A`E@jA@vAAlA?N?DAFALCNFBB@B@@??`@@L?NHlD?T@L@L@TSPCDAHADADCLHHHHDJDPBNJbC@L?H@DAJ?V@H@J?H@H?JBh@B|@@N@V@^FxCD~A?P?BAL@N?H?L@B@H@p@?@?@@BHR@b@FfC?v@@bADzCAJAV@D?R?L@D?DDP@D?FBv@AX?J?F?D@TBNBR?D@FVtLCf@ANCNBbBHbE@T?H?J@L?@DLFT@B?DX~L?vA?F@FPzADXAFDT@@@J@H@H@DBXFTPf@N`@DJFNFL@BFHFLFLLPFFNTHVLb@BBZf@JRf@p@^h@@BN\\DLHTBDDDDFBBBFDDDHFFDDDAF?VEHH\\`@FLFJ\\X^d@TXtApB~@rANThBhCNR`@j@DHDD^f@LRP\\FJDJ@BPd@Pf@FPFR@FBFH\\FRBHL\\BJ@NPp@BNDL?@FRFR`@|ABL@J@@BJ@FFJBHJXb@zA@Jl@~BDNDTLt@BHFh@Fr@?J@VBl@Bn@@N@p@@p@BdCFbF@~@?h@@X@nB?v@?dC?B?J?J?B?R?N?V?b@?H?hBArBA|@Az@?r@?VC|B?`@@J?L?P?x@?D?L@P@Z?B@D@X@H?BBR?L@@?@?T?@?B@J@HD\\LzA?@?@?BAX?B?@?B@J?@?B@X?FBX?@?@?L?@?@?@???D@D?F@J@HBV@B?DD^?B@B@V?D?D@X?D?L?F?D?D?V?@?J?F?BAN?DADATAB?@?DAFADAD?@?@]vBABA@?@ABABA@A@?@AB?@r@j@hB|AFDB@@@BA@CDCBA@ADABCL@JB@NBD?@@@@@@@@?B?@A@ALIDABAB@B@BDDD?@@D@F?B@D@D?@@F@NDTBL@FIHCBCDCDCDCDAFABAJADKfACPHFB?@@BABA@ADEBEBCBABABAB?@?b@FHBFd@@D@DHTH\\DTFX@@B@@BBDBJ`@zAH\\l@vBTt@`@bBF^t@nFDVZvBFf@x@xFPjAFRDJ?@l@|AdA|CPh@^lATr@j@tB@DBFPl@L`@\\pAJZFVH\\Fp@@f@@z@?D?p@?x@@`A?t@?L?D?X?TAN?JE`@Ef@C^?B?BEVGj@ME_AMGROp@?B?D?DA?A@A@CJEVA@Sz@[|ACJADeA|FABAHCJCHcAvEWnAMj@CL?D?B?B?F@F?F?FAFALCLCJEPHFzBxADBVPN^A`APxA\\nCxBlBJt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:47:05+02:00",
+      "end": "2026-10-05T08:23:37+02:00",
+      "duration": 2192,
+      "generalizedCost": 3849,
+      "walkDistance": 0.0,
+      "elevationGained": 2.8,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 175.0,
+        "distance": 137.74,
+        "start": {
+         "scheduledTime": "2026-10-05T07:47:05+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1320.0,
+        "distance": 7392.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:12:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "route": {
+         "shortName": "70"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTBZBTFVHj@@?Jp@@HFZ?@?@@@BNBN?@@B@F@HBR@@?@?B?B@B?JBn@?V@VAR?TAZK`B?PAT?N?N@R@P@XHxBBt@HvBFjABh@@`@XhHJfC@Z@F?J?@Bh@Bd@?HBf@?BBj@Bl@HrBB`@?B@`@B`@@R@X@l@?L@LF~AF~A@ZB^LzCHzBDfA@TFpA??Bp@@R@P?BBF?@@DBDBD@@@BB@BB@@B@B?B@@?B?D?~@Gt@EZCDATAJ?F?F?P@tANL@D@D@F@F@FBF@DBD@DBVL`@RLFdD`BHDJFBBNJPN\\^NR^l@tB`DVb@B@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BICYCLE",
+        "duration": 697.0,
+        "distance": 1870.33,
+        "start": {
+         "scheduledTime": "2026-10-05T08:12:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:23:37+02:00"
+        },
+        "from": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "eippHw~uxBIECBM?SrANd@JR[ZKJIFGDCBC?C@EFCBCHCFA@CHGZ??UbAYrAAHUdAATOt@EVu@hDCLGVLzAFhARzC_AAm@\\VlBTp@Jt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:42:05+02:00",
+      "end": "2026-10-05T08:18:37+02:00",
+      "duration": 2192,
+      "generalizedCost": 3849,
+      "walkDistance": 0.0,
+      "elevationGained": 2.8,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 175.0,
+        "distance": 137.74,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:05+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1320.0,
+        "distance": 7392.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "route": {
+         "shortName": "74"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTBZBTFVHj@@?Jp@@HFZ?@?@@@BNBN?@@B@F@HBR@@?@?B?B@B?JBn@?V@VAR?TAZK`B?PAT?N?N@R@P@XHxBBt@HvBFjABh@@`@XhHJfC@Z@F?J?@Bh@Bd@?HBf@?BBj@Bl@HrBB`@?B@`@B`@@R@X@l@?L@LF~AF~A@ZB^LzCHzBDfA@TFpA??Bp@@R@P?BBF?@@DBDBD@@@BB@BB@@B@B?B@@?B?D?~@Gt@EZCDATAJ?F?F?P@tANL@D@D@F@F@FBF@DBD@DBVL`@RLFdD`BHDJFBBNJPN\\^NR^l@tB`DVb@B@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BICYCLE",
+        "duration": 697.0,
+        "distance": 1870.33,
+        "start": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:18:37+02:00"
+        },
+        "from": {
+         "name": "Poczta Główna",
+         "lat": 50.059797,
+         "lon": 19.942404
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "eippHw~uxBIECBM?SrANd@JR[ZKJIFGDCBC?C@EFCBCHCFA@CHGZ??UbAYrAAHUdAATOt@EVu@hDCLGVLzAFhARzC_AAm@\\VlBTp@Jt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:49:41+02:00",
+      "end": "2026-10-05T08:27:00+02:00",
+      "duration": 2239,
+      "generalizedCost": 2347,
+      "walkDistance": 0.0,
+      "elevationGained": 72.88,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 2239.0,
+        "distance": 9528.3,
+        "start": {
+         "scheduledTime": "2026-10-05T07:49:41+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:27:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@E?E?AVCb@GRC`@?@C`@?BAF?H?@GjA@t@ElA@b@OzC@@?PIvBKxBU|EAHGx@AVAJAVI~A?DE^CLEZEJALA`@ARALK`CATHj@?DGlA?LCN]fIE\\AR?@?HAF?@AR?Ri@rKi@zKGh@Gl@AJAHE^CJItAANCNEPGZCJAFM|@EVAFCFCD[h@Ld@CL?B?B?B?D?F?B?B?HAJAJ?FE`@?BAB?F?@AH?F?B?BAF?F?D?DABCRET?@?B?D@DHR@D?FBbADf@@V?JCP?Z?F?F?b@?B?F?F?^AH?HMnC?HAF?@?L?p@?B?L?P?R?RKnBGhACNAFAH?H?JCp@AL?H?H?PATC`@IfBGzA?J?|@AJGbB[bHCBAPCx@@BCXCn@Cl@?TAV?XAX@h@A`E@jA@vAAlA?N?DAFALCNFBB@B@@??`@@L?NHlD?T@L@L@TSPCDAHADADCLHHHHDJDPBNJbC@L?H@DAJ?V@H@J?H@H?JBh@B|@@N@V@^FxCD~A?P?BAL@N?H?L@B@H@p@?@?@@BHR@b@FfC?v@@bADzCAJAV@D?R?L@D?DDP@D?FBv@AX?J?F?D@TBNBR?D@FVtLCf@ANCNBbBHbE@T?H?J@L?@DLFT@B?DX~L?vA?F@FPzADXAFDT@@@J@H@H@DBXFTPf@N`@DJFNFL@BFHFLFLLPFFNTHVLb@BBZf@JRf@p@^h@@BN\\DLHTBDDDDFBBBFDDDHFFDDDAF?VEHH\\`@FLFJ\\X^d@TXtApB~@rANThBhCNR`@j@DHDD^f@LRP\\FJDJ@BPd@Pf@FPFR@FBFH\\FRBHL\\BJ@NPp@BNDL?@FRFR`@|ABL@J@@BJ@FFJBHJXb@zA@Jl@~BDNDTLt@BHFh@Fr@?J@VBl@Bn@@N@p@@p@BdCFbF@~@?h@@X@nB?v@?dC?B?J?J?B?R?N?V?b@?H?hBArBA|@Az@?r@?VC|B?`@@J?L?P?x@?D?L@P@Z?B@D@X@H?BBR?L@@?@?T?@?B@J@HD\\LzA?@?@?BAX?B?@?B@J?@?B@X?FBX?@?@?L?@?@?@???D@D?F@J@HBV@B?DD^?B@B@V?D?D@X?D?L?F?D?D?V?@?J?F?BAN?DADATAB?@?DAFADAD?@?@]vBABA@?@ABABA@A@?@AB?@r@j@hB|AFDB@@@BA@CDCBA@ADABCL@JB@NBD?@@@@@@@@?B?@A@ALIDABAB@B@BDDD?@@D@F?B@D@D?@@F@NDTBL@FIHCBCDCDCDCDAFABAJADKfACPHFB?@@BABA@ADEBEBCBABABAB?@?b@FHBFd@@D@DHTH\\DTFX@@B@@BBDBJ`@zAH\\l@vBTt@`@bBF^t@nFDVZvBFf@x@xFPjAFRDJ?@l@|AdA|CPh@^lATr@j@tB@DBFPl@L`@\\pAJZFVH\\Fp@@f@@z@?D?p@?x@@`A?t@?L?D?X?TAN?JE`@Ef@C^?B?BEVGj@F@\\\\RRX`@f@x@Xj@?b@DbBB~A?P?FA@?FAHQGKCy@QICGCGA]SEAIGGEAFMn@SdAAHOr@CHOv@CPCLEZs@hDAHAH?DAB?F@|@}@tDgAtEdCtBxBlBJt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:50:41+02:00",
+      "end": "2026-10-05T08:25:41+02:00",
+      "duration": 2100,
+      "generalizedCost": 2855,
+      "walkDistance": 0.0,
+      "elevationGained": 12.54,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 619.0,
+        "distance": 2692.77,
+        "start": {
+         "scheduledTime": "2026-10-05T07:50:41+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:01:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Rondo 308. Dywizjonu",
+         "lat": 50.067398,
+         "lon": 20.005374
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@E?E?AVCb@GRC`@?@C`@?BAF?H?@GjA@t@ElA@b@OzC@@?PIvBKxBU|EAHGx@AVAJAVI~A?DE^CLEZEJALA`@ARALK`CATHj@?DGlA?LCN]fIE\\AR?@?HAF?@AR?Ri@rKi@zKGh@Gl@AJAHE^CJItAANCNEPGZCJAFM|@EVAFCFCD[h@Ld@CL?B?B?B?D?F?B?B?HAJAJ?FE`@?BAB?F?@AH?F?B?BAF?F?D?DABCRXRLJLJHDFDB@D@H@??@?H?@?f@?b@?H?H@XDB?HBHBFBHB`@PbA^VJNFB@`Bt@TLTLPLLJVVNPLNLPNTLTJTP^Ph@N`@Jb@Lh@TfAd@|BR~@Rz@Ln@DRPv@Hb@d@zBLl@XtArC|MbA`FH`@F`@H`@BTDVBVBTRdCBRPE"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 540.0,
+        "distance": 3330.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:01:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:10:00+02:00"
+        },
+        "from": {
+         "name": "Rondo 308. Dywizjonu",
+         "lat": 50.067398,
+         "lon": 20.005374
+        },
+        "to": {
+         "name": "Teatr Variete",
+         "lat": 50.058827,
+         "lon": 19.962374
+        },
+        "route": {
+         "shortName": "1"
+        },
+        "legGeometry": {
+         "points": "exqpHqhbyB??H`A@R?@BPDR@BBNHVFPHNP\\FNDNFPDTDTv@rGHl@LbA`Db\\Db@BVFf@Hz@??@DtDt_@VrCBTDZDd@LjABRHz@b@pEBV\\lDTjCB\\Jz@LdANx@Jl@Nn@Lf@J\\Pd@@FJXXt@`@dAlAbDv@rBpBlFr@fBFPh@tA^dAFNZx@HP???@vBzFRd@DNBDDNFP@BFVDVDVDPBP@PLhADd@BV@P@P@T?L@R?@?V@\\AR?TAR?PC`@CZ?HALCXCXCZEV?BQtAk@bEQrACT[~B???@Mv@OfACXCPEVANAPCTATAP?BAV?T?X?X?R@P?RBT@T@PBP@PDT@Nl@|D????N`AjAtHbArGRnABVDRFVFXDTFTPp@FTHXL`@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BICYCLE",
+        "duration": 941.0,
+        "distance": 4346.04,
+        "start": {
+         "scheduledTime": "2026-10-05T08:10:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:25:41+02:00"
+        },
+        "from": {
+         "name": "Teatr Variete",
+         "lat": 50.058827,
+         "lon": 19.962374
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sbppHy{yxBKLTn@Xz@Vn@Rh@Z`AHZJ^QH@FVr@?@@NDb@Fn@?@?FADAFADABABABA@@J@D?N?NAB?BABCDABABAH?BAD?BAH?BCPAPCREVu@o@GAGCo@Gg@Iq@Kg@Ke@Mk@M}Ac@ME]E}DaAQEQAMAM?O@M@mLxBE@EBG@IDSLQJCHUdAAFAF?FAh@?B?DAFAFCFEHIPFd@@D@DHTH\\DTFX@@B@@BBDBJ`@zAH\\l@vBTt@`@bBF^t@nFDVZvBFf@x@xFPjAFRDJ?@l@|AdA|CPh@^lATr@j@tB@DBFPl@L`@\\pAJZFVH\\Fp@@f@@z@?D?p@?x@@`A?t@?L?D?X?TAN?JE`@Ef@C^?B?BEVGj@F@\\\\RRX`@f@x@Xj@?b@DbBB~A?P?FA@?FAHQGKCy@QICGCGA]SEAIGGEAFMn@SdAAHOr@CHOv@CPCLEZs@hDAHAH?DAB?F@|@}@tDgAtEdCtBxBlBJt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:50:22+02:00",
+      "end": "2026-10-05T08:24:46+02:00",
+      "duration": 2064,
+      "generalizedCost": 3000,
+      "walkDistance": 0.0,
+      "elevationGained": 13.74,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 638.0,
+        "distance": 2485.96,
+        "start": {
+         "scheduledTime": "2026-10-05T07:50:22+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:01:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Stella-Sawickiego",
+         "lat": 50.074302,
+         "lon": 20.00459
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@E?E?AVCb@GRC`@?@C`@?BAF?H?@GjA@t@ElA@b@OzC@@?PIvBKxBU|EAHGx@AVAJAVI~A?DE^CLEZEJALA`@ARALK`CATHj@?DGlA?LCN]fIE\\AR?@?HAF?@AR?Ri@rKi@zKGh@Gl@AJAHE^CJItAANCNEPGZCJAFM|@EVAFCFCD[h@Ld@CL?B?B?B?D?F?B?B?HAJAJ?FE`@?BAB?F?@AH?F?B?BAF?F?D?DABCRET?@?B?D@DHR@D?FBbADf@@V?JCP?Z?F?F?b@?B?F?F?^AH?HMnC?HAF?@?L?p@?B?L?P?R?RKnBGhACNAFAH?H?JCp@AL?H?H?PATC`@IfBGzA?J?|@AJGbB[bHCBAPCx@@BCXCn@Cl@?TAV?XAX@h@A`E@jA@vAAlA?N?DAFALCNFBB@B@@?B?FENKDC?IC}@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 480.0,
+        "distance": 2824.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:01:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:09:00+02:00"
+        },
+        "from": {
+         "name": "Stella-Sawickiego",
+         "lat": 50.074302,
+         "lon": 20.00459
+        },
+        "to": {
+         "name": "Cystersów",
+         "lat": 50.06654,
+         "lon": 19.969149
+        },
+        "route": {
+         "shortName": "15"
+        },
+        "legGeometry": {
+         "points": "icspHucbyB@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BICYCLE",
+        "duration": 946.0,
+        "distance": 4262.8,
+        "start": {
+         "scheduledTime": "2026-10-05T08:09:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:24:46+02:00"
+        },
+        "from": {
+         "name": "Cystersów",
+         "lat": 50.06654,
+         "lon": 19.969149
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "{rqpHcf{xBA??dAAA??E??vAI??hBArBA|@Az@?r@?VC|B?`@@J?L?P?x@?D?L@P@Z?B@D@X@H?BBR?L@@?@?T?@?B@J@HD\\LzA?@?@?BAX?B?@?B@J?@?B@X?FBX?@?@?L?@?@?@???D@D?F@J@HBV@B?DD^?B@B@V?D?D@X?D?L?F?D?D?V?@?J?F?BAN?DADATAB?@?DAFADAD?@?@]vBABA@?@ABABA@A@?@AB?@r@j@hB|AFDB@@@BA@CDCBA@ADABCL@JB@NBD?@@@@@@@@?B?@A@ALIDABAB@B@BDDD?@@D@F?B@D@D?@@F@NDTBL@FIHCBCDCDCDCDAFABAJADKfACPHFB?@@BABA@ADEBEBCBABABAB?@?b@FHBFd@@D@DHTH\\DTFX@@B@@BBDBJ`@zAH\\l@vBTt@`@bBF^t@nFDVZvBFf@x@xFPjAFRDJ?@l@|AdA|CPh@^lATr@j@tB@DBFPl@L`@\\pAJZFVH\\Fp@@f@@z@?D?p@?x@@`A?t@?L?D?X?TAN?JE`@Ef@C^?B?BEVGj@F@\\\\RRX`@f@x@Xj@?b@DbBB~A?P?FA@?FAHQGKCy@QICGCGA]SEAIGGEAFMn@SdAAHOr@CHOv@CPCLEZs@hDAHAH?DAB?F@|@}@tDgAtEdCtBxBlBJt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:49:18+02:00",
+      "end": "2026-10-05T08:27:00+02:00",
+      "duration": 2262,
+      "generalizedCost": 1759,
+      "walkDistance": 0.0,
+      "elevationGained": 79.82,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 2262.0,
+        "distance": 9455.8,
+        "start": {
+         "scheduledTime": "2026-10-05T07:49:18+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:27:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BB@N@AXAx@Cj@CrAAf@EbCC`@Cp@w@zP?LAJGv@IjAQbEALCv@Cn@AVAREr@E`AAn@C^SvE[pGqA~WI|AALGz@Ep@CNALSfBu@rFAHGl@E\\C\\AJ?@AH?@AJ?H?H?^?XBp@@v@@N@lACd@?J?N?FAHAF?FAF?FA`@A\\M~CAhA?|@?j@I~AExAKhCARAJIdBC~@I`Ca@fJIvBGtAA`@A^?\\?fA?l@?`@?\\BpC?n@@z@@`B?R@j@DxBBlA@Z@d@HvABdAJlB@Z@L@ZHvD@t@BvBDlB?R@L@\\FfA@T@n@HrD@`@@b@D|C@R@n@H`CBbAZdO?N?L?lB@VFvC?JBh@FfABh@@ZR~I@h@@V?P@N@PBRBT@PBRBL@JBNH`@DXFTFRFTLZHTLVLXNZLTDHBDLXRXNVLPx@vAr@bAHJVT@@HJ?@HJ@@@B`@h@FHDFh@n@@BTV\\f@nAfBt@dAl@v@LRnAbBZb@LRJPNTFHV\\NTLLFJJPLXTd@Rj@HRDNDLLf@Nn@DNGR@NPp@BNDL?@FRFR`@|ABL@J@@BJ@FFJBHJXb@zA@Jl@~BDNDTLt@BHFh@Fr@?J@VBl@Bn@@N@p@@p@BdCFbF@~@?h@@X@nB?v@?dC?B?J?J?B?R?N?V?b@?H?hBArBA|@Az@?r@?VC|B?`@@J?L?P?x@?D?L@P@Z?B@D@X@H?BBR?L@@?@?T?@?B@J@HD\\LzA?@?@?BAX?B?@?B@J?@?B@X?FBX?@?@?L?@?@?@???D@D?F@J@HBV@B?DD^?B@B@V?D?D@X?D?L?F?D?D?V?@?J?F?BAN?DADATAB?@?DAFADAD?@?@]vBABA@?@ABABA@A@?@AB?@r@j@hB|AFDB@@@BA@CDCBA@ADABCL@JB@NBD?@@@@@@@@?B?@A@ALIDABAB@B@BDDD?@@D@F?B@D@D?@@F@NDTBL@FIHCBCDCDCDCDAFABAJADKfACPHFB?@@BABA@ADEBEBCBABABAB?@?b@FHBFd@@D@DHTH\\DTFX@@B@@BBDBJ`@zAH\\l@vBTt@`@bBF^t@nFDVZvBFf@x@xFPjAFRDJ?@l@|AdA|CPh@^lATr@j@tB@DBFPl@L`@\\pAJZFVH\\Fp@@f@@z@?D?p@?x@@`A?t@?L?D?X?TAN?JE`@Ef@C^?B?BEVGj@F@\\\\RRX`@f@x@Xj@?b@DbBB~A?P?FA@?FAHQGKCy@QICGCGA]SEAIGGEAFMn@SdAAHOr@CHOv@CPCLEZs@hDAHAH?DAB?F@|@}@tDgAtEdCtBxBlBJt@?BCJU~@Oj@On@Wz@CJAD?@ADAHADi@fBENGNo@vBCHq@nBAFAN?D?BAZ@DDhH?RO@MAiCGIA?hCA|A?r@Bp@?LDx@Fv@QJu@`@SFiARE@UDWFsATYFK@GBGDILK^EZs@lFIn@MfAE\\ANGf@EBA@A@ABMv@EPG\\IAEAACKAGJ?@ABADABAFCPk@zCXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:42:28+02:00",
+      "end": "2026-10-05T08:24:58+02:00",
+      "duration": 2550,
+      "generalizedCost": 4890,
+      "walkDistance": 565.39,
+      "elevationGained": 2.99,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 152.0,
+        "distance": 135.94,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:28+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?ND?D?D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 600.0,
+        "distance": 3896.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:45:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:55:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "TAURON Arena Kraków Wieczysta",
+         "lat": 50.071103,
+         "lon": 19.982871
+        },
+        "route": {
+         "shortName": "74"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFATALGZALAJAPKvBAZAD?J?DARAH?HAN?H?H?L?J?@?L?D?D@d@?N?PAF?PCT?LCZANI|A?DCZGlAGrASbEMtC?B]|HEjAATs@lPQxDAX?TAP?N?P?P?H?F?L@TBbB@T?^L`G?F@t@@h@J`F?f@FhCPbJH|CDlB@x@@X@j@LlFFpCHxD@n@r@`]@b@??@l@@N@XDnCBfAPhI@P@L@T@N@NBTDV@PBNBNBHDVH^HZFRDNFNDJDJFLDLFLHLDJFJ^h@\\h@JNl@z@t@dAX`@LPLPFJTZ@@FJPTDFBDNR"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 600.0,
+        "distance": 3280.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:57:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00"
+        },
+        "from": {
+         "name": "TAURON Arena Kraków Wieczysta",
+         "lat": 50.071103,
+         "lon": 19.982871
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "16"
+        },
+        "legGeometry": {
+         "points": "korpH}{}xB??FHzCjEbClD~@pAlAfBPT^j@T\\HNHPHNHPN^J\\HTHVJ`@Nh@n@hCRv@FR??~@nDNj@p@pCDLBLBJBLBNDP@LBLD`@@RBP?J@P@NBlA@d@BfA@T?V@h@@h@@~@FxG@v@BrB?x@?pB?@?H?|@?~AArAArBGjJ?b@?R?L?B@P?JBf@@ZBX@VHbA@JHhAHbAH|@NtBd@xGDd@?F@F@J@H@HBJDVBTPbALl@Jr@BL?@@@?@?@?B?B?@?@?B?B?@?@?B?@?B?@AB?@?B?@A@?B?@A@?@A@?@?@A@?@A@?@A@?@A@A@?@A@A@??A@EBEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 50.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:07:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:07:50+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 420.0,
+        "distance": 1897.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:13:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "124"
+        },
+        "legGeometry": {
+         "points": "iorpHsovxBs@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^@@HVPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 298.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:20:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:24:58+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:39:28+02:00",
+      "end": "2026-10-05T08:19:58+02:00",
+      "duration": 2430,
+      "generalizedCost": 4770,
+      "walkDistance": 565.39,
+      "elevationGained": 2.99,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 152.0,
+        "distance": 135.94,
+        "start": {
+         "scheduledTime": "2026-10-05T07:39:28+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?ND?D?D@@??H@??DCjA@?"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1020.0,
+        "distance": 6114.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:59:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.071704,
+         "lon": 20.035631
+        },
+        "to": {
+         "name": "Rondo Grzegórzeckie",
+         "lat": 50.058426,
+         "lon": 19.959244
+        },
+        "route": {
+         "shortName": "22"
+        },
+        "legGeometry": {
+         "points": "csrpHuehyBAZCfBCp@AXAF?RCb@Cb@q@zNMrCYlGEv@Cn@GlA?F??U|EOtCYnGkAzUMpCC\\YzFA`@Eh@MtCAL?H?F?D?B?H?X@P@D@J@H@HBHBFBFFNFHBDBDDFBBDDBBBBFDDDDBHDTJD@??j@VTJh@T^PjAf@VL??l@VFDHBLHPLRNNNLLJJPRNTJPJNJTJPHRHTHTHRDNDRfBdH\\rA@BRz@Nv@R|@P`APdAp@xD@BDZH^Nt@fDdPJj@FZBRDTBTBZBZPpB??H`A@R?@BPDR@BBNHVFPHNP\\FNDNFPDTDTv@rGHl@LbA`Db\\Db@BVFf@Hz@??@DtDt_@VrCBTDZDd@LjABRHz@b@pEBV\\lDTjCB\\Jz@LdANx@Jl@Nn@Lf@J\\Pd@@FJXXt@`@dAlAbDv@rBpBlFr@fBFPh@tA^dAFNZx@HP???@vBzFRd@DNBDDNFP@BFVDVDVDPBP@PLhADd@BV@P@P@T?L@R?@?V@\\AR?TAR?PC`@CZ?HALCXCXCZEV?BQtAk@bEQrACT[~B???@Mv@OfACXCPEVANAPCTATAP?BAV?T?X?X?R@P?RBT@T@PBP@PDT@Nl@|D????N`AjAtHbArGRnABVDRFVFXDTFTPp@FTHXL`@??HTTl@|@bCb@lABHFNDNBJH^h@xB@BBP@B?B@D?B?D?D?D?D?F?DAD?BAB?DABADABAB?BCBABABABA@A@ABC@A@A@A?C@A@C@A?C@A?A?C?C?E?IAo@KAA"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 300.0,
+        "distance": 2197.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:01:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:06:00+02:00"
+        },
+        "from": {
+         "name": "Rondo Grzegórzeckie",
+         "lat": 50.058426,
+         "lon": 19.959244
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "route": {
+         "shortName": "7"
+        },
+        "legGeometry": {
+         "points": "c`ppHchyxB??C?a@Ia@GOEcASsLwC]EQCSAMAS?W?S@SB[D[FkAVC?kATkFfAA?A?A@A?o@XsAp@OFg@VKDGDC@EBEBE@_@PEB_@R??GB]PUJKDMFUNQNGFIJKLGLGLGLENGPCNETEXGd@Iz@a@rDc@zDa@vDW`Cm@nFQfBQfBKlBA|@AZAR?N?P?N?N?P@bE?T@zB@`A?P@tD?^?PARAPAPANCPKf@Sj@SZ[ZWPc@L_BNwCTeBNA?y@FQ@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 50.0,
+        "distance": 58.06,
+        "start": {
+         "scheduledTime": "2026-10-05T08:06:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:06:50+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.071143,
+         "lon": 19.945072
+        },
+        "to": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "sorpHuovxB?Ck@Dx@M"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 360.0,
+        "distance": 1898.0,
+        "start": {
+         "scheduledTime": "2026-10-05T08:09:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00"
+        },
+        "from": {
+         "name": "Politechnika",
+         "lat": 50.07109,
+         "lon": 19.94511
+        },
+        "to": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "route": {
+         "shortName": "304"
+        },
+        "legGeometry": {
+         "points": "gorpHsovxBA?s@Da@Da@?i@EM@MNId@M@aBVyARG@}@NWHG@GDA?GDEDEFEDADEPCFCHAFAJ?H?L?L@NBLBNDJDNJJ^j@\\d@JPFPFXBXBZBb@Gn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^JXPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 298.0,
+        "distance": 371.39,
+        "start": {
+         "scheduledTime": "2026-10-05T08:15:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:19:58+02:00"
+        },
+        "from": {
+         "name": "Plac Inwalidów",
+         "lat": 50.06881,
+         "lon": 19.9259
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "aarpHywrxB@C^X?BDB@@??@H???@f@n@@B@@BDBJBDXx@l@TFF|Bz@@?B@HZBF@F@F@H@H@T@JBL@C@?BAB@@@@B@B?D?DABBDDLDH@B@@@@JLBDBDBFBF@HBNx@NXF@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "start": "2026-10-05T07:38:51+02:00",
+      "end": "2026-10-05T08:26:52+02:00",
+      "duration": 2881,
+      "generalizedCost": 4386,
+      "walkDistance": 323.03,
+      "elevationGained": 3.36,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 189.0,
+        "distance": 212.35,
+        "start": {
+         "scheduledTime": "2026-10-05T07:38:51+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.072961,
+         "lon": 20.036331
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPA?q@Qa@Kq@OA?Ej@EAEAA?GAGCGAEACj@AFADADAFADADOZ@BBFBD@DCD@@a@l@@B"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "TRAM",
+        "duration": 480.0,
+        "distance": 2884.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:42:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00"
+        },
+        "from": {
+         "name": "Plac Centralny im. R. Reagana",
+         "lat": 50.072961,
+         "lon": 20.036331
+        },
+        "to": {
+         "name": "Dunikowskiego",
+         "lat": 50.092201,
+         "lon": 20.016038
+        },
+        "route": {
+         "shortName": "21"
+        },
+        "legGeometry": {
+         "points": "_{rpHajhyByBhDqArBsAtBsDxFiAfBW^mAfBu@dAIJ]d@OTQVmFtHMNMRm@|@k@t@}BdDU\\KLEFU\\ORCDSVSZGHIJY`@e@r@A@ABaArAa@l@qDfF}ClEIL}@nAi@v@[b@KLcBbC[d@U^MTMXMXINGPIRKVIXITELCHIXI`@GR]zAA@ADADCDAFCBCDCBEDCBE@C@CBE?E@C?E?C?EAEAKEc@MQGiCw@sHaCuFeBaA[GCyBq@??KEa@M??GACAC?C?E?A?A@A?C@CBC@CBA@ABABCBABABABADKb@ETOn@CNCRCPc@jFSdCGn@Gp@APCNAPCPCNEPERENCLENEJENCHIPGNKPQXKPWb@{@rA??"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 31.0,
+        "distance": 41.76,
+        "start": {
+         "scheduledTime": "2026-10-05T07:50:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T07:50:31+02:00"
+        },
+        "from": {
+         "name": "Dunikowskiego",
+         "lat": 50.092201,
+         "lon": 20.016038
+        },
+        "to": {
+         "name": "Dunikowskiego",
+         "lat": 50.09254,
+         "lon": 20.01575
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "gsvpHekdyBEMYb@U^GJEI"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "BUS",
+        "duration": 1980.0,
+        "distance": 9175.0,
+        "start": {
+         "scheduledTime": "2026-10-05T07:53:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:26:00+02:00"
+        },
+        "from": {
+         "name": "Dunikowskiego",
+         "lat": 50.09254,
+         "lon": 20.01575
+        },
+        "to": {
+         "name": "Czarnowiejska",
+         "lat": 50.06654,
+         "lon": 19.92233
+        },
+        "route": {
+         "shortName": "139"
+        },
+        "legGeometry": {
+         "points": "euvpHeidyBA@o@bAcA~Aq@dAa@n@IPw@lAa@l@GJILGDKLKFGBc@XmAj@GJGFCDCDAHCH?H?F@J?FBNBFn@nALVFLFNDNBLBNBPJlA@@?BRdCVtC^`ELfBJvADz@HvA?H@b@@nBC`@Af@Cv@Cn@CZEx@?@A|@C\\C^IzAANA\\CZANSzDEz@Cb@KzAE^KfAKt@Ih@Kr@ABM~@EVe@nCMd@CJEXGZKv@a@dCGXKv@Kh@If@Gp@?BEb@?BEbAARAb@?n@Cx@BbB?J?b@@`@@j@?DBnBJxBDxCB|@PlDBt@Bt@JrB@`@Bd@Dj@?@@B?J@JBRD^LVDPDLFPDHBHDHFLFDFJHDHFFDHDFBLFJ?L?J@J?TAh@?Z?\\@B?`@AH?X?B?\\?XE\\ADAF?H??A@?ZALCVIHGF?HAL?TEPAtBG^A^?^It@IXGTGj@OXI^KVDRAL@J?B@D@D@DBFDHFNLHHGTEPAHMf@?HA@UfAU~@[hACNMh@C^Qv@QdAKz@Gp@E\\C\\Cf@Cd@Cf@Ct@Af@?H?H?P?bA?N@l@@d@?@?@?DDbA@NBf@HhA?BPpCDl@B`@BV@HF~@@ZDn@BR?NFz@Dn@`@jGLdB@@@ZBn@F~@Dl@?B@tABh@Dz@@`@?t@?V@`A@V@LHf@DPDLLPBR@TBf@?@@HBR@J@^BT\\zG@V@X@RFlADxAPjEDrAF`AF|@Dd@Ff@B\\Fh@Ff@@HTdB?DBRJn@@H?FDZ@FBZFl@@V@J@N@b@@D?T@\\@N@x@?F?J?l@?H?N?l@?r@?r@?|A@XAbACj@Cv@KvAIx@Gl@Gb@CLEN?BMj@G\\ENSx@WhAWfAGR[z@CDCFIPGRMVQ^JLJLv@lAHJRVJNr@v@??RTlC|Cb@d@hDlDFFVVp@h@@BRNDD^X`An@h@\\FDRNNJ\\TDB@@VNf@^pAv@dDzBHFZPpAv@d@Vd@V\\R@?PJpAt@bC|A^T`BdA|@l@`@T`BhApBrAb@V`Aj@^VNJ@@pBnAb@Zd@ZRRXPn@d@ZTl@b@RNHFRR^VDDXPB@@@^Rd@TDBJDp@Vh@XTNLHVRNNTTRTPRJPLPJRHNHPN\\JVHTL`@HZDTDNBNDTBRDXFp@Db@Bl@@b@@n@ArAGlAGn@]jFIhAM~AKvAUjCG`ACXAJAH?FAHOxBE\\AXAL?V?P?R@\\LnCB^@XHpB?H@@?NJpBDb@Lz@b@rCTrAz@xCp@hBN\\LX`CtFN\\Nb@N^@@HVPd@LXHPP^P`@R^v@xAt@vAFNV\\HLHJTRTPbBdATLLH\\RDBDBFHTPVJZRDD@@dBfAHDdB|@rBlAZNdA^F@bBf@JFRBG`@u@`E[|AG^A^G\\"
+        },
+        "realTime": false
+       },
+       {
+        "mode": "WALK",
+        "duration": 52.0,
+        "distance": 68.92,
+        "start": {
+         "scheduledTime": "2026-10-05T08:26:00+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:26:52+02:00"
+        },
+        "from": {
+         "name": "Czarnowiejska",
+         "lat": 50.06654,
+         "lon": 19.92233
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "{rqpHoarxBCCBO@MF[BQ@C@K@E@A@A??@A@ABSJg@@G"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T06:29:18+02:00",
+      "end": "2026-10-05T08:27:00+02:00",
+      "duration": 7062,
+      "generalizedCost": 14596,
+      "walkDistance": 8876.76,
+      "elevationGained": 77.75,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 7062.0,
+        "distance": 8876.76,
+        "start": {
+         "scheduledTime": "2026-10-05T06:29:18+02:00",
+         "estimated": null
+        },
+        "end": {
+         "scheduledTime": "2026-10-05T08:27:00+02:00"
+        },
+        "from": {
+         "name": "Nowa Huta, Plac Centralny",
+         "lat": 50.0717,
+         "lon": 20.0373
+        },
+        "to": {
+         "name": "AGH",
+         "lat": 50.0663,
+         "lon": 19.9232
+        },
+        "route": null,
+        "legGeometry": {
+         "points": "isrpHephyBCPIpAAN?FAP?F?BAT?BAPB?@@@??@?B@HAH?NAVCb@GRC`@?@C`@?BAF?H?@GjA@t@ElAMb@OzCMfCIxBUdFAFCp@Ex@?BMbC?@?BEf@BLALA`@ARALK`CATCDKvBInBIrBM`C?HCd@?BAF?F?BMbC_@tH]jHOzCCb@?F?BAHAFALAP@NItAANCNEPGZCJAFM|@EVAFCFCD[h@GFIDFJBF@B@D@BBD?HHRE~@AHOzCGHTrCEFDL?Z?F?F?b@?B?F?F?^AH?HMnC?HAF?@?L?p@?B?L?P?R?RKnBGhACNAFAH?H?JCp@AL?H?H?PATC`@IfBGzA?J?|@AJGbB[bH?DEdAAFCXCn@Cl@?TAV?XAX@h@A`E@jA@vAAlA?N?DAFALCNFBB@B@@??`@@L?NHlD?T@L@L@TSPCDAHADADCLHHHHDJDPBNJbC@L?H@DAJ?V??AH?H?H?H?B?@@p@Bh@HtDD~A?d@?JLL?P?BAL@N?H?L@B@BBB@B@B@DB`A@b@FfC?v@@bADzCAJAV@D?R?L@D?DDP@D?FBv@AX?J?F?D@TAN@nB@~@?NHxBHnC@tABbBHbE@T?H?J@L?@@hBHdD?BD`CBpB@P?H?F@F?D@DHr@@F@DRhABFDT@@@J@H@H@DBXFTPf@N`@DJFNFL@BFHFLFLLPFFNTHVLb@BBZf@JRf@p@^h@@BN\\DLHTBDDDDFBBBFDDDHFFDDDAHMJADBBDHH\\`@FLFJ\\X^d@TXtApB~@rANThBhCNR`@j@DHDD^f@LRP\\FJDJ@BERBDTh@Pj@FPBHRp@BHDLBJFPDB@@Pp@BNDL?@FRFR`@|ABL@J@@BJ@FFJBHJXb@zA@Jl@~BDNDTLt@BHFh@Fr@?J@VBl@Bn@@N@p@@p@BdCFbF@~@?h@@X@nB?v@H?J?DAJAP??NI?CF?dA@D?R@l@?^AdA?J?P?b@Ax@?J?BAvB?\\?VAv@Af@?H?VArB?b@@H@B@@B@?L?LED?B?B@n@Dt@LtA@T@J\\`EFh@d@|F@J?B@NDDFA?D@D?FDLBBBB@??F?F?D?L?D@B?BBD\\hAPf@Vn@FN?LHTB@B@BLBJMBDV@H@H@FDV?@@D@F?B@D@D?@@F@NDTBL@FIHCBCDCDCDCDAFABAJADKfACPE`@?F?@?@Gp@AFAH?HAJAl@?L?J?BI@PbEDdALvC?F@B?H@F?@@h@JvCJrCFxA?F@BDpABf@Bb@@N?N@P@HTpF?HBB@B?N@L?D??CBB\\?JDx@EDA?GD?L?L?LDbAJlC@h@HlB?ZAD?L@dADfA@j@@LBhA@LBn@?V@T@N?D?F?BEPCLQt@m@dCQt@W~@B@BDB@ETAFHFCJADABm@jCEPVZ\\t@LVEVG\\ANCNc@fCUjABZEdBGhB@P?N?tABhCBhB?vA@v@BTCDEHAVC^CrA@JAHA@ABGTKAQ`@@b@Bv@BXIFIFXjAX|APx@`@nAJ\\Pj@Tv@Tr@DN@L?PALCJCHKJIL}@jABF@B@@DJKLQVY\\KNAFDH?LFt@@PDb@?HBV@J?@@H@J@L?J@H@J@J@T@B@J?J@H@J@L@H@P@J@JDl@@J@J@JDl@@J@LB\\@HE@C?GJEHEJ?LAP_AfHQrAIf@CJ?@C@MEA?ATCLGh@ANAFALCVAF@@?B?B?BAHq@rD"
+        },
+        "realTime": false
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "synthetic": {
+  "_comment": "Synthetic planConnection results for build_route_slider tests; deadline 2026-10-05T08:30:00+02:00, buffer 3 min, anchor baseline 42 min.",
+  "deadline": "2026-10-05T08:30:00+02:00",
+  "anchor_42": {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:45:00+02:00",
+      "end": "2026-10-05T08:27:00+02:00",
+      "duration": 2520.0,
+      "generalizedCost": 3780,
+      "walkDistance": 850.0,
+      "elevationGained": 0.0,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 420.0,
+        "distance": 500.0
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1800.0,
+        "distance": 9000.0
+       },
+       {
+        "mode": "WALK",
+        "duration": 300.0,
+        "distance": 350.0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "late_2min": {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:48:00+02:00",
+      "end": "2026-10-05T08:28:00+02:00",
+      "duration": 2400.0,
+      "generalizedCost": 3600,
+      "walkDistance": 0,
+      "elevationGained": 0.0,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 2400.0,
+        "distance": 10000.0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "too_long_110": {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T06:30:00+02:00",
+      "end": "2026-10-05T08:20:00+02:00",
+      "duration": 6600.0,
+      "generalizedCost": 9900,
+      "walkDistance": 8800.0,
+      "elevationGained": 0.0,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 6600.0,
+        "distance": 8800.0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "bike_tram_44": {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:40:00+02:00",
+      "end": "2026-10-05T08:24:00+02:00",
+      "duration": 2640.0,
+      "generalizedCost": 3960,
+      "walkDistance": 300.0,
+      "elevationGained": 0.0,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 900.0,
+        "distance": 3500.0
+       },
+       {
+        "mode": "TRAM",
+        "duration": 1500.0,
+        "distance": 7000.0
+       },
+       {
+        "mode": "WALK",
+        "duration": 240.0,
+        "distance": 300.0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "bike_50": {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:35:00+02:00",
+      "end": "2026-10-05T08:25:00+02:00",
+      "duration": 3000.0,
+      "generalizedCost": 4500,
+      "walkDistance": 0,
+      "elevationGained": 0.0,
+      "legs": [
+       {
+        "mode": "BICYCLE",
+        "duration": 3000.0,
+        "distance": 11500.0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "slow_transit_48": {
+   "routingErrors": [],
+   "edges": [
+    {
+     "node": {
+      "start": "2026-10-05T07:38:00+02:00",
+      "end": "2026-10-05T08:26:00+02:00",
+      "duration": 2880.0,
+      "generalizedCost": 4320,
+      "walkDistance": 580.0,
+      "elevationGained": 0.0,
+      "legs": [
+       {
+        "mode": "WALK",
+        "duration": 300.0,
+        "distance": 380.0
+       },
+       {
+        "mode": "BUS",
+        "duration": 2400.0,
+        "distance": 9000.0
+       },
+       {
+        "mode": "WALK",
+        "duration": 180.0,
+        "distance": 200.0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "no_route": {
+   "routingErrors": [
+    {
+     "code": "NO_TRANSIT_CONNECTION"
+    }
+   ],
+   "edges": []
+  },
+  "error": {
+   "error": "URLError: connection refused"
+  }
+ }
+}

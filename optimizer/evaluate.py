@@ -61,9 +61,9 @@ def _loc(p):
             "location": {"coordinate": {"latitude": p["lat"], "longitude": p["lon"]}}}
 
 
-def build_payload(origin, destination, modes, preferences, arrive_by=ARRIVE_BY):
+def build_payload(origin, destination, modes, preferences, arrive_by=ARRIVE_BY, query=QUERY):
     """GraphQL request body (query + variables) for one planConnection call."""
-    return {"query": QUERY,
+    return {"query": query,
             "variables": {"from": _loc(origin), "to": _loc(destination), "arriveBy": arrive_by,
                           "modes": modes, "prefs": preferences}}
 
@@ -78,12 +78,13 @@ class OTPClient:
     """planConnection client: urllib + ThreadPoolExecutor, 1 retry, JSONL disk cache."""
 
     def __init__(self, url=DEFAULT_URL, cache_path=DEFAULT_CACHE, workers=6, timeout=60,
-                 arrive_by=ARRIVE_BY):
+                 arrive_by=ARRIVE_BY, query=QUERY):
         self.url = url
         self.cache_path = cache_path
         self.workers = workers
         self.timeout = timeout
         self.arrive_by = arrive_by
+        self.query = query  # GraphQL text; part of the cache key (default keeps GA keys unchanged)
         self.stats = {"hits": 0, "misses": 0, "errors": 0}
         self._cache = {}
         self._lock = threading.Lock()
@@ -127,7 +128,7 @@ class OTPClient:
 
         Errors (network, GraphQL) are not cached so a later run can retry them.
         """
-        payload = build_payload(origin, destination, modes, preferences, self.arrive_by)
+        payload = build_payload(origin, destination, modes, preferences, self.arrive_by, self.query)
         key = cache_key(payload)
         with self._lock:
             cached = self._cache.get(key)
@@ -166,7 +167,7 @@ class OTPClient:
         if not requests:
             return []
         normed = [norm(r) for r in requests]
-        keys = [cache_key(build_payload(*r, self.arrive_by)) for r in normed]
+        keys = [cache_key(build_payload(*r, self.arrive_by, self.query)) for r in normed]
         unique = {}
         for k, r in zip(keys, normed):
             unique.setdefault(k, r)
@@ -222,6 +223,9 @@ def _itineraries(plan_result):
     return [e["node"] for e in plan_result.get("edges") or [] if e.get("node")]
 
 
+itineraries = _itineraries  # public alias (used by optimizer.slider_select)
+
+
 def pick_itinerary(plan_result):
     """Itinerary with the lowest generalizedCost (what OTP itself considers best)."""
     its = _itineraries(plan_result)
@@ -261,12 +265,20 @@ def compute_baselines(client, od_pairs):
     return baselines
 
 
+# A route may take at most this multiple of the fastest KMK+walk baseline.
+MAX_TIME_RATIO = 1.9
+
+
+def time_limit(baseline_min):
+    """Longest allowed duration [min] for a pair: MAX_TIME_RATIO x baseline."""
+    return MAX_TIME_RATIO * baseline_min
+
+
 def constraint_violation(duration_min, baseline_min):
-    """Minutes beyond baseline + max(15 min, 50% of baseline); no route -> 60."""
+    """Minutes beyond MAX_TIME_RATIO x baseline (190% of the fastest); no route -> 60."""
     if duration_min is None:
         return NO_ROUTE_PENALTY
-    allowed = baseline_min + max(15.0, 0.5 * baseline_min)
-    return max(0.0, duration_min - allowed)
+    return max(0.0, duration_min - time_limit(baseline_min))
 
 
 def make_evaluator(od_pairs, baselines, client, decode, weight=70.0, height=1.75):

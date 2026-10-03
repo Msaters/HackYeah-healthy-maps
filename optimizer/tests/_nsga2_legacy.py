@@ -1,3 +1,8 @@
+# FROZEN REFERENCE: verbatim copy of optimizer/nsga2.py from GA v1 (git HEAD 08141b0,
+# before objective-space dedupe and X0 were added). Used only by
+# tests/test_nsga2.py to check that nsga2(..., dedupe_decimals=None) reproduces
+# the old behaviour exactly. Do not edit.
+
 """Elitist NSGA-II (Deb et al. 2002) with constraint-domination, OTP-independent.
 
 All objectives are minimised. Decision variables live in [0, 1]^D.
@@ -188,73 +193,11 @@ def _make_offspring(X, rank, crowd, rng, n_off):
     return np.array(kids[:n_off]).reshape(n_off, dim)
 
 
-def _dedupe_keys(F, cv, decimals):
-    """Hashable key per row: objectives rounded to `decimals` plus cv."""
-    Fr = np.round(np.asarray(F, dtype=float), decimals) + 0.0  # -0.0 -> 0.0
-    return [tuple(row) + (float(c),) for row, c in zip(Fr.tolist(), cv)]
-
-
-def survival_select(F, cv, pop, dedupe_decimals=6):
-    """Pick `pop` indices of the combined population (NSGA-II survival).
-
-    With `dedupe_decimals=None` this is plain NSGA-II: whole fronts, the last
-    one truncated by crowding distance. Otherwise rows sharing the same
-    round(F, dedupe_decimals) and cv form a group; only its representative
-    (lowest rank, then lowest index) competes in the standard selection
-    (fronts and crowding computed on representatives only). The remaining
-    copies are placed behind all fronts and only fill up the population when
-    there are fewer than `pop` unique rows, in order of (rank, index).
-    """
-    F = np.asarray(F, dtype=float)
-    cv = np.asarray(cv, dtype=float)
-    if dedupe_decimals is None:
-        return _select_fronts(F, cv, np.arange(len(F)), pop)
-
-    rank = np.empty(len(F), dtype=int)
-    for r, fr in enumerate(fast_non_dominated_sort(F, cv)):
-        rank[fr] = r
-    best = {}
-    for i, key in enumerate(_dedupe_keys(F, cv, dedupe_decimals)):
-        j = best.get(key)
-        if j is None or (rank[i], i) < (rank[j], j):
-            best[key] = i
-    reps = np.array(sorted(best.values()), dtype=int)
-    rep_set = set(reps.tolist())
-    dups = sorted((i for i in range(len(F)) if i not in rep_set),
-                  key=lambda i: (rank[i], i))
-
-    selected = _select_fronts(F[reps], cv[reps], reps, pop)
-    selected.extend(dups[: pop - len(selected)])
-    return selected
-
-
-def _select_fronts(F, cv, idx, pop):
-    """Standard NSGA-II truncation on rows F; returns entries of `idx`."""
-    selected = []
-    for fr in fast_non_dominated_sort(F, cv):
-        if len(selected) + len(fr) <= pop:
-            selected.extend(fr)
-        else:
-            cd = crowding_distance(F[fr])
-            order = np.argsort(-cd, kind="stable")
-            selected.extend(fr[i] for i in order[: pop - len(selected)])
-        if len(selected) >= pop:
-            break
-    return [int(idx[i]) for i in selected]
-
-
-def _state(X, F, cv, details, rank, fronts, dedupe_decimals=None):
+def _state(X, F, cv, details, rank, fronts):
     front0 = list(fronts[0]) if fronts else []
     feasible = [i for i in front0 if cv[i] <= 0]
     if feasible:
         front0 = feasible
-    if dedupe_decimals is not None and front0:
-        keys = _dedupe_keys(F[front0], cv[front0], dedupe_decimals)
-        first = {}
-        for i, key in zip(front0, keys):
-            first[key] = min(i, first.get(key, i))  # keep the lowest index
-        keep = set(first.values())
-        front0 = [i for i in front0 if i in keep]
     return {"X": X, "F": F, "cv": cv, "details": details,
             "rank": rank, "front0": front0}
 
@@ -267,41 +210,17 @@ def _evaluate(evaluate_batch, X):
     return F, cv, details
 
 
-def _initial_population(rng, pop, dim, X0):
-    X = rng.random((pop, dim))  # always drawn in full: keeps the RNG stream
-    if X0 is None:
-        return X
-    X0 = np.asarray(X0, dtype=float)
-    if X0.ndim == 1:
-        X0 = X0.reshape(1, -1)
-    if X0.ndim != 2 or X0.shape[1] != dim:
-        raise ValueError(f"X0 must have shape (k, {dim}), got {X0.shape}")
-    if not np.all(np.isfinite(X0)):
-        raise ValueError("X0 must contain only finite values")
-    if len(X0) > pop:
-        raise ValueError(f"X0 has {len(X0)} rows, more than pop={pop}")
-    X[: len(X0)] = np.clip(X0, 0.0, 1.0)
-    return X
-
-
-def nsga2(evaluate_batch, dim, pop, gens, rng, callback=None, X0=None,
-          dedupe_decimals=6):
+def nsga2(evaluate_batch, dim, pop, gens, rng, callback=None):
     """Run elitist (mu+lambda) NSGA-II.
 
-    `X0` (k x dim, k <= pop, or a single 1-D vector) replaces the first k rows
-    of the random initial population (clipped to [0, 1]), e.g. to seed a known
-    anchor solution. `dedupe_decimals` enables objective-space deduplication
-    in survival (see `survival_select`); None reproduces plain NSGA-II.
-
     Returns {"X","F","cv","details","rank","front0"} for the final population;
-    "front0" holds indices of the first front (feasible only, if any exist),
-    without duplicate objective vectors when deduplication is enabled.
+    "front0" holds indices of the first front (feasible only, if any exist).
     """
-    X = _initial_population(rng, pop, dim, X0)
+    X = rng.random((pop, dim))
     F, cv, details = _evaluate(evaluate_batch, X)
     fronts, rank, crowd = _rank_and_crowd(F, cv)
     if callback is not None:
-        callback(0, _state(X, F, cv, details, rank, fronts, dedupe_decimals))
+        callback(0, _state(X, F, cv, details, rank, fronts))
 
     for gen in range(1, gens + 1):
         Xo = _make_offspring(X, rank, crowd, rng, pop)
@@ -312,12 +231,21 @@ def nsga2(evaluate_batch, dim, pop, gens, rng, callback=None, X0=None,
         cvA = np.concatenate([cv, cvo])
         dA = details + do
 
-        selected = survival_select(FA, cvA, pop, dedupe_decimals)
+        selected = []
+        for fr in fast_non_dominated_sort(FA, cvA):
+            if len(selected) + len(fr) <= pop:
+                selected.extend(fr)
+            else:
+                cd = crowding_distance(FA[fr])
+                order = np.argsort(-cd, kind="stable")
+                selected.extend(fr[i] for i in order[: pop - len(selected)])
+            if len(selected) >= pop:
+                break
 
         X, F, cv = XA[selected], FA[selected], cvA[selected]
         details = [dA[i] for i in selected]
         fronts, rank, crowd = _rank_and_crowd(F, cv)
         if callback is not None:
-            callback(gen, _state(X, F, cv, details, rank, fronts, dedupe_decimals))
+            callback(gen, _state(X, F, cv, details, rank, fronts))
 
-    return _state(X, F, cv, details, rank, fronts, dedupe_decimals)
+    return _state(X, F, cv, details, rank, fronts)

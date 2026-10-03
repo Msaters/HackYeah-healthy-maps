@@ -7,7 +7,8 @@ import unittest
 import numpy as np
 
 from optimizer.evaluate import (OTPClient, build_payload, cache_key, constraint_violation,
-                                itinerary_metrics, make_evaluator, pick_itinerary)
+                                itinerary_metrics, make_evaluator, pick_itinerary,
+                                MAX_TIME_RATIO, time_limit)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIXTURE = os.path.join(HERE, "fixtures", "otp_response.json")
@@ -88,14 +89,19 @@ class TestPick(unittest.TestCase):
 
 class TestConstraint(unittest.TestCase):
     def test_cv(self):
-        # baseline 42 -> allowed 42 + max(15, 21) = 63
-        self.assertAlmostEqual(constraint_violation(110, 42), 47.0)
+        # baseline 42 -> allowed 1.9 * 42 = 79.8
+        self.assertAlmostEqual(constraint_violation(110, 42), 110 - 79.8)
         self.assertGreater(constraint_violation(110, 42), 0)
         self.assertEqual(constraint_violation(50, 42), 0)
-        # short baseline: 15 min floor dominates
-        self.assertEqual(constraint_violation(24, 10), 0)
-        self.assertAlmostEqual(constraint_violation(30, 10), 5.0)
+        self.assertEqual(constraint_violation(79.8, 42), 0)
+        # short baseline: 190% applies without a fixed floor
+        self.assertEqual(constraint_violation(19, 10), 0)
+        self.assertAlmostEqual(constraint_violation(24, 10), 5.0)
         self.assertEqual(constraint_violation(None, 42), 60.0)
+
+    def test_time_limit(self):
+        self.assertEqual(MAX_TIME_RATIO, 1.9)
+        self.assertAlmostEqual(time_limit(42), 79.8)
 
 
 class TestEvaluator(unittest.TestCase):
