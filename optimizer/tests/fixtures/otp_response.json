@@ -1,0 +1,172 @@
+{
+ "_comment": "Real OTP 2.10 planConnection response for pair nowa_huta_agh, latestArrival 2026-10-05T08:30+02:00",
+ "request": {
+  "from": {
+   "label": "Nowa Huta, Plac Centralny",
+   "location": {
+    "coordinate": {
+     "latitude": 50.0717,
+     "longitude": 20.0373
+    }
+   }
+  },
+  "to": {
+   "label": "AGH",
+   "location": {
+    "coordinate": {
+     "latitude": 50.0663,
+     "longitude": 19.9232
+    }
+   }
+  },
+  "arriveBy": "2026-10-05T08:30:00+02:00",
+  "modes": {
+   "transit": {
+    "access": [
+     "BICYCLE_PARKING"
+    ],
+    "egress": [
+     "WALK"
+    ],
+    "transfer": [
+     "WALK"
+    ]
+   }
+  },
+  "prefs": {
+   "street": {
+    "bicycle": {
+     "reluctance": 1.0
+    },
+    "walk": {
+     "reluctance": 1.5
+    }
+   }
+  }
+ },
+ "response": {
+  "data": {
+   "planConnection": {
+    "routingErrors": [],
+    "edges": [
+     {
+      "node": {
+       "start": "2026-10-05T07:47:54+02:00",
+       "end": "2026-10-05T08:29:58+02:00",
+       "duration": 2524,
+       "generalizedCost": 3926,
+       "walkDistance": 493.46999999999997,
+       "elevationGained": 13.74,
+       "legs": [
+        {
+         "mode": "BICYCLE",
+         "duration": 588.0,
+         "distance": 1870.67
+        },
+        {
+         "mode": "WALK",
+         "duration": 138.0,
+         "distance": 64.02
+        },
+        {
+         "mode": "TRAM",
+         "duration": 900.0,
+         "distance": 5417.0
+        },
+        {
+         "mode": "WALK",
+         "duration": 50.0,
+         "distance": 58.06
+        },
+        {
+         "mode": "BUS",
+         "duration": 360.0,
+         "distance": 1898.0
+        },
+        {
+         "mode": "WALK",
+         "duration": 298.0,
+         "distance": 371.39
+        }
+       ]
+      }
+     },
+     {
+      "node": {
+       "start": "2026-10-05T07:41:39+02:00",
+       "end": "2026-10-05T08:28:58+02:00",
+       "duration": 2839,
+       "generalizedCost": 4315,
+       "walkDistance": 550.47,
+       "elevationGained": 12.54,
+       "legs": [
+        {
+         "mode": "BICYCLE",
+         "duration": 623.0,
+         "distance": 2083.05
+        },
+        {
+         "mode": "WALK",
+         "duration": 178.0,
+         "distance": 121.02
+        },
+        {
+         "mode": "TRAM",
+         "duration": 1020.0,
+         "distance": 6425.0
+        },
+        {
+         "mode": "WALK",
+         "duration": 50.0,
+         "distance": 58.06
+        },
+        {
+         "mode": "BUS",
+         "duration": 420.0,
+         "distance": 1897.0
+        },
+        {
+         "mode": "WALK",
+         "duration": 298.0,
+         "distance": 371.39
+        }
+       ]
+      }
+     },
+     {
+      "node": {
+       "start": "2026-10-05T07:37:54+02:00",
+       "end": "2026-10-05T08:28:41+02:00",
+       "duration": 3047,
+       "generalizedCost": 4664,
+       "walkDistance": 1867.25,
+       "elevationGained": 13.74,
+       "legs": [
+        {
+         "mode": "BICYCLE",
+         "duration": 588.0,
+         "distance": 1870.67
+        },
+        {
+         "mode": "WALK",
+         "duration": 138.0,
+         "distance": 64.02
+        },
+        {
+         "mode": "TRAM",
+         "duration": 900.0,
+         "distance": 5008.0
+        },
+        {
+         "mode": "WALK",
+         "duration": 1421.0,
+         "distance": 1803.23
+        }
+       ]
+      }
+     }
+    ]
+   }
+  }
+ }
+}

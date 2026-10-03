@@ -1,0 +1,1289 @@
+{
+ "meta": {
+  "generated": "2026-10-03T21:15:00+02:00",
+  "budget": "quick",
+  "pop": 16,
+  "gen": 6,
+  "pairs": [
+   "nowa_huta-agh",
+   "kurdwanow-rynek",
+   "bronowice-kazimierz",
+   "czerwone_maki-dworzec"
+  ],
+  "seed": 1,
+  "weight_kg": 70,
+  "note": "synthetic fixture for report tests"
+ },
+ "front": [
+  {
+   "x": [
+    0.0226,
+    0.4617,
+    0.168,
+    0.1171,
+    0.059,
+    0.7682,
+    0.1293,
+    0.2476,
+    0.3909,
+    0.8714,
+    0.0806,
+    0.4492
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE_PARKING"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.72
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 2.373,
+       "speed": 1.33
+      },
+      "bicycle": {
+       "reluctance": 3.464,
+       "speed": 3.85,
+       "optimization": {
+        "triangle": {
+         "safety": 0.485,
+         "flatness": 0.104,
+         "time": 0.411
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 0.87
+      },
+      "transfer": {
+       "cost": 234
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.09,
+   "active_kcal": 78.0,
+   "steps": 710,
+   "duration_min": 35.7,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 43.0,
+     "baseline_min": 38.0,
+     "active_kcal": 85.5,
+     "steps": 787
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 28.8,
+     "baseline_min": 27.0,
+     "active_kcal": 76.0,
+     "steps": 679
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 35.1,
+     "baseline_min": 31.0,
+     "active_kcal": 88.7,
+     "steps": 635
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 35.9,
+     "baseline_min": 34.0,
+     "active_kcal": 71.7,
+     "steps": 653
+    }
+   ]
+  },
+  {
+   "x": [
+    0.4181,
+    0.7571,
+    0.152,
+    0.489,
+    0.0392,
+    0.6682,
+    0.7646,
+    0.573,
+    0.8755,
+    0.3137,
+    0.6953,
+    0.5944
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "WALK"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.49
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "WALK"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 2.864,
+       "speed": 1.48
+      },
+      "bicycle": {
+       "reluctance": 3.809,
+       "speed": 4.97,
+       "optimization": {
+        "triangle": {
+         "safety": 0.386,
+         "flatness": 0.283,
+         "time": 0.331
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.36
+      },
+      "transfer": {
+       "cost": 525
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.06,
+   "active_kcal": 55.0,
+   "steps": 1459,
+   "duration_min": 34.9,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 40.6,
+     "baseline_min": 38.0,
+     "active_kcal": 54.3,
+     "steps": 1607
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 29.9,
+     "baseline_min": 27.0,
+     "active_kcal": 54.6,
+     "steps": 1530
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 31.4,
+     "baseline_min": 31.0,
+     "active_kcal": 58.3,
+     "steps": 1523
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 37.8,
+     "baseline_min": 34.0,
+     "active_kcal": 60.3,
+     "steps": 1364
+    }
+   ]
+  },
+  {
+   "x": [
+    0.2594,
+    0.419,
+    0.1311,
+    0.91,
+    0.3538,
+    0.4582,
+    0.5833,
+    0.9043,
+    0.4206,
+    0.9177,
+    0.5016,
+    0.5318
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.82
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "BICYCLE"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 0.766,
+       "speed": 1.31
+      },
+      "bicycle": {
+       "reluctance": 1.391,
+       "speed": 6.23,
+       "optimization": {
+        "triangle": {
+         "safety": 0.106,
+         "flatness": 0.678,
+         "time": 0.216
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.86
+      },
+      "transfer": {
+       "cost": 252
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.39,
+   "active_kcal": 211.0,
+   "steps": 705,
+   "duration_min": 43.9,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 50.3,
+     "baseline_min": 38.0,
+     "active_kcal": 207.2,
+     "steps": 637
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 35.7,
+     "baseline_min": 27.0,
+     "active_kcal": 229.9,
+     "steps": 635
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 43.0,
+     "baseline_min": 31.0,
+     "active_kcal": 225.3,
+     "steps": 716
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 46.4,
+     "baseline_min": 34.0,
+     "active_kcal": 212.2,
+     "steps": 716
+    }
+   ]
+  },
+  {
+   "x": [
+    0.3085,
+    0.8161,
+    0.1807,
+    0.5816,
+    0.6389,
+    0.3724,
+    0.5477,
+    0.0628,
+    0.0596,
+    0.206,
+    0.6804,
+    0.4276
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "WALK"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.25
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 3.458,
+       "speed": 1.51
+      },
+      "bicycle": {
+       "reluctance": 4.155,
+       "speed": 5.24,
+       "optimization": {
+        "triangle": {
+         "safety": 0.118,
+         "flatness": 0.862,
+         "time": 0.02
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 0.59
+      },
+      "transfer": {
+       "cost": 35
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.03,
+   "active_kcal": 38.0,
+   "steps": 1008,
+   "duration_min": 33.3,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 38.4,
+     "baseline_min": 38.0,
+     "active_kcal": 39.0,
+     "steps": 993
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 27.3,
+     "baseline_min": 27.0,
+     "active_kcal": 41.4,
+     "steps": 1068
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 31.1,
+     "baseline_min": 31.0,
+     "active_kcal": 38.8,
+     "steps": 1015
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 36.3,
+     "baseline_min": 34.0,
+     "active_kcal": 40.6,
+     "steps": 943
+    }
+   ]
+  },
+  {
+   "x": [
+    0.9468,
+    0.7248,
+    0.17,
+    0.127,
+    0.1512,
+    0.9049,
+    0.8065,
+    0.1462,
+    0.8265,
+    0.9803,
+    0.6573,
+    0.3504
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.96
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "BICYCLE"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 0.925,
+       "speed": 1.46
+      },
+      "bicycle": {
+       "reluctance": 1.736,
+       "speed": 3.88,
+       "optimization": {
+        "triangle": {
+         "safety": 0.241,
+         "flatness": 0.346,
+         "time": 0.413
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 0.72
+      },
+      "transfer": {
+       "cost": 495
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.31,
+   "active_kcal": 192.0,
+   "steps": 710,
+   "duration_min": 41.8,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 47.9,
+     "baseline_min": 38.0,
+     "active_kcal": 164.0,
+     "steps": 810
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 35.9,
+     "baseline_min": 27.0,
+     "active_kcal": 193.5,
+     "steps": 802
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 40.3,
+     "baseline_min": 31.0,
+     "active_kcal": 213.4,
+     "steps": 779
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 43.3,
+     "baseline_min": 34.0,
+     "active_kcal": 177.7,
+     "steps": 665
+    }
+   ]
+  },
+  {
+   "x": [
+    0.5603,
+    0.2485,
+    0.2769,
+    0.7723,
+    0.5077,
+    0.5617,
+    0.76,
+    0.9125,
+    0.4432,
+    0.6125,
+    0.5056,
+    0.5122
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.15
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "BICYCLE"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 0.635,
+       "speed": 1.22
+      },
+      "bicycle": {
+       "reluctance": 1.045,
+       "speed": 5.82,
+       "optimization": {
+        "triangle": {
+         "safety": 0.122,
+         "flatness": 0.32,
+         "time": 0.558
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.87
+      },
+      "transfer": {
+       "cost": 265
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.48,
+   "active_kcal": 229.0,
+   "steps": 739,
+   "duration_min": 49.5,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 56.0,
+     "baseline_min": 38.0,
+     "active_kcal": 231.3,
+     "steps": 734
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 41.7,
+     "baseline_min": 27.0,
+     "active_kcal": 242.7,
+     "steps": 822
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 47.9,
+     "baseline_min": 31.0,
+     "active_kcal": 212.5,
+     "steps": 752
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 52.6,
+     "baseline_min": 34.0,
+     "active_kcal": 252.4,
+     "steps": 658
+    }
+   ]
+  },
+  {
+   "x": [
+    0.0725,
+    0.2406,
+    0.0731,
+    0.6695,
+    0.7839,
+    0.897,
+    0.1544,
+    0.7161,
+    0.6603,
+    0.143,
+    0.8828,
+    0.9675
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.11
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "direct": [
+      "BICYCLE"
+     ]
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 0.526,
+       "speed": 1.22
+      },
+      "bicycle": {
+       "reluctance": 0.7,
+       "speed": 5.51,
+       "optimization": {
+        "triangle": {
+         "safety": 0.019,
+         "flatness": 0.535,
+         "time": 0.446
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.57
+      },
+      "transfer": {
+       "cost": 396
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.58,
+   "active_kcal": 246.0,
+   "steps": 644,
+   "duration_min": 52.0,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 62.8,
+     "baseline_min": 38.0,
+     "active_kcal": 238.5,
+     "steps": 641
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 44.7,
+     "baseline_min": 27.0,
+     "active_kcal": 270.5,
+     "steps": 578
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 48.6,
+     "baseline_min": 31.0,
+     "active_kcal": 247.2,
+     "steps": 612
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 52.1,
+     "baseline_min": 34.0,
+     "active_kcal": 232.6,
+     "steps": 686
+    }
+   ]
+  },
+  {
+   "x": [
+    0.2627,
+    0.0041,
+    0.4189,
+    0.3693,
+    0.5663,
+    0.9531,
+    0.6905,
+    0.5155,
+    0.6176,
+    0.6762,
+    0.054,
+    0.8995
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE_PARKING"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.29
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 1.965,
+       "speed": 1.1
+      },
+      "bicycle": {
+       "reluctance": 3.118,
+       "speed": 4.61,
+       "optimization": {
+        "triangle": {
+         "safety": 0.0,
+         "flatness": 0.151,
+         "time": 0.849
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.27
+      },
+      "transfer": {
+       "cost": 370
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.12,
+   "active_kcal": 104.0,
+   "steps": 756,
+   "duration_min": 36.0,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 44.2,
+     "baseline_min": 38.0,
+     "active_kcal": 113.3,
+     "steps": 731
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 29.9,
+     "baseline_min": 27.0,
+     "active_kcal": 91.6,
+     "steps": 786
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 33.2,
+     "baseline_min": 31.0,
+     "active_kcal": 90.5,
+     "steps": 689
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 36.8,
+     "baseline_min": 34.0,
+     "active_kcal": 99.0,
+     "steps": 654
+    }
+   ]
+  },
+  {
+   "x": [
+    0.1015,
+    0.3636,
+    0.0255,
+    0.8743,
+    0.6141,
+    0.1486,
+    0.2523,
+    0.3474,
+    0.3642,
+    0.1228,
+    0.8489,
+    0.9931
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.07
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 1.628,
+       "speed": 1.28
+      },
+      "bicycle": {
+       "reluctance": 2.773,
+       "speed": 6.12,
+       "optimization": {
+        "triangle": {
+         "safety": 0.027,
+         "flatness": 0.501,
+         "time": 0.472
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.02
+      },
+      "transfer": {
+       "cost": 218
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.15,
+   "active_kcal": 128.0,
+   "steps": 693,
+   "duration_min": 37.0,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 43.6,
+     "baseline_min": 38.0,
+     "active_kcal": 112.1,
+     "steps": 610
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 30.6,
+     "baseline_min": 27.0,
+     "active_kcal": 119.0,
+     "steps": 761
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 34.4,
+     "baseline_min": 31.0,
+     "active_kcal": 109.7,
+     "steps": 786
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 39.2,
+     "baseline_min": 34.0,
+     "active_kcal": 114.4,
+     "steps": 701
+    }
+   ]
+  },
+  {
+   "x": [
+    0.9785,
+    0.8633,
+    0.6962,
+    0.2611,
+    0.3667,
+    0.167,
+    0.7719,
+    0.5326,
+    0.7791,
+    0.3297,
+    0.223,
+    0.8115
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.53
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 1.348,
+       "speed": 1.53
+      },
+      "bicycle": {
+       "reluctance": 2.427,
+       "speed": 4.28,
+       "optimization": {
+        "triangle": {
+         "safety": 0.447,
+         "flatness": 0.509,
+         "time": 0.044
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.3
+      },
+      "transfer": {
+       "cost": 467
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.19,
+   "active_kcal": 150.0,
+   "steps": 797,
+   "duration_min": 38.9,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 46.8,
+     "baseline_min": 38.0,
+     "active_kcal": 163.8,
+     "steps": 873
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 32.9,
+     "baseline_min": 27.0,
+     "active_kcal": 137.7,
+     "steps": 801
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 36.4,
+     "baseline_min": 31.0,
+     "active_kcal": 128.8,
+     "steps": 684
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 39.6,
+     "baseline_min": 34.0,
+     "active_kcal": 139.2,
+     "steps": 843
+    }
+   ]
+  },
+  {
+   "x": [
+    0.3238,
+    0.1508,
+    0.6509,
+    0.0724,
+    0.5359,
+    0.3657,
+    0.058,
+    0.5074,
+    0.0375,
+    0.4336,
+    0.0699,
+    0.0907
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "WALK"
+      ],
+      "egress": [
+       "WALK"
+      ],
+      "transfer": [
+       "WALK"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 1.75
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 4.175,
+       "speed": 1.18
+      },
+      "bicycle": {
+       "reluctance": 4.5,
+       "speed": 3.72,
+       "optimization": {
+        "triangle": {
+         "safety": 0.118,
+         "flatness": 0.026,
+         "time": 0.856
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 1.26
+      },
+      "transfer": {
+       "cost": 22
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.0,
+   "active_kcal": 22.0,
+   "steps": 584,
+   "duration_min": 31.9,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 37.7,
+     "baseline_min": 38.0,
+     "active_kcal": 24.2,
+     "steps": 518
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 26.3,
+     "baseline_min": 27.0,
+     "active_kcal": 22.8,
+     "steps": 662
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 31.2,
+     "baseline_min": 31.0,
+     "active_kcal": 21.3,
+     "steps": 667
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 32.5,
+     "baseline_min": 34.0,
+     "active_kcal": 24.4,
+     "steps": 547
+    }
+   ]
+  },
+  {
+   "x": [
+    0.937,
+    0.988,
+    0.955,
+    0.3646,
+    0.2205,
+    0.2268,
+    0.1967,
+    0.2044,
+    0.6241,
+    0.9003,
+    0.8404,
+    0.4795
+   ],
+   "query": {
+    "modes": {
+     "transit": {
+      "access": [
+       "BICYCLE"
+      ],
+      "egress": [
+       "BICYCLE"
+      ],
+      "transfer": [
+       "BICYCLE"
+      ],
+      "transit": [
+       {
+        "mode": "BUS",
+        "cost": {
+         "reluctance": 2.78
+        }
+       },
+       {
+        "mode": "TRAM"
+       }
+      ]
+     },
+     "transitOnly": true
+    },
+    "preferences": {
+     "street": {
+      "walk": {
+       "reluctance": 1.117,
+       "speed": 1.59
+      },
+      "bicycle": {
+       "reluctance": 2.082,
+       "speed": 4.59,
+       "optimization": {
+        "triangle": {
+         "safety": 0.396,
+         "flatness": 0.006,
+         "time": 0.598
+        }
+       }
+      }
+     },
+     "transit": {
+      "board": {
+       "waitReluctance": 0.81
+      },
+      "transfer": {
+       "cost": 374
+      }
+     }
+    }
+   },
+   "f_time_ratio": 1.24,
+   "active_kcal": 171.0,
+   "steps": 731,
+   "duration_min": 40.8,
+   "cv": 0.0,
+   "per_pair": [
+    {
+     "pair": "nowa_huta-agh",
+     "duration_min": 48.5,
+     "baseline_min": 38.0,
+     "active_kcal": 149.7,
+     "steps": 766
+    },
+    {
+     "pair": "kurdwanow-rynek",
+     "duration_min": 34.9,
+     "baseline_min": 27.0,
+     "active_kcal": 185.5,
+     "steps": 785
+    },
+    {
+     "pair": "bronowice-kazimierz",
+     "duration_min": 38.4,
+     "baseline_min": 31.0,
+     "active_kcal": 154.5,
+     "steps": 794
+    },
+    {
+     "pair": "czerwone_maki-dworzec",
+     "duration_min": 41.5,
+     "baseline_min": 34.0,
+     "active_kcal": 186.4,
+     "steps": 834
+    }
+   ]
+  }
+ ]
+}

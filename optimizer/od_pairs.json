@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "description": "Origin-destination pairs in Krakow used to evaluate OTP weight genomes. Straight-line distances: short 1.1-2.1 km (rynek_agh 1.1 km: OTP prefers walking over transit there), medium 3-6 km, long 8-11 km; mixed directions.",
+    "arrive_by": "2026-10-05T08:30:00+02:00"
+  },
+  "pairs": [
+    {"id": "rynek_agh",
+     "from": {"lat": 50.0617, "lon": 19.9373, "label": "Rynek Główny"},
+     "to": {"lat": 50.0663, "lon": 19.9232, "label": "AGH"}},
+    {"id": "kazimierz_dworzec",
+     "from": {"lat": 50.0515, "lon": 19.9445, "label": "Kazimierz, Plac Nowy"},
+     "to": {"lat": 50.0675, "lon": 19.9475, "label": "Dworzec Główny"}},
+    {"id": "salwator_rynek",
+     "from": {"lat": 50.0540, "lon": 19.9100, "label": "Salwator"},
+     "to": {"lat": 50.0617, "lon": 19.9373, "label": "Rynek Główny"}},
+    {"id": "krowodrza_rynek",
+     "from": {"lat": 50.0880, "lon": 19.9295, "label": "Krowodrza Górka"},
+     "to": {"lat": 50.0617, "lon": 19.9373, "label": "Rynek Główny"}},
+    {"id": "bronowice_agh",
+     "from": {"lat": 50.0815, "lon": 19.8840, "label": "Bronowice Małe"},
+     "to": {"lat": 50.0663, "lon": 19.9232, "label": "AGH"}},
+    {"id": "kurdwanow_kazimierz",
+     "from": {"lat": 50.0105, "lon": 19.9600, "label": "P+R Kurdwanów"},
+     "to": {"lat": 50.0515, "lon": 19.9445, "label": "Kazimierz, Plac Nowy"}},
+    {"id": "ruczaj_dworzec",
+     "from": {"lat": 50.0285, "lon": 19.9060, "label": "Kampus UJ (Ruczaj)"},
+     "to": {"lat": 50.0675, "lon": 19.9475, "label": "Dworzec Główny"}},
+    {"id": "czerwone_maki_rynek",
+     "from": {"lat": 50.0153, "lon": 19.8930, "label": "P+R Czerwone Maki"},
+     "to": {"lat": 50.0617, "lon": 19.9373, "label": "Rynek Główny"}},
+    {"id": "nowa_huta_agh",
+     "from": {"lat": 50.0717, "lon": 20.0373, "label": "Nowa Huta, Plac Centralny"},
+     "to": {"lat": 50.0663, "lon": 19.9232, "label": "AGH"}},
+    {"id": "prokocim_bronowice",
+     "from": {"lat": 50.0140, "lon": 20.0030, "label": "Prokocim, Szpital Uniwersytecki"},
+     "to": {"lat": 50.0815, "lon": 19.8840, "label": "Bronowice Małe"}}
+  ],
+  "quick": ["rynek_agh", "kurdwanow_kazimierz", "czerwone_maki_rynek", "nowa_huta_agh"]
+}

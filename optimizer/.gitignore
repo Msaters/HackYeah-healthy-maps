@@ -1,0 +1,5 @@
+# GA run artefacts: OTP response cache and run outputs.
+# Profiles are produced by run_ga into --out; nothing from a run is committed.
+cache/
+out/
+__pycache__/
