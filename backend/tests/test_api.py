@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, AsyncMock
 from fastapi.testclient import TestClient
 
 from backend.app.main import app
@@ -29,12 +29,36 @@ class TestRouteApi(unittest.TestCase):
         resp = client.post("/api/routes", json={})
         self.assertEqual(resp.status_code, 422)
 
+    @patch("backend.app.service.get_environmental_context")
     @patch("backend.app.service.plan_route_slider")
-    def test_routes_endpoint_with_smog_lock(self, mock_plan_route_slider):
+    def test_routes_endpoint_with_health_advisory(self, mock_plan_route_slider, mock_get_env):
+        # Mock environmental context (smoggy Kraków day near Krasińskiego)
+        mock_get_env.return_value = {
+            "station": {
+                "name": "Kraków, Al. Krasińskiego",
+                "id": 400,
+                "distance_km": 0.6,
+            },
+            "air_quality": {
+                "index_name": "Zły",
+                "pm10": 68.0,
+                "pm25": 44.0,
+                "source": "GIOS_MOCK",
+            },
+            "weather": {
+                "temperature_c": 11.0,
+                "rain_mm": 0.0,
+                "precipitation_mm": 0.0,
+                "wind_kmh": 14.0,
+                "condition": "Pochmurno",
+                "weather_code": 3,
+                "source": "OPEN_METEO_MOCK",
+            },
+        }
+
         mock_plan_route_slider.return_value = {
             "baseline_min": 25.0,
             "default_index": 0,
-            "lock_reason": "smog",
             "dropped": {"error": 0},
             "n_requests": 9,
             "warnings": [],
@@ -121,43 +145,53 @@ class TestRouteApi(unittest.TestCase):
                 "height_m": 1.78,
                 "walk_speed_mps": 1.35,
             },
-            "lock_reason": "smog",
         }
 
         resp = client.post("/api/routes", json=payload)
         self.assertEqual(resp.status_code, 200)
         data = resp.json()
 
-        # Check response structure
-        self.assertEqual(data["baseline_min"], 25.0)
-        self.assertEqual(data["default_index"], 0)
+        # Check environmental summary
+        self.assertIn("environment", data)
+        env = data["environment"]
+        self.assertEqual(env["overall_level"], "WARNING")
+        self.assertEqual(env["air_quality"]["station_name"], "Kraków, Al. Krasińskiego")
+        self.assertEqual(env["air_quality"]["pm10"], 68.0)
+        self.assertEqual(env["weather"]["temperature_c"], 11.0)
+
+        # Check positions & advisories
         self.assertEqual(len(data["positions"]), 3)
+        self.assertEqual(data["default_index"], 0)  # Smart default steers to transit
 
-        # 1. Anchor / transit fallback is unlocked
-        self.assertFalse(data["positions"][0]["locked"])
-        self.assertEqual(data["positions"][0]["metrics"]["bike_duration_min"], 0.0)
+        # 1. Transit route is SAFE and NOT locked
+        pos0 = data["positions"][0]
+        self.assertFalse(pos0["locked"])
+        self.assertEqual(pos0["advisory"]["level"], "SAFE")
+        self.assertEqual(pos0["advisory"]["badge"], "Czysty przejazd")
 
-        # 2. Short bike ride (8 min <= 15 min) remains UNLOCKED under smog
-        self.assertFalse(data["positions"][1]["locked"])
-        self.assertEqual(data["positions"][1]["metrics"]["bike_duration_min"], 8.0)
-        self.assertIsNone(data["positions"][1]["lock_note"])
+        # 2. Short bike ride (8 min <= 15 min) is MODERATE and selectable
+        pos1 = data["positions"][1]
+        self.assertFalse(pos1["locked"])
+        self.assertEqual(pos1["advisory"]["level"], "MODERATE")
+        self.assertEqual(pos1["advisory"]["badge"], "Krótka ekspozycja")
 
-        # 3. Long bike ride (35 min > 15 min) is LOCKED under smog
-        self.assertTrue(data["positions"][2]["locked"])
-        self.assertEqual(data["positions"][2]["metrics"]["bike_duration_min"], 35.0)
-        self.assertIn("Zablokowano (smog)", data["positions"][2]["lock_note"])
+        # 3. Long bike ride (35 min > 15 min) is WARNING, selectable (locked: false), with detailed factors
+        pos2 = data["positions"][2]
+        self.assertFalse(pos2["locked"])  # Kept selectable in the advisory nudge model!
+        self.assertEqual(pos2["advisory"]["level"], "WARNING")
+        self.assertEqual(pos2["advisory"]["badge"], "Wysoka ekspozycja")
+        self.assertTrue(len(pos2["advisory"]["factors"]) >= 2)
 
-        # 4. Warnings include smog alert
-        self.assertTrue(any("alert (smog)" in w for w in data["warnings"]))
-
-        # Check mock args
+        # Check that user profile parameters were forwarded
         args, kwargs = mock_plan_route_slider.call_args
         self.assertEqual(kwargs["weight"], 72.0)
         self.assertEqual(kwargs["height"], 1.78)
         self.assertEqual(kwargs["walk_speed"], 1.35)
 
+    @patch("backend.app.service.get_environmental_context")
     @patch("backend.app.service.plan_route_slider")
-    def test_routes_endpoint_otp_error(self, mock_plan_route_slider):
+    def test_routes_endpoint_otp_error(self, mock_plan_route_slider, mock_get_env):
+        mock_get_env.return_value = {}
         mock_plan_route_slider.return_value = {
             "n_requests": 9,
             "dropped": {"error": 9},

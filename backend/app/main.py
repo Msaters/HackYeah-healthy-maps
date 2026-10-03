@@ -1,4 +1,4 @@
-"""FastAPI application for Aktywny Kraków route slider API."""
+"""FastAPI application for Aktywny Kraków route slider API with environmental health advisories."""
 import logging
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,11 +13,11 @@ settings = get_settings()
 
 app = FastAPI(
     title="Aktywny Kraków - Route Slider API",
-    description="Multi-modal Pareto route planning API with health and environmental exposure awareness.",
-    version="1.0.0",
+    description="Multi-modal Pareto route planning API with real-time environmental health advisories (GIOŚ & Open-Meteo).",
+    version="1.1.0",
 )
 
-# CORS middleware for local development
+# CORS middleware for local frontend development
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
@@ -26,7 +26,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# TODO
+
 @app.get("/api/health", tags=["system"])
 def health_check():
     """Health check endpoint."""
@@ -34,18 +34,19 @@ def health_check():
 
 
 @app.post("/api/routes", response_model=RouteResponse, tags=["routing"])
-def get_routes(request: RouteRequest):
+async def get_routes(request: RouteRequest):
     """
     Compute health-aware multi-modal route options for Kraków.
     Returns an ordered set of Pareto slider positions (fastest to most active),
-    incorporating outdoor exposure safety and geometry for frontend rendering.
+    incorporating real-time GIOŚ air quality, Open-Meteo weather forecasts,
+    transparent health advisories, and polyline geometry for frontend rendering.
     """
     origin = {"lat": request.from_loc.lat, "lon": request.from_loc.lon}
     destination = {"lat": request.to_loc.lat, "lon": request.to_loc.lon}
     deadline_iso = request.deadline.isoformat()
 
     try:
-        rs = plan_routes(
+        rs = await plan_routes(
             origin=origin,
             destination=destination,
             deadline=deadline_iso,
@@ -65,7 +66,6 @@ def get_routes(request: RouteRequest):
     n_req = rs.get("n_requests", 0)
     dropped = rs.get("dropped") or {}
     if n_req > 0 and dropped.get("error", 0) == n_req:
-        # Return 503 if OTP backend is unreachable
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="OpenTripPlanner service is unreachable or returned errors for all queries.",

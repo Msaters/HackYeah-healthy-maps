@@ -1,4 +1,4 @@
-"""Route planning service wrapping optimizer.slider_select and preset caching."""
+"""Route planning service wrapping optimizer.slider_select, preset caching, and health advisories."""
 import datetime
 import json
 import logging
@@ -6,6 +6,7 @@ from typing import Dict, Any, Optional, List, Tuple
 
 from backend.app.config import get_settings
 from backend.app.schemas import UserProfile
+from backend.app.environment import get_environmental_context
 from optimizer.genome import decode, encode_anchor
 from optimizer.slider_select import plan_route_slider
 
@@ -78,6 +79,147 @@ def clear_slider_cache() -> None:
     _SLIDER_CACHE.clear()
 
 
+def evaluate_health_advisory(
+    positions: List[Dict[str, Any]],
+    env_context: Optional[Dict[str, Any]] = None,
+    manual_lock_reason: Optional[str] = None,
+    limit_min: float = 15.0,
+) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+    """
+    Evaluates health and environmental risks for all candidate positions.
+    Applies the transparent Advisory Nudge model (all routes remain selectable, locked = False).
+    """
+    env_context = env_context or {}
+    station = env_context.get("station") or {}
+    station_name = station.get("name", "Kraków")
+    station_id = station.get("id", 400)
+    distance_km = station.get("distance_km", 1.0)
+
+    aqi = env_context.get("air_quality") or {}
+    pm10 = aqi.get("pm10", 25.0)
+    pm25 = aqi.get("pm25", 15.0)
+    index_name = aqi.get("index_name", "Dobry")
+
+    weather = env_context.get("weather") or {}
+    temp_c = weather.get("temperature_c", 15.0)
+    rain_mm = weather.get("rain_mm", 0.0)
+    precip_mm = weather.get("precipitation_mm", 0.0)
+    wind_kmh = weather.get("wind_kmh", 10.0)
+    condition = weather.get("condition", "Bezchmurnie")
+    weather_code = weather.get("weather_code", 0)
+
+    # Determine environmental severity
+    is_smog = manual_lock_reason == "smog" or pm10 > 50.0 or index_name in ("Zły", "Bardzo zły", "Dostateczny")
+    is_severe_smog = pm10 > 80.0 or index_name == "Bardzo zły"
+    is_rain = manual_lock_reason == "weather" or rain_mm > 0.5 or precip_mm > 0.8
+    is_severe_weather = rain_mm > 3.5 or weather_code in (95, 96, 99)
+
+    # Build top-level environment summary
+    if is_severe_smog or is_severe_weather:
+        overall_level = "DANGER"
+        summary = f"Alarm smogowy lub trudne warunki: PM10 = {pm10:.0f} µg/m³, {condition}"
+    elif is_smog or is_rain:
+        overall_level = "WARNING"
+        summary = f"Podwyższone stężenie pyłów ({pm10:.0f} µg/m³) lub opady ({condition})"
+    else:
+        overall_level = "SAFE"
+        summary = f"Dobre warunki atmosferyczne: czyste powietrze ({index_name}) i brak opadów."
+
+    env_summary = {
+        "overall_level": overall_level,
+        "summary": summary,
+        "air_quality": {
+            "station_name": station_name,
+            "station_id": station_id,
+            "distance_km": distance_km,
+            "index_name": index_name,
+            "pm10": pm10,
+            "pm25": pm25,
+        },
+        "weather": {
+            "temperature_c": temp_c,
+            "rain_mm": rain_mm,
+            "precipitation_mm": precip_mm,
+            "condition": condition,
+            "wind_kmh": wind_kmh,
+        },
+    }
+
+    # Evaluate each position
+    for pos in positions:
+        itinerary = pos.get("itinerary") or {}
+        legs = itinerary.get("legs") or []
+
+        bike_sec = sum(leg.get("duration", 0) for leg in legs if leg.get("mode") == "BICYCLE")
+        bike_min = round(bike_sec / 60.0, 1)
+
+        metrics = pos.setdefault("metrics", {})
+        metrics["bike_duration_min"] = bike_min
+
+        # In advisory model, keep route selectable
+        pos["locked"] = False
+        pos["lock_note"] = None
+
+        if bike_min == 0:
+            # Transit or pure walk
+            level = "SAFE"
+            badge = "Czysty przejazd" if (is_smog or is_rain) else "Rekomendowana"
+            msg = (
+                "Trasa w pojeździe (tramwaj/autobus) minimalizuje kontakt ze smogiem i opadami."
+                if (is_smog or is_rain)
+                else "Optymalny czas dojazdu komunikacją miejską."
+            )
+            factors = []
+            affected_legs = []
+        else:
+            # Bicycle used
+            if is_severe_smog or is_severe_weather:
+                level = "DANGER"
+                badge = "Bardzo wysokie ryzyko"
+                msg = f"Warunki niebezpieczne dla aktywności ({condition}, PM10: {pm10:.0f} µg/m³). Odradzany przejazd rowerem."
+                factors = [
+                    f"Stacja {station_name}: PM10 = {pm10:.0f} µg/m³"
+                    if is_severe_smog
+                    else f"Trudne warunki pogodowe: {condition}"
+                ]
+                affected_legs = ["BICYCLE"]
+            elif is_smog or is_rain:
+                if bike_min <= limit_min:
+                    level = "MODERATE"
+                    badge = "Krótka ekspozycja"
+                    msg = f"Dojazd rowerem ({bike_min:.0f} min) mieści się w bezpiecznym limicie 15 min mimo gorszych warunków."
+                    factors = [f"Czas jazdy na rowerze: {bike_min:.0f} min (poniżej limitu {limit_min:.0f} min)"]
+                    affected_legs = ["BICYCLE"]
+                else:
+                    level = "WARNING"
+                    badge = "Wysoka ekspozycja"
+                    msg = (
+                        f"{bike_min:.0f} min jazdy rowerem w strefie smogu ({pm10:.0f} µg/m³, {station_name}). "
+                        "Zalecany tramwaj lub krótszy odcinek."
+                    )
+                    factors = [
+                        f"Czas jazdy na rowerze ({bike_min:.0f} min) przekracza próg {limit_min:.0f} min",
+                        f"Stacja {station_name}: PM10 = {pm10:.0f} µg/m³",
+                    ]
+                    affected_legs = ["BICYCLE"]
+            else:
+                level = "SAFE"
+                badge = "Dobre warunki"
+                msg = f"Czyste powietrze ({station_name}) i brak opadów — optymalne warunki na trening rowerowy."
+                factors = []
+                affected_legs = []
+
+        pos["advisory"] = {
+            "level": level,
+            "badge": badge,
+            "message": msg,
+            "factors": factors,
+            "affected_legs": affected_legs,
+        }
+
+    return positions, env_summary
+
+
 def evaluate_outdoor_exposure(
     positions: List[Dict[str, Any]],
     lock_reason: Optional[str],
@@ -85,9 +227,7 @@ def evaluate_outdoor_exposure(
 ) -> Tuple[List[Dict[str, Any]], List[str]]:
     """
     Applies the outdoor exposure rule (15 min cycling threshold) to route positions.
-    - Computes metrics['bike_duration_min'] for every position.
-    - If lock_reason is present and bike_duration_min > limit_min -> position is locked.
-    - If bike_duration_min <= limit_min or mode is transit/walk -> unlocked.
+    Retained for backward compatibility.
     """
     extra_warnings: List[str] = []
     any_locked = False
@@ -107,7 +247,6 @@ def evaluate_outdoor_exposure(
             pos["lock_note"] = None
             continue
 
-        # If it's a fallback or pure transit/walk without bicycle, keep it unlocked
         modes = metrics.get("modes") or []
         is_fallback = pos.get("fallback", False) or ("BICYCLE" not in modes)
 
@@ -122,7 +261,6 @@ def evaluate_outdoor_exposure(
             )
             any_locked = True
         else:
-            # Short cycling trip (<= 15 min): permitted even under lock_reason!
             pos["locked"] = False
             pos["lock_note"] = None
 
@@ -135,7 +273,7 @@ def evaluate_outdoor_exposure(
     return positions, extra_warnings
 
 
-def plan_routes(
+async def plan_routes(
     origin: Dict[str, float],
     destination: Dict[str, float],
     deadline: str,
@@ -144,8 +282,9 @@ def plan_routes(
     lock_reason: Optional[str] = None,
     buffer_min: float = 3.0,
     client: Optional[Any] = None,
+    http_client: Optional[Any] = None,
 ) -> Dict[str, Any]:
-    """Execute route planning and apply exposure safety rules."""
+    """Execute route planning, fetch environmental context, and apply health advisories."""
     settings = get_settings()
     variant = "bike" if has_bike else "walk"
     slider = get_slider(variant)
@@ -155,7 +294,15 @@ def plan_routes(
     walk_speed = user_profile.walk_speed_mps if user_profile else None
     bike_speed = user_profile.bike_speed_mps if user_profile else None
 
-    # Call the proven optimizer.slider_select engine
+    # 1. Fetch environmental context in background/cache (<1ms when cached)
+    env_context = await get_environmental_context(
+        lat=origin["lat"],
+        lon=origin["lon"],
+        deadline_iso=deadline,
+        client=http_client,
+    )
+
+    # 2. Call OTP route slider engine
     rs = plan_route_slider(
         slider=slider,
         origin=origin,
@@ -163,7 +310,7 @@ def plan_routes(
         deadline=deadline,
         url=settings.otp_url,
         buffer_min=buffer_min,
-        lock_reason=lock_reason,
+        lock_reason=None,  # We handle locking via advisory nudge
         walk_speed=walk_speed,
         bike_speed=bike_speed,
         weight=weight,
@@ -171,23 +318,24 @@ def plan_routes(
         client=client,
     )
 
-    # Post-process with the 15-minute exposure rule
-    updated_positions, extra_warnings = evaluate_outdoor_exposure(
+    # 3. Post-process with health advisories
+    positions, env_summary = evaluate_health_advisory(
         positions=rs.get("positions", []),
-        lock_reason=lock_reason,
+        env_context=env_context,
+        manual_lock_reason=lock_reason,
         limit_min=settings.outdoor_exposure_limit_min,
     )
-    rs["positions"] = updated_positions
-    warnings = rs.setdefault("warnings", [])
-    warnings.extend(extra_warnings)
+    rs["positions"] = positions
+    rs["environment"] = env_summary
 
-    # Guarantee default_index points to an unlocked position
-    positions = rs.get("positions", [])
+    # 4. Smart default: default_index targets the safest position (SAFE or MODERATE)
     if positions:
-        curr_default = rs.get("default_index", 0)
-        if curr_default < len(positions) and positions[curr_default].get("locked"):
-            # find first unlocked
-            unlocked_idx = next((i for i, p in enumerate(positions) if not p.get("locked")), 0)
-            rs["default_index"] = unlocked_idx
+        safe_indices = [
+            i for i, p in enumerate(positions)
+            if p.get("advisory", {}).get("level") in ("SAFE", "MODERATE")
+        ]
+        if safe_indices:
+            # Pick first safe (or the one closest to s=0 / transit)
+            rs["default_index"] = safe_indices[0]
 
     return rs

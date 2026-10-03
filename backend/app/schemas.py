@@ -1,4 +1,4 @@
-"""Pydantic schemas for the route slider API."""
+"""Pydantic schemas for the route slider API with environmental health advisories."""
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field, field_validator, ConfigDict
@@ -24,7 +24,7 @@ class RouteRequest(BaseModel):
     deadline: datetime = Field(..., description="Target arrival deadline with timezone")
     has_bike: bool = Field(default=True, description="Whether the user has a bicycle")
     user_profile: Optional[UserProfile] = Field(default=None, description="Optional physical profile for MET calculation")
-    lock_reason: Optional[str] = Field(default=None, description="Environmental reason to restrict outdoor exposure (e.g. 'smog', 'weather')")
+    lock_reason: Optional[str] = Field(default=None, description="Manual lock reason or 'auto' for automated GIOŚ/Meteo detection")
     buffer_min: float = Field(default=3.0, ge=0.0, le=60.0, description="Arrival buffer in minutes")
 
     @field_validator("deadline")
@@ -44,13 +44,46 @@ class RouteMetrics(BaseModel):
     modes: List[str] = []
 
 
+class HealthAdvisory(BaseModel):
+    level: str = Field(default="SAFE", description="Risk level: SAFE, MODERATE, WARNING, DANGER")
+    badge: str = Field(default="Rekomendowana", description="Short UI badge label")
+    message: str = Field(default="", description="Explanatory health rationale")
+    factors: List[str] = Field(default_factory=list, description="Specific triggers (e.g. smog, rain)")
+    affected_legs: List[str] = Field(default_factory=list, description="Transport modes affected, e.g. ['BICYCLE']")
+
+
+class AirQualityInfo(BaseModel):
+    station_name: str
+    station_id: int
+    distance_km: float
+    index_name: str
+    pm10: float
+    pm25: float
+
+
+class WeatherInfo(BaseModel):
+    temperature_c: float
+    rain_mm: float
+    precipitation_mm: float
+    condition: str
+    wind_kmh: float
+
+
+class EnvironmentSummary(BaseModel):
+    overall_level: str = Field(default="SAFE", description="SAFE, MODERATE, WARNING, DANGER")
+    summary: str = Field(default="Dobre warunki atmosferyczne", description="One-line summary for UI banner")
+    air_quality: Optional[AirQualityInfo] = None
+    weather: Optional[WeatherInfo] = None
+
+
 class RoutePosition(BaseModel):
     s: float = Field(..., ge=0.0, le=1.0, description="Slider position from 0 (fastest) to 1 (most active)")
-    locked: bool = Field(default=False, description="Whether this position is locked due to smog/weather")
-    lock_note: Optional[str] = Field(default=None, description="Explanation when locked")
+    locked: bool = Field(default=False, description="Kept false in advisory model so user retains agency")
+    lock_note: Optional[str] = Field(default=None, description="Legacy/optional note")
     fallback: bool = Field(default=False, description="Whether this is a safe public transit/walk fallback")
     sources: List[str] = Field(default_factory=list, description="Source tags (ticks/anchor/walk)")
     metrics: RouteMetrics
+    advisory: Optional[HealthAdvisory] = Field(default=None, description="Environmental health risk assessment")
     itinerary: Dict[str, Any] = Field(..., description="Raw OTP itinerary with legs and legGeometry")
 
 
@@ -58,6 +91,7 @@ class RouteResponse(BaseModel):
     baseline_min: Optional[float] = None
     default_index: int = 0
     lock_reason: Optional[str] = None
+    environment: Optional[EnvironmentSummary] = None
     positions: List[RoutePosition] = []
     warnings: List[str] = []
     otp_stats: Optional[Dict[str, int]] = None

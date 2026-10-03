@@ -425,7 +425,6 @@ def plan_route_slider(slider, origin, destination, deadline, *, url=DEFAULT_URL,
                       workers=8, cache_path=None, lock_reason=None, walk_speed=None,
                       bike_speed=None, weight=70.0, height=1.75, lock_above_s=0.5, client=None):
     """Single backend entry point: requests -> OTP -> ``build_route_slider`` result.
-
     Creates ``OTPClient(url, arrive_by=query_arrive_by(deadline, buffer_min), query=ROUTE_QUERY)``
     (``client`` may be injected, e.g. in tests; its ``arrive_by``/``query`` are then the
     caller's responsibility). ``cache_path=None`` = no disk cache (default for live requests).
