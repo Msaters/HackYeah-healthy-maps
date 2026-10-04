@@ -132,7 +132,7 @@ async def fetch_gios_air_quality(station_id: int, client: Optional[httpx.AsyncCl
     Fetch air quality index for a specific GIOŚ station.
     Falls back gracefully if network is unavailable.
     """
-    url = f"https://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{station_id}"
+    url = f"https://api.gios.gov.pl/pjp-api/v1/rest/aqindex/getIndex/{station_id}"
     close_client = False
     if client is None:
         client = httpx.AsyncClient(timeout=4.0)
@@ -142,8 +142,10 @@ async def fetch_gios_air_quality(station_id: int, client: Optional[httpx.AsyncCl
         resp = await client.get(url)
         if resp.status_code == 200:
             data = resp.json()
+            # Support both new GIOŚ API (AqIndex) and legacy (stIndexLevel)
+            aq_index = data.get("AqIndex") or {}
             st_index = data.get("stIndexLevel") or {}
-            index_name = st_index.get("indexLevelName") or "Dobry"
+            index_name = aq_index.get("Nazwa kategorii indeksu") or st_index.get("indexLevelName") or "Dobry"
             
             # Map index name to representative PM estimates if raw sensors not queried
             pm10_estimates = {
