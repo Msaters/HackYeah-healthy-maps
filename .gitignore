@@ -9,3 +9,10 @@ __pycache__/
 .venv/
 node_modules/
 .env
+
+# hy-loop agent state (local only)
+.hy-loop/
+
+# local project status report (generated)
+STAN_PROJEKTU.pdf
+docs/build_state_pdf.py

@@ -1,0 +1,95 @@
+# 📜 Kontrakt API – Health Routes (FastAPI, tryb demo)
+
+> ŹRÓDŁO PRAWDY dla frontendu. Zmienił się backend? Najpierw zaktualizuj TEN plik.
+> Base URL: `http://127.0.0.1:8000/api/v1` | Content-Type: `application/json` (POST/PATCH)
+> 🚨 BEZ nagłówka `Authorization` (backend ma `auto_error=False`, zawsze zwraca demo usera).
+
+## Zasady ogólne
+- Pola w **snake_case** – mapujemy 1:1 do typów TS, NIE zamieniamy na camelCase.
+- Współrzędne w API: obiekty `{ lat, lon }`.
+- GeoJSON `coordinates`: kolejność `[lon, lat]` – **NIE odwracać ręcznie**.
+- bbox z backendu: `[min_lon, min_lat, max_lon, max_lat]`
+  → Leaflet chce: `[[min_lat, min_lon], [max_lat, max_lon]]` (utility `bboxToLeafletBounds`).
+
+## 1) POST /auth/demo
+- Request: `{}` (pusty).
+- Response: `{ "token": "demo-token-not-used", "user": User }`
+- Akcja: **token ignorujemy** (nie zapisywać, nie wysyłać). `user` → do Zustand.
+
+## 2) GET /me
+- Response: `User` (bez tokena).
+- Akcja: wywołać przy starcie strony, nadpisać `user` w store.
+
+## User (kształt):
+```json
+{ "id": "demo-user", "email": "demo@healthroutes.app", "name": "Demo User",
+  "weight_kg": 75.0, "height_cm": 178.0,
+  "goal": { "target_steps": 10000, "target_calories": 500, "prefer_green_routes": true } }
+```
+⚠️ Cel jest **zagnieżdżony**: `user.goal.target_steps`, NIE `user.target_steps`.
+
+## 3) PATCH /me/goal
+- Request (dowolny podzbiór): `{ "target_steps"?, "target_calories"?, "prefer_green_routes"? }`
+- Response: `{ "ok": true, "user": User }` → nadpisz `user` w store.
+
+## 4) GET /geocode/search?q=&limit=
+- Response: `{ query, results: [{ label, lat, lon, type, osm_id, distance_m }], warning }`
+- **Debounce min. 400 ms** na inpucie (inaczej blokada IP Photon API).
+- `results` puste → "Brak wyników". `warning != null` → delikatny komunikat, NIE blokować UI
+  (sugestia: "…możesz wybrać punkt klikając w mapę").
+- `label` → tekst w inpucie Start/Cel po wyborze.
+
+## 5) GET /geocode/reverse?lat=&lon=
+- Response: `{ lat, lon, label, results, warning }`
+- `label` = najlepszy czytelny adres → do inputa. Brak adresu? label = współrzędne.
+- Błąd? Nie blokować mapy – zostawić label ze współrzędnych.
+
+## 6) POST /map/plan  ⭐ najważniejszy
+- Request:
+```json
+{ "origin": { "lat": 0, "lon": 0, "label": "..." },
+  "destination": { "lat": 0, "lon": 0, "label": "..." },
+  "modes": ["walk", "bike", "transit"],
+  "time_budget_minutes": 30 }
+```
+  `modes` puste → **zablokować przycisk "Planuj trasę"**. `time_budget_minutes`: number | null.
+- Response:
+```json
+{ "plan_id": "...", "bbox": [min_lon, min_lat, max_lon, max_lat],
+  "routes": [ { "route_id", "kind", "label", "duration_min", "steps", "calories", "bbox", "warnings": [] } ],
+  "selected_route_id": "...", "alerts": [], "user_goal": { ... } }
+```
+- `routes[].kind`: `fastest | healthy | balanced` → kolor linii:
+  fastest `#2563eb`, healthy `#16a34a`, balanced `#f59e0b`.
+- `routes[].warnings`: string[] → żółty/czerwony banner ⚠️ na karcie trasy.
+- `alerts`: string[] → toast/banner nad listą tras. Puste → nic.
+- `selected_route_id`: **źródło prawdy** → oznacz trasę, AUTOMATYCZNIE pobierz jej GeoJSON
+  i narysuj bez czekania na klik. Jeśli `null` → fallback `routes[0].route_id`.
+- `duration_min` → "14 min", `steps` → "5200 kroków", `calories` → "390 kcal".
+
+## 7) GET /map/routes/{route_id}/geojson
+- Response: GeoJSON `FeatureCollection`, geometria zwykle `LineString`.
+- `coordinates`: `[lon, lat]` – podać do `<GeoJSON>` **bez zmian**.
+- `properties.mode`: `walk | bike | transit` (środek transportu fragmentu).
+- 404 → wyczyść cache trasy, pokaż: "Trasa wygasła. Zaplanuj trasę ponownie."
+
+## ⚠️ NIE MYLIĆ (pułapki)
+| Pojęcie A | Pojęcie B |
+|---|---|
+| `kind` = wariant trasy (fastest/healthy/balanced) → kolor | `mode` = środek transportu fragmentu (walk/bike/transit) |
+| `route_id` = id pojedynczej trasy | `selected_route_id` = id trasy wybranej przez backend |
+| `label` z geocode = adres miejsca → input | `label` z routes = nazwa wariantu ("Najszybsza (Rower)") → karta |
+| bbox backendu = płaska tablica | bbox Leafleta = tablica dwóch par |
+
+## Błędy (§10)
+FastAPI zwraca `{ "detail": "..." }`.
+- 404 → "Trasa wygasła. Zaplanuj trasę ponownie."
+- 422 → "Uzupełnij punkt startowy i końcowy."
+- 500 → "Wystąpił nieoczekiwany błąd serwera."
+- brak sieci → "Brak połączenia z serwerem."
+
+## Przepis: flow po kliknięciu "Planuj trasę"
+1. POST /map/plan → 2. zapisz plan, `selectedRouteId = selected_route_id` (lub routes[0]) →
+3. `fitBounds(bboxToLeafletBounds(bbox))` → 4. karty tras + warnings + alerts →
+5. GET geojson dla selected → 6. narysuj `<GeoJSON key={route_id}>` →
+7. klik innej karty: pobierz geojson (cache!), przerysuj z nowym `key`.
