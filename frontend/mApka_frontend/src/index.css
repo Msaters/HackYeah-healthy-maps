@@ -1,1 +1,8 @@
 @import "tailwindcss";
+.clay-frame {
+  background: #ffffff;                       /* tło karty pod spodem */
+  border: 44px solid transparent;            /* "miejsce" na ramkę wokół treści */
+  border-image-source: url('./assets/pictures/Ramka.png');
+  border-image-slice: 420;                   /* ile px ŻRÓDŁA uciąć na narożniki */
+  border-image-repeat: stretch;              /* krawędzie: stretch | round | repeat */
+}

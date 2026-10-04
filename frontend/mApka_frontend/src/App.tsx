@@ -5,9 +5,7 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import { startIcon, metaIcon } from './map/clayIcons';
 import { useAppStore } from './store/useAppStore';
 import { api } from './api/client';
 import { logger } from './utils/logger';
@@ -16,16 +14,8 @@ import ProfilePage from './profile/ProfilePage';
 
 
 
+
 // JAWNA ikona pinezki – żadnej magii, Vite nie może popsuć ścieżek
-const defaultIcon = L.icon({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
-  iconSize: [25, 41],    // rozmiar ikony w px
-  iconAnchor: [12, 41],  // który piksel to "czubek" pinezki
-  popupAnchor: [1, -34], // gdzie otwiera się dymek
-  shadowSize: [41, 41],
-});
 
 // 👻 Przelicza rozmiar mapy po załadowaniu CSS (likwiduje szare pasy)
 function MapRefresher() {
@@ -106,13 +96,13 @@ function PointsMarkers() {
   return (
     <>
       {origin && (
-        <Marker position={[origin.lat, origin.lon]} icon={defaultIcon}>
+        <Marker position={[origin.lat, origin.lon]} icon={startIcon}>
           <Popup>START</Popup>
         </Marker>
       )}
       {destination && (
-        <Marker position={[destination.lat, destination.lon]} icon={defaultIcon}>
-          <Popup>CEL</Popup>
+        <Marker position={[destination.lat, destination.lon]} icon={metaIcon}>
+          <Popup>META 🏁</Popup>
         </Marker>
       )}
     </>

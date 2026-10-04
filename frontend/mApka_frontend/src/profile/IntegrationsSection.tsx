@@ -1,8 +1,7 @@
-// src/components/profile/IntegrationsSection.tsx
 import { useState } from 'react';
 import { Apple, Plug } from 'lucide-react';
+import ClayFrame from './ClayFrame';
 
-// Logo Google jako mały inline SVG (lucide nie ma logotypów marek)
 function GoogleIcon({ size = 22 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48">
@@ -14,23 +13,21 @@ function GoogleIcon({ size = 22 }: { size?: number }) {
   );
 }
 
-// KONFIGURACJA DOSTAWCÓW: chcesz dodać Garmin? Dopisz obiekt i gotowe.
 const PROVIDERS = [
   { id: 'apple',  name: 'Apple Health', desc: 'Kroki i treningi z iPhone / Apple Watch' },
   { id: 'google', name: 'Google Fit',   desc: 'Kroki i aktywność z Androida' },
 ];
 
 export default function IntegrationsSection() {
-  // PROTOTYP: stan połączeń tylko lokalnie (bez backendu i OAuth)
   const [connected, setConnected] = useState<Record<string, boolean>>({
-    apple: true,   // dla efektu demo: Apple "już połączone"
+    apple: true,
     google: false,
   });
 
   const toggle = (id: string) => setConnected((c) => ({ ...c, [id]: !c[id] }));
 
   return (
-    <section className="rounded-2xl bg-white p-4 shadow">
+    <ClayFrame className="px-6 py-5">
       <div className="mb-2 flex items-center justify-between">
         <h2 className="flex items-center gap-2 font-semibold text-gray-700">
           <Plug size={18} className="text-violet-600" /> Integracje
@@ -39,31 +36,20 @@ export default function IntegrationsSection() {
           MAKIETA
         </span>
       </div>
-
-      {/* Uczciwa notka dla sędziów/zespołu */}
       <p className="mb-2 text-xs text-gray-500">
         Miejsce gotowe na prawdziwe OAuth – w kolejnej wersji podłączymy tu API
-        Apple Health i Google Fit (endpointy trafią do <code>src/api/client.ts</code>).
+        Apple Health i Google Fit.
       </p>
-
-      <div className="divide-y divide-gray-100">
+      <div className="divide-y divide-gray-200">
         {PROVIDERS.map((p) => (
           <div key={p.id} className="flex items-center gap-3 py-3">
-            {/* Kafel z logo marki */}
-            <span
-              className={`rounded-xl p-2 ${
-                p.id === 'apple' ? 'bg-black text-white' : 'border border-gray-200 bg-white'
-              }`}
-            >
+            <span className={`rounded-xl p-2 ${p.id === 'apple' ? 'bg-black text-white' : 'border border-gray-200 bg-white'}`}>
               {p.id === 'apple' ? <Apple size={22} fill="currentColor" /> : <GoogleIcon />}
             </span>
-
             <span className="flex-1">
               <span className="block text-sm font-semibold text-gray-700">{p.name}</span>
               <span className="block text-xs text-gray-500">{p.desc}</span>
             </span>
-
-            {/* Przycisk-toggle: w makiecie tylko klika, w przyszłości odpali OAuth */}
             <button
               onClick={() => toggle(p.id)}
               className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
@@ -78,6 +64,6 @@ export default function IntegrationsSection() {
           </div>
         ))}
       </div>
-    </section>
+    </ClayFrame>
   );
 }
