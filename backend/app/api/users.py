@@ -2,9 +2,9 @@ from typing import Any
 
 from fastapi import APIRouter, Depends
 
-from app.api.dependencies import get_current_user
-from app.core.store import store
-from app.schemas.user import GoalUpdate, GoalUpdateResponse, User
+from backend.app.api.dependencies import get_current_user
+from backend.app.core.store import store
+from backend.app.schemas.user import GoalUpdate, GoalUpdateResponse, User
 
 
 router = APIRouter(tags=["users"])

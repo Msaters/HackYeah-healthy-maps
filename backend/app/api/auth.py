@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from app.core.store import store
-from app.schemas.auth import DemoLoginResponse
+from backend.app.core.store import store
+from backend.app.schemas.auth import DemoLoginResponse
 
 
 router = APIRouter(tags=["auth"])

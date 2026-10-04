@@ -1,7 +1,7 @@
 // src/utils/logger.ts
 // Nasze kolorowe "pieczątki" do konsoli – od razu widać, kto mówi.
 
-const tag = (name: string, color: string) =>
+const tag = (name: string, _color: string) =>
   `%c[${name}]%c`; // %c = miejsce, w którym działa styl CSS
 
 const style = (color: string) => `color:${color};font-weight:bold`;

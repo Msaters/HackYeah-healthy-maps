@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents,
 } from 'react-leaflet';
@@ -13,6 +13,9 @@ import { api } from './api/client';
 import { logger } from './utils/logger';
 import { Map, User } from 'lucide-react';
 import ProfilePage from './profile/ProfilePage';
+import RouteLayer from './components/RouteLayer';
+import RoutePanel from './components/RoutePanel';
+import { useRouteStore } from './store/useRouteStore';
 
 
 
@@ -175,8 +178,8 @@ function ControlPanel() {
     p ? `${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}` : '—';
 
   return (
-    <div className="absolute top-4 left-4 z-[1000] w-72 bg-white p-4 rounded-lg shadow-lg flex flex-col gap-2">
-      <h1 className="text-xl font-bold text-gray-800">Health Routes 🚲</h1>
+    <div className="absolute top-2 left-2 z-[1000] w-[min(18rem,calc(100vw-1rem))] bg-white p-3 md:top-4 md:left-4 md:p-4 rounded-lg shadow-lg flex flex-col gap-2">
+      <h1 className="hidden text-xl font-bold text-gray-800 md:block">Health Routes 🚲</h1>
 
       <button
         onClick={() => setMapClickTarget(mapClickTarget === 'origin' ? null : 'origin')}
@@ -200,14 +203,57 @@ function ControlPanel() {
         {mapClickTarget === 'destination' ? 'Teraz kliknij w mapę…' : 'Kliknij mapę, aby ustawić CEL'}
       </button>
 
-      <p className="text-xs text-gray-600">START: {fmt(origin)}</p>
-      <p className="text-xs text-gray-600">CEL: {fmt(destination)}</p>
+      <p className="hidden text-xs text-gray-600 md:block">START: {fmt(origin)}</p>
+      <p className="hidden text-xs text-gray-600 md:block">CEL: {fmt(destination)}</p>
 
       <UserBox />
     </div>
   );
 }
 
+
+// 🧭 Auto-plan: gdy START i CEL są ustawione (zależność tylko od współrzędnych); zmiana punktu czyści trasy.
+// Po powrocie z Profilu (te same punkty) nie planujemy od nowa.
+let lastPlannedKey: string | null = null;
+
+function AutoPlanner() {
+  const origin = useAppStore((s) => s.origin);
+  const destination = useAppStore((s) => s.destination);
+  const deadline = useRouteStore((s) => s.deadline);
+  const hasBike = useRouteStore((s) => s.hasBike);
+  const simulateSmog = useRouteStore((s) => s.simulateSmog);
+  const oLat = origin?.lat, oLon = origin?.lon, dLat = destination?.lat, dLon = destination?.lon;
+
+  useEffect(() => {
+    if (oLat === undefined || oLon === undefined || dLat === undefined || dLon === undefined) {
+      lastPlannedKey = null;
+      useRouteStore.getState().clear();
+      return;
+    }
+    const key = `${oLat},${oLon}>${dLat},${dLon}`;
+    if (key === lastPlannedKey) return;
+    lastPlannedKey = key;
+    const { plan, clear } = useRouteStore.getState();
+    clear();
+    void plan({ lat: oLat, lon: oLon }, { lat: dLat, lon: dLon }, useAppStore.getState().user);
+  }, [oLat, oLon, dLat, dLon]);
+
+  // Re-plan (debounced) when deadline / bike / smog change; skipped on mount
+  const prev = useRef(`${deadline}|${hasBike}|${simulateSmog}`);
+  useEffect(() => {
+    const cur = `${deadline}|${hasBike}|${simulateSmog}`;
+    if (cur === prev.current) return;
+    prev.current = cur;
+    if (oLat === undefined || oLon === undefined || dLat === undefined || dLon === undefined) return;
+    const t = setTimeout(() => {
+      void useRouteStore.getState().plan(
+        { lat: oLat, lon: oLon }, { lat: dLat, lon: dLon }, useAppStore.getState().user,
+      );
+    }, 300);
+    return () => clearTimeout(t);
+  }, [deadline, hasBike, simulateSmog, oLat, oLon, dLat, dLon]);
+  return null;
+}
 
 function MapScreen() {
   return (
@@ -237,8 +283,11 @@ function MapScreen() {
         <MapRefresher />
         <MapClickHandler />
         <PointsMarkers />
+        <RouteLayer />
       </MapContainer>
+      <AutoPlanner />
       <ControlPanel />
+      <RoutePanel />
     </div>
   );
 }

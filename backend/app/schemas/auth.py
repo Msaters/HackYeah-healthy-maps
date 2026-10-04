@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from app.schemas.user import User
+from backend.app.schemas.user import User
 
 class DemoLoginResponse(BaseModel):
     token: str

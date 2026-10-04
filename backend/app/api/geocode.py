@@ -1,9 +1,9 @@
 import httpx
 from fastapi import APIRouter, Depends, Query
 
-from app.api.dependencies import get_http_client
-from app.schemas.geocode import GeocodeReverseResponse, GeocodeSearchResponse
-from app.services import geocode_service
+from backend.app.api.dependencies import get_http_client
+from backend.app.schemas.geocode import GeocodeReverseResponse, GeocodeSearchResponse
+from backend.app.services import geocode_service
 
 
 router = APIRouter(tags=["geocode"])

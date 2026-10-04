@@ -4,7 +4,7 @@ import httpx
 from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from app.core.store import store
+from backend.app.core.store import store
 
 security = HTTPBearer(auto_error=False)
 

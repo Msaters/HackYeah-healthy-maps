@@ -2,8 +2,8 @@ import json
 from typing import Any
 import httpx
 
-from app.core.config import get_settings
-from app.schemas.geocode import (
+from backend.app.core.config import get_settings
+from backend.app.schemas.geocode import (
     GeocodeResult,
     GeocodeReverseResponse,
     GeocodeSearchResponse,
@@ -45,7 +45,7 @@ def _feature_to_result(feature: dict[str, Any], include_distance: bool = False) 
 
 async def search(q: str, limit: int, client: httpx.AsyncClient) -> GeocodeSearchResponse:
     settings = get_settings()
-    params = {"q": q, "limit": limit, "lang": "pl"}
+    params = {"q": q, "limit": limit, "lang": "default"}
 
     try:
         response = await client.get(settings.photon_search_url, params=params)

@@ -3,10 +3,10 @@ from typing import Any
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import JSONResponse
 
-from app.api.dependencies import get_current_user
-from app.core.store import store
-from app.schemas.map import MapPlanRequest, MapPlanResponse
-from app.services import route_engine
+from backend.app.api.dependencies import get_current_user
+from backend.app.core.store import store
+from backend.app.schemas.map import MapPlanRequest, MapPlanResponse
+from backend.app.services import route_engine
 
 
 router = APIRouter(tags=["map"])

@@ -1,8 +1,8 @@
 from typing import Any
 from uuid import uuid4
 
-from app.schemas.map import MapPlanRequest, MapPlanResponse, RouteSummary
-from app.schemas.user import HealthGoal
+from backend.app.schemas.map import MapPlanRequest, MapPlanResponse, RouteSummary
+from backend.app.schemas.user import HealthGoal
 
 def _make_bbox(o_lat, o_lon, d_lat, d_lon):
     return [min(o_lon, d_lon), min(o_lat, d_lat), max(o_lon, d_lon), max(o_lat, d_lat)]

@@ -16,3 +16,4 @@ node_modules/
 # local project status report (generated)
 STAN_PROJEKTU.pdf
 docs/build_state_pdf.py
+.run/
